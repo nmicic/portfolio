@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A technical catalog of 22 public repositories across integer computing, secure systems, computational search, visual mathematics, and writing tools.">
+  <meta name="color-scheme" content="light">
+  <title>Nenad Micic — Project index</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/site.js"></script>
+</head>
+<body data-page="index">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="index.html#projects">Projects</a>
+      <a href="catalog/index.html">Table</a>
+      <a href="index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Public project catalog · 15 October 2026</p>
+        <h1>Projects and<br><span>experiments.</span></h1>
+        <p class="hero-lede">I build experiments and tools across integer computing, Linux isolation, encrypted transport, GPU search, visual mathematics, and technical writing. Each brief explains what was built, the evidence recorded in its repository, and the limits of the result.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">Browse all projects</a>
+          <a class="button secondary" href="catalog/index.html">Compact table</a>
+          <a class="button secondary" href="https://github.com/nmicic" target="_blank" rel="noreferrer">Source repositories <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <aside class="hero-facts" aria-label="Portfolio summary">
+        <p class="fact-number">22</p>
+        <p class="fact-label">project repositories in this catalog</p>
+        <dl>
+          <div><dt>5</dt><dd>focus areas</dd></div>
+          <div><dt>5</dt><dd>repos with live demos</dd></div>
+          <div><dt>7</dt><dd>completed result sets</dd></div>
+        </dl>
+        <p class="fact-note">Includes 2 archived entries, one of them a moved-project notice. Counts describe repositories; related experiments and datasets are linked together.</p>
+      </aside>
+    </section>
+
+    <section class="section-shell section-block" aria-labelledby="start-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Suggested entry points</p><h2 id="start-heading">Start with these four</h2></div>
+        <p>Four different kinds of work: reproducible AI arithmetic, embedded navigation, operating-system isolation, and GPU number-theory search.</p>
+      </div>
+      <div class="featured-grid"><article class="project-card" data-domain="Integer &amp; embedded" data-status="Active" data-search="int-llm int-llm pure-integer c experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets. active 80/80 greedy tokens matched the float reference; the committed arithmetic hash was reproduced across the recorded x86, arm, risc-v, xtensa, and avr targets. reference agreement 80/80 tokens determinism 5 architectures numeric core q16.48 fixed point gpu outcome negative result c99 q16.48 fixed point llama microgpt embedded systems">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Active</span></div>
+    <h3><a href="projects/int-llm/index.html">int-llm</a></h3>
+    <p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p>
+    <div class="evidence"><span>Evidence</span>80/80 greedy tokens matched the float reference; the committed arithmetic hash was reproduced across the recorded x86, Arm, RISC-V, Xtensa, and AVR targets.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Reference agreement</dt><dd>80/80 tokens</dd></div><div><dt>Determinism</dt><dd>5 architectures</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>C99</li><li>Q16.48 fixed point</li><li>Llama</li><li>MicroGPT</li></ul>
+    <a class="card-link" href="projects/int-llm/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Active" data-search="astro-nav-int astro-nav-int a no-floating-point celestial-navigation library that carries a sextant observation through correction, sight reduction, and position fixing. active altitude and primary-method azimuth outputs are documented within 0.30 arcminute of the double reference, with independent ephemeris and published-source gates. accuracy gate ≤0.30 arcminute independent references 5 classes runtime arithmetic no floating point target coverage native → mcu c99 q16.48 fixed point cordic celestial navigation microcontrollers">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Active</span></div>
+    <h3><a href="projects/astro-nav-int/index.html">astro-nav-int</a></h3>
+    <p>A no-floating-point celestial-navigation library that carries a sextant observation through correction, sight reduction, and position fixing.</p>
+    <div class="evidence"><span>Evidence</span>Altitude and primary-method azimuth outputs are documented within 0.30 arcminute of the double reference, with independent ephemeris and published-source gates.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Accuracy gate</dt><dd>≤0.30 arcminute</dd></div><div><dt>Independent references</dt><dd>5 classes</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>C99</li><li>Q16.48 fixed point</li><li>CORDIC</li><li>celestial navigation</li></ul>
+    <a class="card-link" href="projects/astro-nav-int/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Secure systems" data-status="Maintained" data-search="compartment compartment a small linux isolation toolkit with two zero-dependency c tools, one policy format, worked profiles, and explicit security boundaries. maintained bpf v0.8.0 documents 3,284 enforcement trials and 44 bypass scenarios on two kernel versions; the core has separate rootless and real-root suites. bpf core 11,341 lines bpf tests 22,322 lines enforcement matrix 3,284 trials robustness 10,000 iterations linux landlock seccomp bpf namespaces bpf lsm">
+    <div class="card-meta"><span>Secure systems</span><span>Maintained</span></div>
+    <h3><a href="projects/compartment/index.html">compartment</a></h3>
+    <p>A small Linux isolation toolkit with two zero-dependency C tools, one policy format, worked profiles, and explicit security boundaries.</p>
+    <div class="evidence"><span>Evidence</span>BPF v0.8.0 documents 3,284 enforcement trials and 44 bypass scenarios on two kernel versions; the core has separate rootless and real-root suites.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>BPF core</dt><dd>11,341 lines</dd></div><div><dt>BPF tests</dt><dd>22,322 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>Linux</li><li>Landlock</li><li>seccomp BPF</li><li>namespaces</li></ul>
+    <a class="card-link" href="projects/compartment/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Computational search" data-status="Completed" data-search="cunningham-chain-search cunningham-chain-search a visualization-led number-theory project that grew into a staged gpu filter, cpu confirmer, campaign toolkit, and published dataset. completed the campaign produced two first-kind cc18 roots and a cumulative dataset of 1,551,489 cc10–cc18 roots; it explicitly does not claim the first known cc18. production gpu 4,280 lines production cpu 3,331 lines independent validators 4,535 lines campaign result 1,551,489 roots cuda gmp pari/gp python interactive visualization">
+    <div class="card-meta"><span>Computational search</span><span>Completed</span></div>
+    <h3><a href="projects/cunningham-chain-search/index.html">cunningham-chain-search</a></h3>
+    <p>A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.</p>
+    <div class="evidence"><span>Evidence</span>The campaign produced two first-kind CC18 roots and a cumulative dataset of 1,551,489 CC10–CC18 roots; it explicitly does not claim the first known CC18.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Production GPU</dt><dd>4,280 lines</dd></div><div><dt>Production CPU</dt><dd>3,331 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>CUDA</li><li>GMP</li><li>PARI/GP</li><li>Python</li></ul>
+    <a class="card-link" href="projects/cunningham-chain-search/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article></div>
+    </section>
+
+    <section class="section-shell section-block" id="projects" aria-labelledby="projects-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Complete index</p><h2 id="projects-heading">All projects</h2></div>
+        <p>Filter by area or search by name, method, language, or result.</p>
+      </div>
+      <div class="filter-bar" aria-label="Project filters">
+        <label class="search-box"><span class="sr-only">Search projects</span><input id="project-search" type="search" placeholder="Search projects" autocomplete="off"></label>
+        <div class="filter-buttons" role="group" aria-label="Filter by area">
+          <button type="button" class="active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="Integer &amp; embedded" aria-pressed="false">Integer &amp; embedded</button><button type="button" data-filter="Secure systems" aria-pressed="false">Secure systems</button><button type="button" data-filter="Computational search" aria-pressed="false">Computational search</button><button type="button" data-filter="Visual mathematics" aria-pressed="false">Visual mathematics</button><button type="button" data-filter="Writing tools" aria-pressed="false">Writing tools</button>
+        </div>
+      </div>
+      <p class="result-count" aria-live="polite"><span id="visible-count">22</span> projects shown</p>
+      <div class="project-grid" id="project-grid"><article class="project-card" data-domain="Integer &amp; embedded" data-status="Active" data-search="int-llm int-llm pure-integer c experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets. active 80/80 greedy tokens matched the float reference; the committed arithmetic hash was reproduced across the recorded x86, arm, risc-v, xtensa, and avr targets. reference agreement 80/80 tokens determinism 5 architectures numeric core q16.48 fixed point gpu outcome negative result c99 q16.48 fixed point llama microgpt embedded systems">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Active</span></div>
+    <h3><a href="projects/int-llm/index.html">int-llm</a></h3>
+    <p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p>
+    <div class="evidence"><span>Evidence</span>80/80 greedy tokens matched the float reference; the committed arithmetic hash was reproduced across the recorded x86, Arm, RISC-V, Xtensa, and AVR targets.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Reference agreement</dt><dd>80/80 tokens</dd></div><div><dt>Determinism</dt><dd>5 architectures</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>C99</li><li>Q16.48 fixed point</li><li>Llama</li><li>MicroGPT</li></ul>
+    <a class="card-link" href="projects/int-llm/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Active" data-search="astro-nav-int astro-nav-int a no-floating-point celestial-navigation library that carries a sextant observation through correction, sight reduction, and position fixing. active altitude and primary-method azimuth outputs are documented within 0.30 arcminute of the double reference, with independent ephemeris and published-source gates. accuracy gate ≤0.30 arcminute independent references 5 classes runtime arithmetic no floating point target coverage native → mcu c99 q16.48 fixed point cordic celestial navigation microcontrollers">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Active</span></div>
+    <h3><a href="projects/astro-nav-int/index.html">astro-nav-int</a></h3>
+    <p>A no-floating-point celestial-navigation library that carries a sextant observation through correction, sight reduction, and position fixing.</p>
+    <div class="evidence"><span>Evidence</span>Altitude and primary-method azimuth outputs are documented within 0.30 arcminute of the double reference, with independent ephemeris and published-source gates.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Accuracy gate</dt><dd>≤0.30 arcminute</dd></div><div><dt>Independent references</dt><dd>5 classes</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>C99</li><li>Q16.48 fixed point</li><li>CORDIC</li><li>celestial navigation</li></ul>
+    <a class="card-link" href="projects/astro-nav-int/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Secure systems" data-status="Maintained" data-search="compartment compartment a small linux isolation toolkit with two zero-dependency c tools, one policy format, worked profiles, and explicit security boundaries. maintained bpf v0.8.0 documents 3,284 enforcement trials and 44 bypass scenarios on two kernel versions; the core has separate rootless and real-root suites. bpf core 11,341 lines bpf tests 22,322 lines enforcement matrix 3,284 trials robustness 10,000 iterations linux landlock seccomp bpf namespaces bpf lsm">
+    <div class="card-meta"><span>Secure systems</span><span>Maintained</span></div>
+    <h3><a href="projects/compartment/index.html">compartment</a></h3>
+    <p>A small Linux isolation toolkit with two zero-dependency C tools, one policy format, worked profiles, and explicit security boundaries.</p>
+    <div class="evidence"><span>Evidence</span>BPF v0.8.0 documents 3,284 enforcement trials and 44 bypass scenarios on two kernel versions; the core has separate rootless and real-root suites.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>BPF core</dt><dd>11,341 lines</dd></div><div><dt>BPF tests</dt><dd>22,322 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>Linux</li><li>Landlock</li><li>seccomp BPF</li><li>namespaces</li></ul>
+    <a class="card-link" href="projects/compartment/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Computational search" data-status="Completed" data-search="cunningham-chain-search cunningham-chain-search a visualization-led number-theory project that grew into a staged gpu filter, cpu confirmer, campaign toolkit, and published dataset. completed the campaign produced two first-kind cc18 roots and a cumulative dataset of 1,551,489 cc10–cc18 roots; it explicitly does not claim the first known cc18. production gpu 4,280 lines production cpu 3,331 lines independent validators 4,535 lines campaign result 1,551,489 roots cuda gmp pari/gp python interactive visualization">
+    <div class="card-meta"><span>Computational search</span><span>Completed</span></div>
+    <h3><a href="projects/cunningham-chain-search/index.html">cunningham-chain-search</a></h3>
+    <p>A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.</p>
+    <div class="evidence"><span>Evidence</span>The campaign produced two first-kind CC18 roots and a cumulative dataset of 1,551,489 CC10–CC18 roots; it explicitly does not claim the first known CC18.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Production GPU</dt><dd>4,280 lines</dd></div><div><dt>Production CPU</dt><dd>3,331 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>CUDA</li><li>GMP</li><li>PARI/GP</li><li>Python</li></ul>
+    <a class="card-link" href="projects/cunningham-chain-search/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Secure systems" data-status="Active" data-search="deaddrop deaddrop a go client and relay for short-lived encrypted handoffs, with capsule pairing, optional end-to-end identity, and a detailed protocol specification. active tiered ci and qa cover protocol vectors, bootstrap flows, one-shot semantics, collision handling, crash behavior, and exit-code contracts. production go 7,157 lines test and qa 12,813 lines test-to-code ratio 1.79× documentation 11,507 lines go xchacha20-poly1305 x25519 argon2id self-hosting">
+    <div class="card-meta"><span>Secure systems</span><span>Active</span></div>
+    <h3><a href="projects/deaddrop/index.html">deaddrop</a></h3>
+    <p>A Go client and relay for short-lived encrypted handoffs, with capsule pairing, optional end-to-end identity, and a detailed protocol specification.</p>
+    <div class="evidence"><span>Evidence</span>Tiered CI and QA cover protocol vectors, bootstrap flows, one-shot semantics, collision handling, crash behavior, and exit-code contracts.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Production Go</dt><dd>7,157 lines</dd></div><div><dt>Test and QA</dt><dd>12,813 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>Go</li><li>XChaCha20-Poly1305</li><li>X25519</li><li>Argon2id</li></ul>
+    <a class="card-link" href="projects/deaddrop/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Secure systems" data-status="Active" data-search="urtb urtb a c terminal tunnel using shared capsules and xchacha20-poly1305 across esp-now, lora, unix sockets, and generic process streams. active software checks run without radio hardware, while a separate hardware tier validates two heltec v3 boards and jump-host scenarios. implementation 8,737 lines test and harness code 5,537 lines protocol coverage 52 cases failure testing 8 classes c esp-now lora xchacha20-poly1305 heltec esp32-s3">
+    <div class="card-meta"><span>Secure systems</span><span>Active</span></div>
+    <h3><a href="projects/URTB/index.html">URTB</a></h3>
+    <p>A C terminal tunnel using shared capsules and XChaCha20-Poly1305 across ESP-NOW, LoRa, Unix sockets, and generic process streams.</p>
+    <div class="evidence"><span>Evidence</span>Software checks run without radio hardware, while a separate hardware tier validates two Heltec V3 boards and jump-host scenarios.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Implementation</dt><dd>8,737 lines</dd></div><div><dt>Test and harness code</dt><dd>5,537 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>C</li><li>ESP-NOW</li><li>LoRa</li><li>XChaCha20-Poly1305</li></ul>
+    <a class="card-link" href="projects/URTB/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Secure systems" data-status="Active" data-search="ephrun ephrun a c toolchain that encrypts linux executables, sources decryption keys from capsules, files, or kernel keyrings, and executes from memory. active versioned encrypted-file and capsule formats have round-trip, compatibility, threat-model, and deterministic vector acceptance gates. implementation 2,727 lines tests and harnesses 2,173 lines kernel matrix 4 completed format coverage kcap1–3 c libsodium linux keyrings memfd x25519">
+    <div class="card-meta"><span>Secure systems</span><span>Active</span></div>
+    <h3><a href="projects/ephrun/index.html">ephrun</a></h3>
+    <p>A C toolchain that encrypts Linux executables, sources decryption keys from capsules, files, or kernel keyrings, and executes from memory.</p>
+    <div class="evidence"><span>Evidence</span>Versioned encrypted-file and capsule formats have round-trip, compatibility, threat-model, and deterministic vector acceptance gates.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Implementation</dt><dd>2,727 lines</dd></div><div><dt>Tests and harnesses</dt><dd>2,173 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>C</li><li>libsodium</li><li>Linux keyrings</li><li>memfd</li></ul>
+    <a class="card-link" href="projects/ephrun/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Secure systems" data-status="Active" data-search="unmoor unmoor a c terminal and file-transfer tool with hybrid key exchange, byte-stream repair, multiple udp legs, and explicit confinement controls. active september 15 records report 136 local checks and 781 routed-network checks; the random-loss matrix completed 99 of 100 sessions under its exact-line oracle. c source + headers 75,367 lines routed-path gate 781 checks local checks 136 passing random-loss sessions 99/100 completed udp x25519 + ml-kem-1024 stream repair linux confinement macos">
+    <div class="card-meta"><span>Secure systems</span><span>Active</span></div>
+    <h3><a href="projects/unmoor/index.html">Unmoor</a></h3>
+    <p>A C terminal and file-transfer tool with hybrid key exchange, byte-stream repair, multiple UDP legs, and explicit confinement controls.</p>
+    <div class="evidence"><span>Evidence</span>September 15 records report 136 local checks and 781 routed-network checks; the random-loss matrix completed 99 of 100 sessions under its exact-line oracle.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>C source + headers</dt><dd>75,367 lines</dd></div><div><dt>Routed-path gate</dt><dd>781 checks</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>UDP</li><li>X25519 + ML-KEM-1024</li><li>stream repair</li><li>Linux confinement</li></ul>
+    <a class="card-link" href="projects/unmoor/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Research" data-search="int-llm precision ladder int-llm-precision-ladder follow-up experiments that narrow integer model weights while retaining the wide q16.48 path as the comparison oracle. research a mixed-f11/f12 tinyllama candidate matched 632/632 evaluated greedy decisions and reduced the wide integer model file from 8.80 gb to 2.20 gb. oracle agreement 632/632 decisions conversion gate 1,100,048,384 codes model storage 8.80 → 2.20 gb negative control fp32 3.168899× faster fixed-point inference int16 weights tinyllama microgpt cuda experiments">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Research</span></div>
+    <h3><a href="projects/int-llm-precision-ladder/index.html">int-llm precision ladder</a></h3>
+    <p>Follow-up experiments that narrow integer model weights while retaining the wide Q16.48 path as the comparison oracle.</p>
+    <div class="evidence"><span>Evidence</span>A mixed-F11/F12 TinyLlama candidate matched 632/632 evaluated greedy decisions and reduced the wide integer model file from 8.80 GB to 2.20 GB.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Oracle agreement</dt><dd>632/632 decisions</dd></div><div><dt>Conversion gate</dt><dd>1,100,048,384 codes</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>fixed-point inference</li><li>int16 weights</li><li>TinyLlama</li><li>MicroGPT</li></ul>
+    <a class="card-link" href="projects/int-llm-precision-ladder/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Research" data-search="int-llm coordinate permutation int-llm-coordinate-permutation a toolkit for controlled model-layout experiments on both standard safetensors and the integer q16.48 model path. research the all-axis tinyllama run transformed all 201 learned tensors; the integer path kept 80/80 decisions and the bf16 inverse restored the checkpoint byte-for-byte. tensor coverage 201 learned tensors integer behavior 80/80 decisions reversibility byte-for-byte input dtypes bf16 / f16 / f32 safetensors llama parameter symmetry q16.48 checkpoint tooling">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Research</span></div>
+    <h3><a href="projects/int-llm-coordinate-permutation/index.html">int-llm coordinate permutation</a></h3>
+    <p>A toolkit for controlled model-layout experiments on both standard SafeTensors and the integer Q16.48 model path.</p>
+    <div class="evidence"><span>Evidence</span>The all-axis TinyLlama run transformed all 201 learned tensors; the integer path kept 80/80 decisions and the BF16 inverse restored the checkpoint byte-for-byte.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Tensor coverage</dt><dd>201 learned tensors</dd></div><div><dt>Integer behavior</dt><dd>80/80 decisions</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>SafeTensors</li><li>Llama</li><li>parameter symmetry</li><li>Q16.48</li></ul>
+    <a class="card-link" href="projects/int-llm-coordinate-permutation/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Completed" data-search="int-llm sql int-llm-sql sql executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions. completed the recorded c-oracle comparison covers 69,748 activation, logit, and probability rows, plus all 122 sampling records. oracle trace 69,748 rows arithmetic gate 11,750 vectors inference output 20 names / 122 steps model scope 14,272 parameters sqlite recursive ctes q16.48 microgpt relational computation">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Completed</span></div>
+    <h3><a href="projects/int-llm-sql/index.html">int-llm SQL</a></h3>
+    <p>SQL executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions.</p>
+    <div class="evidence"><span>Evidence</span>The recorded C-oracle comparison covers 69,748 activation, logit, and probability rows, plus all 122 sampling records.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Oracle trace</dt><dd>69,748 rows</dd></div><div><dt>Arithmetic gate</dt><dd>11,750 vectors</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>SQLite</li><li>recursive CTEs</li><li>Q16.48</li><li>MicroGPT</li></ul>
+    <a class="card-link" href="projects/int-llm-sql/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Completed" data-search="int-llm postscript int-llm-postscript a complete small transformer and trainer in postscript, with exact wide and f12 checkpoint verification through ghostscript. completed the repository records 20/20 identical samples, all 5,000 training loss lines, and byte-identical wide and f12-exported checkpoints. inference agreement 20/20 samples training agreement 5,000 steps checkpoint identity 115,576 bytes stored-weight paths wide + f12 postscript ghostscript q16.48 microgpt integer arithmetic">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Completed</span></div>
+    <h3><a href="projects/int-llm-postscript/index.html">int-llm PostScript</a></h3>
+    <p>A complete small transformer and trainer in PostScript, with exact wide and F12 checkpoint verification through Ghostscript.</p>
+    <div class="evidence"><span>Evidence</span>The repository records 20/20 identical samples, all 5,000 training loss lines, and byte-identical wide and F12-exported checkpoints.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Inference agreement</dt><dd>20/20 samples</dd></div><div><dt>Training agreement</dt><dd>5,000 steps</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>PostScript</li><li>Ghostscript</li><li>Q16.48</li><li>MicroGPT</li></ul>
+    <a class="card-link" href="projects/int-llm-postscript/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Completed" data-search="int-llm brainfuck int-llm-brainfuck generators and a generic byte-cell runner for integer-only transformer inference and training in brainfuck, with recorded comparisons against c. completed the september 18 training record reports exact agreement on all 5,000 loss lines, 20 samples, and both exported checkpoints against the c oracle. generated inference 16.40 gb generated trainer 210.30 gb training gate 5,000 steps inference gate 122 steps brainfuck q16.48 microgpt code generation differential validation">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Completed</span></div>
+    <h3><a href="projects/int-llm-brainfuck/index.html">int-llm Brainfuck</a></h3>
+    <p>Generators and a generic byte-cell runner for integer-only transformer inference and training in Brainfuck, with recorded comparisons against C.</p>
+    <div class="evidence"><span>Evidence</span>The September 18 training record reports exact agreement on all 5,000 loss lines, 20 samples, and both exported checkpoints against the C oracle.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Generated inference</dt><dd>16.40 GB</dd></div><div><dt>Generated trainer</dt><dd>210.30 GB</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>Brainfuck</li><li>Q16.48</li><li>MicroGPT</li><li>code generation</li></ul>
+    <a class="card-link" href="projects/int-llm-brainfuck/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Integer &amp; embedded" data-status="Research" data-search="int-llm visualizations int-llm-viz a weight atlas, inference trace, embedding-space viewer, and 3-d weight explorer for the complete small integer-model checkpoint. research the browser re-derives all 122 recorded inference steps with bigint; the c trace reports zero logit, cache, or sampling mismatches. visual surfaces 4 offline pages checkpoint scope 14,272 weights exact trace 122 steps layout comparisons 4 neuron orders bigint canvas q16.48 exact visualization checkpoint inspection">
+    <div class="card-meta"><span>Integer &amp; embedded</span><span>Research</span></div>
+    <h3><a href="projects/int-llm-viz/index.html">int-llm visualizations</a></h3>
+    <p>A weight atlas, inference trace, embedding-space viewer, and 3-D weight explorer for the complete small integer-model checkpoint.</p>
+    <div class="evidence"><span>Evidence</span>The browser re-derives all 122 recorded inference steps with BigInt; the C trace reports zero logit, cache, or sampling mismatches.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Visual surfaces</dt><dd>4 offline pages</dd></div><div><dt>Checkpoint scope</dt><dd>14,272 weights</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>BigInt</li><li>Canvas</li><li>Q16.48</li><li>exact visualization</li></ul>
+    <a class="card-link" href="projects/int-llm-viz/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Computational search" data-status="Active" data-search="k-tuplet-search k-tuplet-search a code-first prime-tuplet search engine with a generated pattern catalog, record replay corpus, campaign controls, and browser analyzer. active the production cuda engine records 52 passing tests and replays a sourced corpus of 227 known records across k=16–21; no new-record claim is made. production gpu 7,041 lines cpu reference 2,749 lines test harness 2,556 lines validation corpus 39 + 227 cuda gmp pari/gp prime k-tuplets campaign tooling">
+    <div class="card-meta"><span>Computational search</span><span>Active</span></div>
+    <h3><a href="projects/k-tuplet-search/index.html">k-tuplet-search</a></h3>
+    <p>A code-first prime-tuplet search engine with a generated pattern catalog, record replay corpus, campaign controls, and browser analyzer.</p>
+    <div class="evidence"><span>Evidence</span>The production CUDA engine records 52 passing tests and replays a sourced corpus of 227 known records across k=16–21; no new-record claim is made.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Production GPU</dt><dd>7,041 lines</dd></div><div><dt>CPU reference</dt><dd>2,749 lines</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>CUDA</li><li>GMP</li><li>PARI/GP</li><li>prime k-tuplets</li></ul>
+    <a class="card-link" href="projects/k-tuplet-search/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Computational search" data-status="Completed" data-search="cunningham-chain-data cunningham-chain-data a compact data repository with schema, manifest, sample, conversion script, and full cumulative snapshots published as release assets. completed the march 19 cumulative snapshot contains 1,551,489 roots across cc10–cc18, including two cc18 roots, in a 19 mb compressed release asset. published snapshot 1,551,489 roots longest results 2 cc18 roots release asset 19 mb compressed data contract schema + manifest csv dataset schema release assets python cunningham chains">
+    <div class="card-meta"><span>Computational search</span><span>Completed</span></div>
+    <h3><a href="projects/cunningham-chain-data/index.html">cunningham-chain-data</a></h3>
+    <p>A compact data repository with schema, manifest, sample, conversion script, and full cumulative snapshots published as release assets.</p>
+    <div class="evidence"><span>Evidence</span>The March 19 cumulative snapshot contains 1,551,489 roots across CC10–CC18, including two CC18 roots, in a 19 MB compressed release asset.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Published snapshot</dt><dd>1,551,489 roots</dd></div><div><dt>Longest results</dt><dd>2 CC18 roots</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>CSV</li><li>dataset schema</li><li>release assets</li><li>Python</li></ul>
+    <a class="card-link" href="projects/cunningham-chain-data/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Visual mathematics" data-status="Completed" data-search="four-square-balance four-square-balance code, verified data, and an interactive shape-space view supporting the published oeis sequence a396760. completed oeis a396760 has 37 exhaustively verified record locations below 10^9, with independent code paths and retained decompositions. published sequence oeis a396760 exhaustive range n &lt; 10^9 verified records 37 locations cross-checking independent paths number theory oeis pari/gp openmp interactive visualization">
+    <div class="card-meta"><span>Visual mathematics</span><span>Completed</span></div>
+    <h3><a href="projects/four-square-balance/index.html">four-square-balance</a></h3>
+    <p>Code, verified data, and an interactive shape-space view supporting the published OEIS sequence A396760.</p>
+    <div class="evidence"><span>Evidence</span>OEIS A396760 has 37 exhaustively verified record locations below 10^9, with independent code paths and retained decompositions.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Published sequence</dt><dd>OEIS A396760</dd></div><div><dt>Exhaustive range</dt><dd>n &lt; 10^9</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>number theory</li><li>OEIS</li><li>PARI/GP</li><li>OpenMP</li></ul>
+    <a class="card-link" href="projects/four-square-balance/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Visual mathematics" data-status="Completed" data-search="three-square-balance three-square-balance independent search paths, verified data, and an interactive visualization supporting the published oeis sequence a395008. completed oeis a395008 has 65 exhaustively verified record locations below 10^9, checked by two differently ordered c searches plus pari/gp and python references. published sequence oeis a395008 exhaustive range n &lt; 10^9 verified records 65 locations independent checks 4 paths number theory oeis pari/gp openmp interactive visualization">
+    <div class="card-meta"><span>Visual mathematics</span><span>Completed</span></div>
+    <h3><a href="projects/three-square-balance/index.html">three-square-balance</a></h3>
+    <p>Independent search paths, verified data, and an interactive visualization supporting the published OEIS sequence A395008.</p>
+    <div class="evidence"><span>Evidence</span>OEIS A395008 has 65 exhaustively verified record locations below 10^9, checked by two differently ordered C searches plus PARI/GP and Python references.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Published sequence</dt><dd>OEIS A395008</dd></div><div><dt>Exhaustive range</dt><dd>n &lt; 10^9</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>number theory</li><li>OEIS</li><li>PARI/GP</li><li>OpenMP</li></ul>
+    <a class="card-link" href="projects/three-square-balance/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Writing tools" data-status="Maintained" data-search="spec mirror spec-mirror review rules, examples, and a compact prompt generator for making components, behavior, terminology, and requirements explicit. maintained the json defines 51 tags across seven layers, with detection signals, rewrite rules, examples, and two recorded project corrections. review taxonomy 51 tags review dimensions 7 layers recorded examples 2 corrections compact prompt 15,125 bytes technical writing json taxonomy python requirements review">
+    <div class="card-meta"><span>Writing tools</span><span>Maintained</span></div>
+    <h3><a href="projects/spec-mirror/index.html">Spec Mirror</a></h3>
+    <p>Review rules, examples, and a compact prompt generator for making components, behavior, terminology, and requirements explicit.</p>
+    <div class="evidence"><span>Evidence</span>The JSON defines 51 tags across seven layers, with detection signals, rewrite rules, examples, and two recorded project corrections.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Review taxonomy</dt><dd>51 tags</dd></div><div><dt>Review dimensions</dt><dd>7 layers</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>technical writing</li><li>JSON taxonomy</li><li>Python</li><li>requirements review</li></ul>
+    <a class="card-link" href="projects/spec-mirror/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Writing tools" data-status="Maintained" data-search="rhetorical mirror rhetorical-mirror a small self-editing aid for plain posts and emails, combining pattern tags, a review prompt, and before/after readme evaluations. maintained the committed taxonomy contains 41 tags in seven layers, with two readme self-evaluations and the earlier source draft retained. pattern taxonomy 41 tags pattern families 7 layers worked evaluations 2 examples intended use author review writing review json taxonomy prompt design voice preservation">
+    <div class="card-meta"><span>Writing tools</span><span>Maintained</span></div>
+    <h3><a href="projects/rhetorical-mirror/index.html">Rhetorical Mirror</a></h3>
+    <p>A small self-editing aid for plain posts and emails, combining pattern tags, a review prompt, and before/after README evaluations.</p>
+    <div class="evidence"><span>Evidence</span>The committed taxonomy contains 41 tags in seven layers, with two README self-evaluations and the earlier source draft retained.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Pattern taxonomy</dt><dd>41 tags</dd></div><div><dt>Pattern families</dt><dd>7 layers</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>writing review</li><li>JSON taxonomy</li><li>prompt design</li><li>voice preservation</li></ul>
+    <a class="card-link" href="projects/rhetorical-mirror/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Visual mathematics" data-status="Archived" data-search="p2 odd rays p2-odd-rays-visual-math-toy a small python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations. archived the repository includes the generator, svg/png outputs, checksums, and two equivalent visual constructions; it makes no research or performance claim. equivalent views 2 constructions reproducible outputs svg + png artifact integrity checksums claim boundary illustration only python 2-adic decomposition bit reversal svg mathematical visualization">
+    <div class="card-meta"><span>Visual mathematics</span><span>Archived</span></div>
+    <h3><a href="projects/p2-odd-rays-visual-math-toy/index.html">p2 odd rays</a></h3>
+    <p>A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.</p>
+    <div class="evidence"><span>Evidence</span>The repository includes the generator, SVG/PNG outputs, checksums, and two equivalent visual constructions; it makes no research or performance claim.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Equivalent views</dt><dd>2 constructions</dd></div><div><dt>Reproducible outputs</dt><dd>SVG + PNG</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>Python</li><li>2-adic decomposition</li><li>bit reversal</li><li>SVG</li></ul>
+    <a class="card-link" href="projects/p2-odd-rays-visual-math-toy/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article>
+<article class="project-card" data-domain="Visual mathematics" data-status="Archived" data-search="power-two-square-rays power-two-square-rays the former repository location is retained as an archive notice; its exploratory code and notes moved to p2-odd-rays-visual-math-toy. archived github marks the repository archived; its current tree contains only a readme directing readers to the replacement repository. current tree 1 file repository state archived retained code moved result claims none project archive visual mathematics">
+    <div class="card-meta"><span>Visual mathematics</span><span>Archived</span></div>
+    <h3><a href="projects/power-two-square-rays/index.html">power-two-square-rays</a></h3>
+    <p>The former repository location is retained as an archive notice; its exploratory code and notes moved to p2-odd-rays-visual-math-toy.</p>
+    <div class="evidence"><span>Evidence</span>GitHub marks the repository archived; its current tree contains only a README directing readers to the replacement repository.</div>
+    <dl class="card-metrics" aria-label="Key project measures"><div><dt>Current tree</dt><dd>1 file</dd></div><div><dt>Repository state</dt><dd>Archived</dd></div></dl>
+    <ul class="tag-list" aria-label="Technologies"><li>project archive</li><li>visual mathematics</li></ul>
+    <a class="card-link" href="projects/power-two-square-rays/index.html">Project brief <span aria-hidden="true">→</span></a>
+  </article></div>
+      <p class="no-results" id="no-results" hidden>No projects match that filter.</p>
+    </section>
+
+    <section class="method-section" id="method" aria-labelledby="method-heading">
+      <div class="section-shell method-grid">
+        <div><p class="eyebrow">How to read the evidence</p><h2 id="method-heading">Follow the result to its source.</h2><p>Each brief links to the exact repository revision reviewed. Test and benchmark results are attributed to the project's records; refreshing this catalog does not rerun hardware, GPU, network, or long training campaigns.</p><p>Physical line counts include comments and blank lines within named file scopes. The <a href="repository-snapshot.json">source inventory</a> records those files. Counts describe scale, not quality or test coverage.</p></div>
+        <ol>
+          <li><span>01</span><div><strong>Scope</strong><p>What the project does and the conditions under which it was evaluated.</p></div></li>
+          <li><span>02</span><div><strong>Implementation</strong><p>The languages, algorithms, and system components used.</p></div></li>
+          <li><span>03</span><div><strong>Checks</strong><p>Tests and comparisons recorded in the repository.</p></div></li>
+          <li><span>04</span><div><strong>Measurements</strong><p>Reported results, with units and file scopes where applicable.</p></div></li>
+          <li><span>05</span><div><strong>Limits</strong><p>Known failures, constraints, and what the results do not establish.</p></div></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

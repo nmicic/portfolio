@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.">
+  <meta name="color-scheme" content="light">
+  <title>p2 odd rays — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Visual mathematics · Archived</p>
+          <h1>p2 odd rays</h1>
+          <p class="project-tagline">An archived visual exploration of powers of two, odd cores, square shells, and bit-reversed perimeter order.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/p2-odd-rays-visual-math-toy" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The repository includes the generator, SVG/PNG outputs, checksums, and two equivalent visual constructions; it makes no research or performance claim.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Archived</dd></div>
+            <div><dt>Maturity</dt><dd>Exploratory visual toy</dd></div>
+            <div><dt>Primary language</dt><dd>Python</dd></div>
+            <div><dt>Work period</dt><dd>2025</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/p2-odd-rays-visual-math-toy/tree/e16138478a50c9fdf80158df7e80c1beb376ede2" target="_blank" rel="noreferrer">e16138478a50</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>Python</li><li>2-adic decomposition</li><li>bit reversal</li><li>SVG</li><li>mathematical visualization</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Equivalent views</dt><dd><strong>2 constructions</strong><span>Square-perimeter and straightened odd-core ray mappings.</span></dd></div><div><dt>Reproducible outputs</dt><dd><strong>SVG + PNG</strong><span>The repository includes the generator and published image artifacts.</span></dd></div><div><dt>Artifact integrity</dt><dd><strong>Checksums</strong><span>Committed output identities make regenerated images comparable.</span></dd></div><div><dt>Claim boundary</dt><dd><strong>Illustration only</strong><span>No theorem, performance, cryptographic, or research-priority claim is made.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · e16138478a50</summary><p>36 tracked files · 7 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/p2-odd-rays-visual-math-toy/blob/e16138478a50c9fdf80158df7e80c1beb376ede2/README.md" target="_blank" rel="noreferrer">README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>p2-odd-rays-visual-math-toy</code> maps each positive integer by separating its power of two from its odd component. One view places successive ranges on square perimeters; another lays the same structure out as rays converging toward one. The Python generator exports SVG, PNG, and optional coordinate data. This is an archived visual and educational artifact. Its value is the construction and the images, not a theorem, cryptographic method, optimization, or systems claim.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Every positive integer has a unique decomposition into a power of two and an odd core. That simple fact produces nested families: multiplying by two advances to the next shell while retaining the same core. The project asks how those families look when placed on square boundaries or straightened into a ray diagram.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>A Python command-line generator for small labeled maps, odd-core rays, and</li>
+<p>coordinate inspection.</p>
+<li>A square-perimeter view using a bit-reversed integer order.</li>
+<li>A second view that places shells on vertical lines and exposes shared odd-core</li>
+<p>slopes.</p>
+<li>Retained SVG and PNG outputs with repository checksums.</li>
+<li>Historical CUDA and theta experiments separated from the main descriptive</li>
+<p>visualization.</p>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>The exponent of two selects a shell and the odd core selects a ray. On the square view, a bit-reversal key orders positions around four edges. On the ray view, rational slopes align values with the same odd component. Floating point is used for rendering; the construction itself uses integer, rational, and bitwise operations.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The repository retains the script used to generate the published images and includes checksums for the committed outputs. The two layouts are alternative views of the same defined mapping, which makes individual coordinates inspectable. This is reproducibility of an illustration, not validation of an external mathematical claim.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The project is not peer-reviewed research and makes no claim of practical performance, cryptographic value, or deeper mathematical significance. Visual patterns are artifacts of the chosen construction. The repository is archived for transparency, including AI-assisted and failed experiments.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">python3 demo.py small-map --exp 8 --with-rays
+python3 demo.py odd-core-rays --exp 12
+python3 demo.py ray-structure --exp 9</code></pre>
+<p>The source README explains both mappings. <code>pngs/</code> and the retained SVG files show the outputs, while <code>failed_experiments/</code> and <code>cuda/</code> are historical context rather than supported production paths.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../power-two-square-rays/index.html"><span>Visual mathematics</span><strong>power-two-square-rays</strong><p>The former repository location is retained as an archive notice; its exploratory code and notes moved to p2-odd-rays-visual-math-toy.</p></a><a href="../four-square-balance/index.html"><span>Visual mathematics</span><strong>four-square-balance</strong><p>Code, verified data, and an interactive shape-space view supporting the published OEIS sequence A396760.</p></a><a href="../three-square-balance/index.html"><span>Visual mathematics</span><strong>three-square-balance</strong><p>Independent search paths, verified data, and an interactive visualization supporting the published OEIS sequence A395008.</p></a><a href="../cunningham-chain-search/index.html"><span>Computational search</span><strong>cunningham-chain-search</strong><p>A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A C terminal and file-transfer tool with hybrid key exchange, byte-stream repair, multiple UDP legs, and explicit confinement controls.">
+  <meta name="color-scheme" content="light">
+  <title>Unmoor — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Secure systems · Active</p>
+          <h1>Unmoor</h1>
+          <p class="project-tagline">An authenticated UDP terminal and verified file transport that keeps session identity across changing network addresses.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/unmoor" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>September 15 records report 136 local checks and 781 routed-network checks; the random-loss matrix completed 99 of 100 sessions under its exact-line oracle.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Active</dd></div>
+            <div><dt>Maturity</dt><dd>Experimental v0.2.0 / protocol v2</dd></div>
+            <div><dt>Primary language</dt><dd>C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-16</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/unmoor/tree/93c3ef65f12c370d5062bd46079be43bedf01b19" target="_blank" rel="noreferrer">93c3ef65f12c</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>UDP</li><li>X25519 + ML-KEM-1024</li><li>stream repair</li><li>Linux confinement</li><li>macOS</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>C source + headers</dt><dd><strong>75,367 lines</strong><span>132 files directly in src/; excludes vendored libraries and test tools. Physical lines include comments and blank lines.</span></dd></div><div><dt>Routed-path gate</dt><dd><strong>781 checks</strong><span>Ten impairment scenarios with no reported check failures and one explicit stale-return-path characterization.</span></dd></div><div><dt>Local checks</dt><dd><strong>136 passing</strong><span>117 frame, reassembly, and negotiation checks plus 19 PQ checks in the recorded macOS run.</span></dd></div><div><dt>Random-loss sessions</dt><dd><strong>99/100 completed</strong><span>The 10% loss row completed 19/20 under the harness oracle; its one non-completion remains counted.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-16 · 93c3ef65f12c</summary><p>191 tracked files · 7 documentation files · 1 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/unmoor/blob/93c3ef65f12c370d5062bd46079be43bedf01b19/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/unmoor/blob/93c3ef65f12c370d5062bd46079be43bedf01b19/SOURCE.md" target="_blank" rel="noreferrer">SOURCE.md</a></li><li><a href="https://github.com/nmicic/unmoor/blob/93c3ef65f12c370d5062bd46079be43bedf01b19/SECURITY.md" target="_blank" rel="noreferrer">SECURITY.md</a></li><li><a href="https://github.com/nmicic/unmoor/blob/93c3ef65f12c370d5062bd46079be43bedf01b19/Makefile" target="_blank" rel="noreferrer">Makefile</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p>Unmoor carries a remote terminal and verified single-file transfers over an authenticated UDP session. The session belongs to a cryptographic pair identity, so a change in address or NAT mapping need not destroy it. SSH authenticates the initial public-record exchange; endpoints derive traffic keys locally and complete a hybrid post-quantum rekey before admitting application traffic. The terminal transports and repairs a byte stream, while file transfers verify the full file before atomic installation. It is the network-oriented descendant of URTB, with documented Linux and macOS paths.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>Absolute byte offsets, a pending bitmap, and a running hash support loss and reordering repair. The client exposes <code>SYNC</code>, <code>OUT-OF-SYNC</code>, and <code>STALLED</code> so missing output is visible. Return-path adoption requires fresh authenticated traffic that advances the replay window. Multiple UDP legs can share a session. The default profile uses two for a terminal and four for a transfer; the lab profile allows power-of-two counts from 2 to 32. Multiple ports do not prove physically separate network paths.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The 132 C and header files directly in <code>src/</code> contain 75,367 physical lines: 65,280 in <code>.c</code> files and 10,087 in <code>.h</code> files. This count excludes vendored libraries and test tools and includes comments and blank lines.</p>
+<p>The September 15, 2026 source record reports 136 local checks, a real two-host internet session, and 781 checks across ten routed impairment scenarios. These cover IPv4/IPv6, asymmetric delay, reordering, NAT rebinding, black holes, corruption, and temporary loss.</p>
+<p>The separate 100-session random-loss matrix completes 99 sessions under its exact-line oracle. In the remaining attempt the session closed successfully, but an interleaved diagnostic broke the harness's marker comparison. The source still counts that attempt as a failure; this catalog preserves that outcome.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>Version 0.2.0 is experimental and has no protocol compatibility promise or external security audit. It needs a usable bidirectional UDP path and does not provide NAT hole punching or a public multi-user service. The stale-return-path scenario remains stalled without opening a replacement source port. The lab harness for the two-machine results is not published here, and the smoke test uses best-effort confinement rather than exercising the Linux required mode.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<p>The documented local build and loopback path is:</p>
+<pre><code class="language-sh">make -j2
+make check
+make smoke</code></pre>
+<p><code>README.md</code> introduces the terminal and transfer workflows, <code>HOWTO.md</code> covers operation, <code>SECURITY.md</code> states the threat boundaries, and <code>SOURCE.md</code> records the validation environments and limitations. Remote use expects SSH access and matching endpoint versions.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../URTB/index.html"><span>Secure systems</span><strong>URTB</strong><p>A C terminal tunnel using shared capsules and XChaCha20-Poly1305 across ESP-NOW, LoRa, Unix sockets, and generic process streams.</p></a><a href="../compartment/index.html"><span>Secure systems</span><strong>compartment</strong><p>A small Linux isolation toolkit with two zero-dependency C tools, one policy format, worked profiles, and explicit security boundaries.</p></a><a href="../deaddrop/index.html"><span>Secure systems</span><strong>deaddrop</strong><p>A Go client and relay for short-lived encrypted handoffs, with capsule pairing, optional end-to-end identity, and a detailed protocol specification.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

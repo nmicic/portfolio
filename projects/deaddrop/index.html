@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Go client and relay for short-lived encrypted handoffs, with capsule pairing, optional end-to-end identity, and a detailed protocol specification.">
+  <meta name="color-scheme" content="light">
+  <title>deaddrop — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Secure systems · Active</p>
+          <h1>deaddrop</h1>
+          <p class="project-tagline">A self-hosted one-shot file relay where clients encrypt the payload and the relay removes it after retrieval.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/deaddrop" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>Tiered CI and QA cover protocol vectors, bootstrap flows, one-shot semantics, collision handling, crash behavior, and exit-code contracts.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Active</dd></div>
+            <div><dt>Maturity</dt><dd>Experimental secure-transfer tool</dd></div>
+            <div><dt>Primary language</dt><dd>Go</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/deaddrop/tree/d46a12da2298cdf28f4a87c7c6286e78c5e45acd" target="_blank" rel="noreferrer">d46a12da2298</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>Go</li><li>XChaCha20-Poly1305</li><li>X25519</li><li>Argon2id</li><li>self-hosting</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Production Go</dt><dd><strong>7,157 lines</strong><span>63 tracked Go files; test files and vendor/generated directories excluded.</span></dd></div><div><dt>Test and QA</dt><dd><strong>12,813 lines</strong><span>46 Go test files and shell/Python files under test/ and tests/; deployment helpers excluded.</span></dd></div><div><dt>Test-to-code ratio</dt><dd><strong>1.79×</strong><span>Physical lines in the stated test/QA scope divided by production Go lines; this is not coverage.</span></dd></div><div><dt>Documentation</dt><dd><strong>11,507 lines</strong><span>All 29 tracked Markdown files, including protocol, threat model, decisions, operations, and README files.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · d46a12da2298</summary><p>188 tracked files · 29 documentation files · 1 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/deaddrop/blob/d46a12da2298cdf28f4a87c7c6286e78c5e45acd/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/deaddrop/blob/d46a12da2298cdf28f4a87c7c6286e78c5e45acd/TESTING.md" target="_blank" rel="noreferrer">TESTING.md</a></li><li><a href="https://github.com/nmicic/deaddrop/blob/d46a12da2298cdf28f4a87c7c6286e78c5e45acd/PROTOCOL.md" target="_blank" rel="noreferrer">PROTOCOL.md</a></li><li><a href="https://github.com/nmicic/deaddrop/blob/d46a12da2298cdf28f4a87c7c6286e78c5e45acd/SECURITY.md" target="_blank" rel="noreferrer">SECURITY.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>deaddrop</code> is a small self-hosted relay for transferring one encrypted file between two clients. The relay stores only ciphertext in memory, serves it once, and removes it on retrieval. Paired clients can derive short-lived slot addresses without exchanging a fresh URL, while an optional X25519 identity layer keeps an inner payload sealed from a malicious relay operator. The repository includes the Go implementation, deployment examples, protocol and threat-model documents, test vectors, and multiple bootstrap choices. It is a security-sensitive experimental tool with explicitly documented non-properties.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Common file-sharing systems retain server-side history, accounts, or durable objects. <code>deaddrop</code> explores a narrower handoff: the sender posts one encrypted object, the receiver consumes it once, and the relay forgets it. The design separates the capsule passphrase, deployment secret, short-lived slot address, and optional peer identity rather than treating one secret as every layer.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>A Go command-line client for pairing, key generation, fingerprinting, send,</li>
+<p>receive, and bootstrap flows.</p>
+<li>A small in-memory HTTP relay with strict consume-on-read semantics.</li>
+<li>Shared-capsule and interactive bootstrap paths, including OS-keyring identity</li>
+<p>storage where supported.</p>
+<li>Container and VM deployment examples.</li>
+<li>Protocol, specification, security, decision, testing, and future-work records.</li>
+<li>An optional MCP wrapper kept outside the core transfer protocol.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>Clients share a passphrase-protected capsule containing pair material. For each handoff they derive an address from that capsule, time, and a separately deployed secret. The sender encrypts locally and uploads ciphertext. The receiver probes the current time window, retrieves once, and decrypts locally.</p>
+<p>When the bootstrap identity layer is available, peers also retain X25519 keys in the operating-system key store. The content is then wrapped in an additional authenticated-encryption layer derived from the peer shared secret, so relay tampering does not expose or silently rewrite plaintext.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The repository organizes testing into tiers and includes fixed protocol vectors, bootstrap conformance cases, local end-to-end QA, collision and rollback cases, one-shot race behavior, crash/restart behavior, and an exit-code taxonomy. CI builds and tests the Go implementation, while the documentation maps security properties to their implementation or protocol layer.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The relay can observe timing, traffic volume, and network metadata. One-shot retrieval does not prevent a malicious receiver from copying plaintext after decryption. Security depends on correct client operation, secret provisioning, and the documented identity-store behavior of each platform. The specifications distinguish cryptographic properties from operational properties that depend on the reference relay.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">make
+make test
+sh test/smoke/qa-roundtrip.sh</code></pre>
+<p>Read <code>HOWTO.md</code> for the operator path, <code>PROTOCOL.md</code> for the wire behavior, <code>SECURITY.md</code> for the threat model, and <code>TESTING.md</code> for the acceptance matrix. <code>DECISIONS.md</code> explains why the current bootstrap and deployment shapes were chosen over parked alternatives.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../URTB/index.html"><span>Secure systems</span><strong>URTB</strong><p>A C terminal tunnel using shared capsules and XChaCha20-Poly1305 across ESP-NOW, LoRa, Unix sockets, and generic process streams.</p></a><a href="../ephrun/index.html"><span>Secure systems</span><strong>ephrun</strong><p>A C toolchain that encrypts Linux executables, sources decryption keys from capsules, files, or kernel keyrings, and executes from memory.</p></a><a href="../compartment/index.html"><span>Secure systems</span><strong>compartment</strong><p>A small Linux isolation toolkit with two zero-dependency C tools, one policy format, worked profiles, and explicit security boundaries.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

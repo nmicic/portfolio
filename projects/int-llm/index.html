@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.">
+  <meta name="color-scheme" content="light">
+  <title>int-llm — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Integer &amp; embedded · Active</p>
+          <h1>int-llm</h1>
+          <p class="project-tagline">A bit-exact fixed-point reference for training a small GPT and running a Llama-family model without floating-point arithmetic in the compute core.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/int-llm" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>80/80 greedy tokens matched the float reference; the committed arithmetic hash was reproduced across the recorded x86, Arm, RISC-V, Xtensa, and AVR targets.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Active</dd></div>
+            <div><dt>Maturity</dt><dd>Experimental reference</dd></div>
+            <div><dt>Primary language</dt><dd>C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/int-llm/tree/0b4b6d04eb3e9e969d125804a154309eed3be9de" target="_blank" rel="noreferrer">0b4b6d04eb3e</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>C99</li><li>Q16.48 fixed point</li><li>Llama</li><li>MicroGPT</li><li>embedded systems</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Reference agreement</dt><dd><strong>80/80 tokens</strong><span>Greedy verification decisions matched the documented floating-point reference.</span></dd></div><div><dt>Determinism</dt><dd><strong>5 architectures</strong><span>The committed arithmetic hash was reproduced across x86, Arm, RISC-V, Xtensa, and AVR targets.</span></dd></div><div><dt>Numeric core</dt><dd><strong>Q16.48 fixed point</strong><span>Training and inference arithmetic use an exact signed-integer representation.</span></dd></div><div><dt>GPU outcome</dt><dd><strong>Negative result</strong><span>Exact Q16.48 did not produce a competitive tensor-core path; the result is retained.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 0b4b6d04eb3e</summary><p>153 tracked files · 29 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/int-llm/blob/0b4b6d04eb3e9e969d125804a154309eed3be9de/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/int-llm/blob/0b4b6d04eb3e9e969d125804a154309eed3be9de/FP_MATH.md" target="_blank" rel="noreferrer">FP_MATH.md</a></li><li><a href="https://github.com/nmicic/int-llm/blob/0b4b6d04eb3e9e969d125804a154309eed3be9de/validation/cpu/README.md" target="_blank" rel="noreferrer">validation/cpu/README.md</a></li><li><a href="https://github.com/nmicic/int-llm/blob/0b4b6d04eb3e9e969d125804a154309eed3be9de/gpu/README.md" target="_blank" rel="noreferrer">gpu/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>int-llm</code> asks whether a useful language-model reference can be made exact across machines. It implements a small character GPT that trains and samples in integer arithmetic and a CPU Llama-family inference path for TinyLlama-1.1B. The compute core uses Q16.48 fixed point: normal source weights retain enough precision to make disagreement with the floating-point control debuggable rather than ambiguous. The result is intentionally slow. Its value is as a deterministic oracle for regression testing, portability work, and later lower-precision experiments—not as a production inference server.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Most model runtimes accept small numerical differences across hardware, libraries, and compiler paths. That is appropriate for production throughput, but it makes numerical drift and quantization bugs difficult to isolate. <code>int-llm</code> starts from the opposite requirement: the same input should produce the same integer state and the same output bits on every supported target.</p>
+<p>Q16.48 is deliberately wider than a practical quantized model format. It is the reference against which narrower representations can be measured.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li><code>gpt_int</code>, a character-level GPT that trains, saves, loads, and samples using</li>
+<p>integer arithmetic.</p>
+<li><code>llama_int</code>, a CPU Llama-family path that loads TinyLlama SafeTensors or a</li>
+<p>native all-integer <code>.mgw</code> file.</p>
+<li><code>fp_math.h</code>, a dependency-free fixed-point math layer with native and portable</li>
+<p>wide-integer backends.</p>
+<li>Determinism harnesses for desktop CPUs, microcontrollers, and a supplementary</li>
+<p>QEMU portability matrix.</p>
+<li>Retained CUDA experiments documenting why the exact integer path did not</li>
+<p>provide a GPU performance advantage.</p>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>Model values are represented as signed 64-bit Q16.48 integers. Multiplication and division use either native <code>__int128</code> intermediates or a portable two-limb implementation. Nonlinear functions—including square root, exponential, logarithm, trigonometry, sigmoid, and SiLU—are implemented in the integer math layer.</p>
+<p>The Llama path covers tokenization, embeddings, grouped-query attention, rotary position encoding, RMS normalization, the SwiGLU feed-forward path, and output selection. Human-readable conversion stays at the input and output boundaries.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The repository records three distinct kinds of evidence:</p>
+<div class="table-wrap"><table><thead><tr><th>Gate</th><th>Recorded result</th></tr></thead><tbody><tr><td>Float-reference comparison</td><td>80/80 greedy verification tokens matched</td></tr><tr><td>Arithmetic determinism</td><td>One committed hash reproduced on the documented real and emulated targets</td></tr><tr><td>Embedded model run</td><td>The small model reproduced the same sampled output on recorded 32-bit microcontrollers</td></tr></tbody></table></div>
+<p>The GPU work is reported as negative or mixed evidence: exact Q16.48 did not find a competitive tensor-core path, while faster lower-precision formats gave up the required exactness.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>This is a feasibility and reproducibility artifact. It makes no competitive throughput claim, does not establish general chat-quality parity, and does not validate models larger than the documented TinyLlama target. Native model files are trusted inputs; the loaders are not a hostile-file security boundary.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<p>The fastest self-contained path builds the integer math tests and committed determinism gate:</p>
+<pre><code class="language-sh">make test
+make determinism
+make determinism-portable</code></pre>
+<p>Use <code>FP_MATH.md</code> for the math API, <code>validation/cpu/</code> for real-hardware records, <code>validation/qemu/</code> for supplementary compiler and ABI coverage, and <code>gpu/</code> for the measured CUDA side branch. Running TinyLlama requires obtaining the upstream checkpoint separately.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../int-llm-precision-ladder/index.html"><span>Integer &amp; embedded</span><strong>int-llm precision ladder</strong><p>Follow-up experiments that narrow integer model weights while retaining the wide Q16.48 path as the comparison oracle.</p></a><a href="../int-llm-coordinate-permutation/index.html"><span>Integer &amp; embedded</span><strong>int-llm coordinate permutation</strong><p>A toolkit for controlled model-layout experiments on both standard SafeTensors and the integer Q16.48 model path.</p></a><a href="../int-llm-viz/index.html"><span>Integer &amp; embedded</span><strong>int-llm visualizations</strong><p>A weight atlas, inference trace, embedding-space viewer, and 3-D weight explorer for the complete small integer-model checkpoint.</p></a><a href="../int-llm-sql/index.html"><span>Integer &amp; embedded</span><strong>int-llm SQL</strong><p>SQL executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions.</p></a><a href="../int-llm-postscript/index.html"><span>Integer &amp; embedded</span><strong>int-llm PostScript</strong><p>A complete small transformer and trainer in PostScript, with exact wide and F12 checkpoint verification through Ghostscript.</p></a><a href="../int-llm-brainfuck/index.html"><span>Integer &amp; embedded</span><strong>int-llm Brainfuck</strong><p>Generators and a generic byte-cell runner for integer-only transformer inference and training in Brainfuck, with recorded comparisons against C.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,2257 @@
+[
+  {
+    "name": "int-llm",
+    "slug": "int-llm",
+    "tagline": "A bit-exact fixed-point reference for training a small GPT and running a Llama-family model without floating-point arithmetic in the compute core.",
+    "summary": "Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.",
+    "domain": "Integer & embedded",
+    "status": "Active",
+    "maturity": "Experimental reference",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "C99",
+      "Q16.48 fixed point",
+      "Llama",
+      "MicroGPT",
+      "embedded systems"
+    ],
+    "visibility": "public",
+    "featured": true,
+    "order": 1,
+    "evidence": "80/80 greedy tokens matched the float reference; the committed arithmetic hash was reproduced across the recorded x86, Arm, RISC-V, Xtensa, and AVR targets.",
+    "github": "https://github.com/nmicic/int-llm",
+    "live": "",
+    "related": [
+      "int-llm-precision-ladder",
+      "int-llm-coordinate-permutation",
+      "int-llm-viz",
+      "int-llm-sql",
+      "int-llm-postscript",
+      "int-llm-brainfuck"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "0b4b6d04eb3e9e969d125804a154309eed3be9de",
+    "sources": [
+      "README.md",
+      "FP_MATH.md",
+      "validation/cpu/README.md",
+      "gpu/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Reference agreement",
+        "value": "80/80 tokens",
+        "detail": "Greedy verification decisions matched the documented floating-point reference."
+      },
+      {
+        "label": "Determinism",
+        "value": "5 architectures",
+        "detail": "The committed arithmetic hash was reproduced across x86, Arm, RISC-V, Xtensa, and AVR targets."
+      },
+      {
+        "label": "Numeric core",
+        "value": "Q16.48 fixed point",
+        "detail": "Training and inference arithmetic use an exact signed-integer representation."
+      },
+      {
+        "label": "GPU outcome",
+        "value": "Negative result",
+        "detail": "Exact Q16.48 did not produce a competitive tensor-core path; the result is retained."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm",
+      "github": "https://github.com/nmicic/int-llm",
+      "default_branch": "main",
+      "commit": "0b4b6d04eb3e9e969d125804a154309eed3be9de",
+      "commit_date": "2026-08-01T21:45:03+02:00",
+      "archived": false,
+      "description": " Integer-only LLM stack in pure C — run TinyLlama and train a tiny GPT in Q16.48 fixed-point, zero floating point. A reproducible fun experiment.",
+      "primary_language": "C",
+      "tracked_files": 153,
+      "documentation_files": 29,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 306,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "astro-nav-int",
+    "slug": "astro-nav-int",
+    "tagline": "Celestial sight reduction, altitude correction, ephemerides, and multi-sight position fixes in fixed-point C99.",
+    "summary": "A no-floating-point celestial-navigation library that carries a sextant observation through correction, sight reduction, and position fixing.",
+    "domain": "Integer & embedded",
+    "status": "Active",
+    "maturity": "Validated research library",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "C99",
+      "Q16.48 fixed point",
+      "CORDIC",
+      "celestial navigation",
+      "microcontrollers"
+    ],
+    "visibility": "public",
+    "featured": true,
+    "order": 2,
+    "evidence": "Altitude and primary-method azimuth outputs are documented within 0.30 arcminute of the double reference, with independent ephemeris and published-source gates.",
+    "github": "https://github.com/nmicic/astro-nav-int",
+    "live": "",
+    "related": [
+      "int-llm",
+      "p2-odd-rays-visual-math-toy"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "8e9d94791864f6329e3ef9275741fb190d714c78",
+    "sources": [
+      "README.md",
+      "docs/HOWTO.md",
+      "embedded/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Accuracy gate",
+        "value": "≤0.30 arcminute",
+        "detail": "Altitude and primary-method azimuth against the double-precision reference."
+      },
+      {
+        "label": "Independent references",
+        "value": "5 classes",
+        "detail": "Skyfield/DE421, printed almanac material, USNO data, other lineages, and published observations."
+      },
+      {
+        "label": "Runtime arithmetic",
+        "value": "No floating point",
+        "detail": "The shipping C99 library and CLI use Q16.48 fixed-point computation."
+      },
+      {
+        "label": "Target coverage",
+        "value": "Native → MCU",
+        "detail": "Hosted, QEMU, portable-wide, and physical-board profiles check deterministic execution."
+      }
+    ],
+    "snapshot": {
+      "name": "astro-nav-int",
+      "github": "https://github.com/nmicic/astro-nav-int",
+      "default_branch": "main",
+      "commit": "8e9d94791864f6329e3ef9275741fb190d714c78",
+      "commit_date": "2026-07-29T23:30:34+02:00",
+      "archived": false,
+      "description": "Integer-only C99 celestial navigation for sextant sight reduction, Sun/Moon/star almanacs, and position fixes, with no floating point or libm.",
+      "primary_language": "C",
+      "tracked_files": 118,
+      "documentation_files": 24,
+      "workflow_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 733,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "compartment",
+    "slug": "compartment",
+    "tagline": "Linux process isolation with rootless Landlock/seccomp, a root namespace container, and an optional BPF-LSM sealing layer.",
+    "summary": "A small Linux isolation toolkit with two zero-dependency C tools, one policy format, worked profiles, and explicit security boundaries.",
+    "domain": "Secure systems",
+    "status": "Maintained",
+    "maturity": "Toolkit v1.4.1 / BPF v0.8.0",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "Linux",
+      "Landlock",
+      "seccomp BPF",
+      "namespaces",
+      "BPF LSM"
+    ],
+    "visibility": "public",
+    "featured": true,
+    "order": 3,
+    "evidence": "BPF v0.8.0 documents 3,284 enforcement trials and 44 bypass scenarios on two kernel versions; the core has separate rootless and real-root suites.",
+    "github": "https://github.com/nmicic/compartment",
+    "live": "",
+    "related": [
+      "unmoor",
+      "URTB",
+      "deaddrop",
+      "ephrun"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "2332b818f208f4dff4c90ecbbfd8d742d518de74",
+    "sources": [
+      "README.md",
+      "tests/README.md",
+      "compartment-bpf/README.md",
+      "compartment-bpf/tests/docs/RUNNING.md",
+      "compartment-bpf/LIMITATIONS.md"
+    ],
+    "metrics": [
+      {
+        "label": "BPF core",
+        "value": "11,341 lines",
+        "detail": "Five top-level C/header files for sealing, observation, userspace control, and the ABI; tools excluded.",
+        "measurement": "bpf_core"
+      },
+      {
+        "label": "BPF tests",
+        "value": "22,322 lines",
+        "detail": "145 tracked C, header, Python, and shell files under compartment-bpf/tests; physical lines include comments and blanks.",
+        "measurement": "bpf_tests"
+      },
+      {
+        "label": "Enforcement matrix",
+        "value": "3,284 trials",
+        "detail": "Actor × operation × flag combinations, plus 44 documented bypass scenarios in BPF v0.8.0."
+      },
+      {
+        "label": "Robustness",
+        "value": "10,000 iterations",
+        "detail": "Reproducible fuzz/soak, 1,024 pin/unpin churn cycles, and a measured overhead gate."
+      }
+    ],
+    "snapshot": {
+      "name": "compartment",
+      "github": "https://github.com/nmicic/compartment",
+      "default_branch": "main",
+      "commit": "2332b818f208f4dff4c90ecbbfd8d742d518de74",
+      "commit_date": "2026-09-07T21:12:07+02:00",
+      "archived": false,
+      "description": "Kernel-enforced sandboxing for untrusted processes. Two zero-dependency core tools, one shared profile format, plus an optional BPF-LSM module.",
+      "primary_language": "Shell",
+      "tracked_files": 324,
+      "documentation_files": 28,
+      "workflow_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 734,
+      "measurements": {
+        "bpf_core": {
+          "physical_lines": 11341,
+          "files": [
+            "compartment-bpf/compartment-abi.h",
+            "compartment-bpf/compartment-bpf.c",
+            "compartment-bpf/compartment-observe.bpf.c",
+            "compartment-bpf/compartment-observe.c",
+            "compartment-bpf/compartment.bpf.c"
+          ]
+        },
+        "bpf_tests": {
+          "physical_lines": 22322,
+          "files": [
+            "compartment-bpf/tests/actor-wrapper/aide-vm.sh",
+            "compartment-bpf/tests/actor-wrapper/fixtures/env_probe.c",
+            "compartment-bpf/tests/actor-wrapper/fixtures/evil_preload.c",
+            "compartment-bpf/tests/actor-wrapper/fixtures/fd_probe.c",
+            "compartment-bpf/tests/actor-wrapper/fixtures/noop.c",
+            "compartment-bpf/tests/actor-wrapper/fixtures/ptrace_attempter.c",
+            "compartment-bpf/tests/actor-wrapper/fixtures/pvm_writev_attempter.c",
+            "compartment-bpf/tests/actor-wrapper/run.sh",
+            "compartment-bpf/tests/aggregate-smoke.sh",
+            "compartment-bpf/tests/bench-runner.sh",
+            "compartment-bpf/tests/bench.sh",
+            "compartment-bpf/tests/bench/actor-overhead.sh",
+            "compartment-bpf/tests/bench/bench-dir-destination.sh",
+            "compartment-bpf/tests/bench/bpf-syscall-overhead.c",
+            "compartment-bpf/tests/bench/bpf-syscall-overhead.sh",
+            "compartment-bpf/tests/bench/open-concurrency-negtest.sh",
+            "compartment-bpf/tests/bench/open-concurrency.c",
+            "compartment-bpf/tests/bench/open-concurrency.sh",
+            "compartment-bpf/tests/build-all-daemons-conf.sh",
+            "compartment-bpf/tests/bypass/01-hardlink-unlink.sh",
+            "compartment-bpf/tests/bypass/02-truncate-no-open.sh",
+            "compartment-bpf/tests/bypass/03-mprotect-rw.sh",
+            "compartment-bpf/tests/bypass/04-name-to-handle.sh",
+            "compartment-bpf/tests/bypass/05-old-fd-write.sh",
+            "compartment-bpf/tests/bypass/06-splice-old-fd.sh",
+            "compartment-bpf/tests/bypass/07-mount-bind-decoy.sh",
+            "compartment-bpf/tests/bypass/08-mount-namespace.sh",
+            "compartment-bpf/tests/bypass/09-unlink-storm.sh",
+            "compartment-bpf/tests/bypass/10-detach-by-kill.sh",
+            "compartment-bpf/tests/bypass/11-rename-into-no-write-dir.sh",
+            "compartment-bpf/tests/bypass/12-deep-subtree-write.sh",
+            "compartment-bpf/tests/bypass/13-deep-rename-into-sealed.sh",
+            "compartment-bpf/tests/bypass/14-runtime-subtree-depth-cap.sh",
+            "compartment-bpf/tests/bypass/15-runtime-subtree-alias-invariants.sh",
+            "compartment-bpf/tests/bypass/16-setfacl-no-chmod.sh",
+            "compartment-bpf/tests/bypass/17-mount-inside-sealed-dir.sh",
+            "compartment-bpf/tests/bypass/18-chattr-no-chmod.sh",
+            "compartment-bpf/tests/bypass/19-utimes-no-chmod.sh",
+            "compartment-bpf/tests/bypass/20-umount-shadow.sh",
+            "compartment-bpf/tests/bypass/22-self-protect-map.sh",
+            "compartment-bpf/tests/bypass/23-pin-unlink.sh",
+            "compartment-bpf/tests/bypass/24-bpffs-umount.sh",
+            "compartment-bpf/tests/bypass/25-loader-upgrade.sh",
+            "compartment-bpf/tests/bypass/26-frozen-map-honesty.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-1-bind-mount-actor.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-10-hardlink-to-canonical-actor.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-11-ld-preload-strict.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-12-abi-size-gate.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-13-candidate-pin-gate.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-14-actor-self-mod.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-15-prog-detach.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-16-anon-bdev-refuse.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-17-strict-launcher-runtime.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-18-hardlink-actor-binary.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-19-actor-never-exec.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-2-mount-namespace.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-3-hardlink-nonactor.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-4-interpreter-chain.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-5-setuid-actor.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-6-fork-without-exec.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-7-inplace-modify.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-8-exec-then-fork-exec.sh",
+            "compartment-bpf/tests/bypass/exec-domain/BX-9-version-mismatch.sh",
+            "compartment-bpf/tests/bypass/exec-domain/lib-exec-domain.sh",
+            "compartment-bpf/tests/bypass/helpers/bpf_map_fd_sweep.c",
+            "compartment-bpf/tests/bypass/helpers/depth_actor.c",
+            "compartment-bpf/tests/bypass/helpers/frozen_map_write.bpf.c",
+            "compartment-bpf/tests/bypass/helpers/frozen_map_write.c",
+            "compartment-bpf/tests/bypass/helpers/ioctl32_setflags.c",
+            "compartment-bpf/tests/bypass/helpers/mount_witness.c",
+            "compartment-bpf/tests/bypass/lib-bypass.sh",
+            "compartment-bpf/tests/bypass/lib-self-protect.sh",
+            "compartment-bpf/tests/bypass/run-all.sh",
+            "compartment-bpf/tests/bypass/run-local.sh",
+            "compartment-bpf/tests/counter-smoke.sh",
+            "compartment-bpf/tests/deny-to-candidate.sh",
+            "compartment-bpf/tests/dir-matrix-runner.sh",
+            "compartment-bpf/tests/dir-matrix.sh",
+            "compartment-bpf/tests/docs/howto-examples.sh",
+            "compartment-bpf/tests/duplicate-seal-merge.sh",
+            "compartment-bpf/tests/empty-profile-witness.sh",
+            "compartment-bpf/tests/fuzz-runner.sh",
+            "compartment-bpf/tests/fuzz.sh",
+            "compartment-bpf/tests/fuzz_oracle.c",
+            "compartment-bpf/tests/inode-seal-witness.sh",
+            "compartment-bpf/tests/lib-pinlock.sh",
+            "compartment-bpf/tests/lib-realbin.sh",
+            "compartment-bpf/tests/lib.sh",
+            "compartment-bpf/tests/limit-stress.sh",
+            "compartment-bpf/tests/limitations-witness.sh",
+            "compartment-bpf/tests/loader-refusal-witness.sh",
+            "compartment-bpf/tests/map-freeze-witness.sh",
+            "compartment-bpf/tests/matrix-runner.sh",
+            "compartment-bpf/tests/matrix.sh",
+            "compartment-bpf/tests/mesh/predict.sh",
+            "compartment-bpf/tests/mesh/run-mesh.sh",
+            "compartment-bpf/tests/mesh/stubs/mesh_actor_a1.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_actor_a2.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_actor_a3.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_actor_a4.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_outsider_b1.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_outsider_b2.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_outsider_b3.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_outsider_b4.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_stub_main.c",
+            "compartment-bpf/tests/mesh/stubs/mesh_stub_main.h",
+            "compartment-bpf/tests/observe/run.sh",
+            "compartment-bpf/tests/parser-actor/run.sh",
+            "compartment-bpf/tests/pin-passphrase.sh",
+            "compartment-bpf/tests/pin-regression.sh",
+            "compartment-bpf/tests/pin-ringbuf-failure.sh",
+            "compartment-bpf/tests/profile-e2e.sh",
+            "compartment-bpf/tests/profile-e2e/aide.sh",
+            "compartment-bpf/tests/profile-e2e/chronyd.sh",
+            "compartment-bpf/tests/profile-e2e/dbus-daemon.sh",
+            "compartment-bpf/tests/profile-e2e/polkitd.sh",
+            "compartment-bpf/tests/profile-e2e/postgres.sh",
+            "compartment-bpf/tests/profile-e2e/sshd.sh",
+            "compartment-bpf/tests/profile-e2e/systemd-resolved.sh",
+            "compartment-bpf/tests/profile-smoke.sh",
+            "compartment-bpf/tests/release-totals.sh",
+            "compartment-bpf/tests/sealprobe.c",
+            "compartment-bpf/tests/smoke-actor.sh",
+            "compartment-bpf/tests/smoke.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-01-pin-during-mesh-trial.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-02-unpin-during-enforcement.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-03-exec-during-unpin.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-04-child-actor-unpin.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-05-rapid-pin-unpin.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-06-sigkill-repin.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-07-unpin-during-ringbuf.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-08-concurrent-pin.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-09-sigstop-sigcont.sh",
+            "compartment-bpf/tests/stability/corner-cases/CC-10-pin-unpin-pin-unpin.sh",
+            "compartment-bpf/tests/stability/counter-longevity.sh",
+            "compartment-bpf/tests/stability/lib-stability.sh",
+            "compartment-bpf/tests/stability/pin-unpin-churn.sh",
+            "compartment-bpf/tests/stress-runner.sh",
+            "compartment-bpf/tests/stress.sh",
+            "compartment-bpf/tests/strict-launch/fixtures/slm-actor.c",
+            "compartment-bpf/tests/strict-launch/fixtures/slm-foreign.c",
+            "compartment-bpf/tests/strict-launch/helpers/slm_traceme.c",
+            "compartment-bpf/tests/strict-launch/perf-g11-corrected.sh",
+            "compartment-bpf/tests/strict-launch/run.sh",
+            "compartment-bpf/tests/telemetry-smoke.sh"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "cunningham-chain-search",
+    "slug": "cunningham-chain-search",
+    "tagline": "A CUDA and GMP pipeline for searching long first-kind Cunningham chains, with interactive analysis tools and retained failed experiments.",
+    "summary": "A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.",
+    "domain": "Computational search",
+    "status": "Completed",
+    "maturity": "Completed campaign, maintained methods",
+    "year": "2026",
+    "primary_language": "CUDA / C",
+    "technologies": [
+      "CUDA",
+      "GMP",
+      "PARI/GP",
+      "Python",
+      "interactive visualization"
+    ],
+    "visibility": "public",
+    "featured": true,
+    "order": 4,
+    "evidence": "The campaign produced two first-kind CC18 roots and a cumulative dataset of 1,551,489 CC10–CC18 roots; it explicitly does not claim the first known CC18.",
+    "github": "https://github.com/nmicic/cunningham-chain-search",
+    "live": "https://nmicic.github.io/cunningham-chain-search/visualizations/chain-mesh/",
+    "related": [
+      "cunningham-chain-data",
+      "k-tuplet-search",
+      "p2-odd-rays-visual-math-toy"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "79c08694050cf3e2c2ad9e649cf369f3fa1cb18c",
+    "sources": [
+      "README.md",
+      "docs/SEARCH_PIPELINE.md",
+      "gp/cc_lib_v10.gp"
+    ],
+    "metrics": [
+      {
+        "label": "Production GPU",
+        "value": "4,280 lines",
+        "detail": "CUDA v13 baseline measured at 57–65 billion candidates per second on the documented hardware.",
+        "measurement": "production_gpu"
+      },
+      {
+        "label": "Production CPU",
+        "value": "3,331 lines",
+        "detail": "GMP v33 baseline for confirmation, true-root recovery, and chain-length checks.",
+        "measurement": "production_cpu"
+      },
+      {
+        "label": "Independent validators",
+        "value": "4,535 lines",
+        "detail": "Three chain validators plus the GP library, whose documented load-time suite has 37 self-tests.",
+        "measurement": "validators"
+      },
+      {
+        "label": "Campaign result",
+        "value": "1,551,489 roots",
+        "detail": "Two CC18 roots in the cumulative CC10–CC18 dataset; CC19 was not reached."
+      }
+    ],
+    "snapshot": {
+      "name": "cunningham-chain-search",
+      "github": "https://github.com/nmicic/cunningham-chain-search",
+      "default_branch": "main",
+      "commit": "79c08694050cf3e2c2ad9e649cf369f3fa1cb18c",
+      "commit_date": "2026-08-25T21:36:22+02:00",
+      "archived": false,
+      "description": "GPU/CPU Cunningham chain search engine with interactive 2-adic visualizations and analysis tools",
+      "primary_language": "Cuda",
+      "tracked_files": 113,
+      "documentation_files": 44,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 113,
+      "measurements": {
+        "production_gpu": {
+          "physical_lines": 4280,
+          "files": [
+            "src/cuda/cc18_filter_cuda_CpC_v13.cu"
+          ]
+        },
+        "production_cpu": {
+          "physical_lines": 3331,
+          "files": [
+            "src/cpu/cc_gmp_v33_03.c"
+          ]
+        },
+        "validators": {
+          "physical_lines": 4535,
+          "files": [
+            "gp/cc_lib_v10.gp",
+            "tools/validate_chains.c",
+            "tools/validate_chains.gp",
+            "tools/validate_chains.py"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "deaddrop",
+    "slug": "deaddrop",
+    "tagline": "A self-hosted one-shot file relay where clients encrypt the payload and the relay removes it after retrieval.",
+    "summary": "A Go client and relay for short-lived encrypted handoffs, with capsule pairing, optional end-to-end identity, and a detailed protocol specification.",
+    "domain": "Secure systems",
+    "status": "Active",
+    "maturity": "Experimental secure-transfer tool",
+    "year": "2026",
+    "primary_language": "Go",
+    "technologies": [
+      "Go",
+      "XChaCha20-Poly1305",
+      "X25519",
+      "Argon2id",
+      "self-hosting"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 5,
+    "evidence": "Tiered CI and QA cover protocol vectors, bootstrap flows, one-shot semantics, collision handling, crash behavior, and exit-code contracts.",
+    "github": "https://github.com/nmicic/deaddrop",
+    "live": "",
+    "related": [
+      "URTB",
+      "ephrun",
+      "compartment"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "d46a12da2298cdf28f4a87c7c6286e78c5e45acd",
+    "sources": [
+      "README.md",
+      "TESTING.md",
+      "PROTOCOL.md",
+      "SECURITY.md"
+    ],
+    "metrics": [
+      {
+        "label": "Production Go",
+        "value": "7,157 lines",
+        "detail": "63 tracked Go files; test files and vendor/generated directories excluded.",
+        "measurement": "production_go"
+      },
+      {
+        "label": "Test and QA",
+        "value": "12,813 lines",
+        "detail": "46 Go test files and shell/Python files under test/ and tests/; deployment helpers excluded.",
+        "measurement": "test_qa"
+      },
+      {
+        "label": "Test-to-code ratio",
+        "value": "1.79×",
+        "detail": "Physical lines in the stated test/QA scope divided by production Go lines; this is not coverage.",
+        "measurement": "test_qa/production_go"
+      },
+      {
+        "label": "Documentation",
+        "value": "11,507 lines",
+        "detail": "All 29 tracked Markdown files, including protocol, threat model, decisions, operations, and README files.",
+        "measurement": "documentation"
+      }
+    ],
+    "snapshot": {
+      "name": "deaddrop",
+      "github": "https://github.com/nmicic/deaddrop",
+      "default_branch": "main",
+      "commit": "d46a12da2298cdf28f4a87c7c6286e78c5e45acd",
+      "commit_date": "2026-06-24T01:19:27+02:00",
+      "archived": false,
+      "description": "Self-hosted one-shot encrypted file relay: sender posts, receiver gets once, relay never sees plaintext.",
+      "primary_language": "Go",
+      "tracked_files": 188,
+      "documentation_files": 29,
+      "workflow_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 305,
+      "measurements": {
+        "production_go": {
+          "physical_lines": 7157,
+          "files": [
+            "cmd/deaddrop-relay/main.go",
+            "cmd/deaddrop/bootstrap.go",
+            "cmd/deaddrop/fingerprint.go",
+            "cmd/deaddrop/identity.go",
+            "cmd/deaddrop/keygen.go",
+            "cmd/deaddrop/main.go",
+            "cmd/deaddrop/passcache.go",
+            "cmd/deaddrop/recv.go",
+            "cmd/deaddrop/send.go",
+            "cmd/keyring-matrix-probe/main.go",
+            "internal/bootstrap/doc.go",
+            "internal/bootstrap/finish.go",
+            "internal/bootstrap/leg12.go",
+            "internal/bootstrap/leg3.go",
+            "internal/bootstrap/materialize.go",
+            "internal/bootstrap/pairing_fpr.go",
+            "internal/bootstrap/pb_check.go",
+            "internal/bootstrap/state.go",
+            "internal/capsule/doc.go",
+            "internal/capsule/fingerprint.go",
+            "internal/capsule/format.go",
+            "internal/capsule/wrap.go",
+            "internal/client/doc.go",
+            "internal/client/e2e.go",
+            "internal/client/recv.go",
+            "internal/client/send.go",
+            "internal/clock/clock.go",
+            "internal/clock/doc.go",
+            "internal/clock/fake.go",
+            "internal/crypto/aead.go",
+            "internal/crypto/ctcompare.go",
+            "internal/crypto/doc.go",
+            "internal/crypto/hkdf.go",
+            "internal/crypto/zero.go",
+            "internal/exitcode/exitcode.go",
+            "internal/fdread/fdread.go",
+            "internal/identitystore/identitystore.go",
+            "internal/identitystore/keychain_darwin.go",
+            "internal/identitystore/keychain_nocgo_darwin.go",
+            "internal/identitystore/keyutils_linux.go",
+            "internal/identitystore/stub_other.go",
+            "internal/identitystore/zeroize.go",
+            "internal/passcache/keychain_darwin.go",
+            "internal/passcache/keychain_nocgo_darwin.go",
+            "internal/passcache/keychain_test_support_darwin.go",
+            "internal/passcache/keyutils_linux.go",
+            "internal/passcache/keyutils_other.go",
+            "internal/passcache/passcache.go",
+            "internal/passphrase/doc.go",
+            "internal/passphrase/passphrase.go",
+            "internal/relay/doc.go",
+            "internal/relay/gc.go",
+            "internal/relay/handler.go",
+            "internal/relay/lifecycle_linux.go",
+            "internal/relay/lifecycle_other.go",
+            "internal/relay/store.go",
+            "internal/secretparse/secretparse.go",
+            "internal/slot/doc.go",
+            "internal/slot/service.go",
+            "internal/slot/slot.go",
+            "internal/wire/doc.go",
+            "internal/wire/version.go",
+            "tools/test-derive/derive.go"
+          ]
+        },
+        "test_qa": {
+          "physical_lines": 12813,
+          "files": [
+            "cmd/deaddrop-relay/main_test.go",
+            "cmd/deaddrop/bootstrap_test.go",
+            "cmd/deaddrop/identity_test.go",
+            "cmd/deaddrop/main_test.go",
+            "cmd/deaddrop/passcache_test.go",
+            "cmd/deaddrop/recv_watch_test.go",
+            "internal/bootstrap/finish_test.go",
+            "internal/bootstrap/leg12_test.go",
+            "internal/bootstrap/leg3_test.go",
+            "internal/bootstrap/materialize_test.go",
+            "internal/bootstrap/pairing_fpr_test.go",
+            "internal/bootstrap/pb_check_test.go",
+            "internal/bootstrap/state_test.go",
+            "internal/capsule/capsule_test.go",
+            "internal/capsule/fingerprint_test.go",
+            "internal/client/e2e_test.go",
+            "internal/client/recv_ismiss_test.go",
+            "internal/client/recv_test.go",
+            "internal/client/send_test.go",
+            "internal/clock/clock_test.go",
+            "internal/crypto/aead_test.go",
+            "internal/crypto/ctcompare_test.go",
+            "internal/crypto/hkdf_test.go",
+            "internal/exitcode/exitcode_test.go",
+            "internal/fdread/fdread_test.go",
+            "internal/identitystore/identitystore_test.go",
+            "internal/identitystore/keychain_darwin_test.go",
+            "internal/identitystore/keyutils_linux_test.go",
+            "internal/passcache/keychain_darwin_test.go",
+            "internal/passcache/keyutils_linux_test.go",
+            "internal/passcache/passcache_test.go",
+            "internal/passphrase/passphrase_test.go",
+            "internal/relay/relay_test.go",
+            "internal/secretparse/secretparse_test.go",
+            "internal/slot/slot_test.go",
+            "internal/wire/wire_test.go",
+            "test/caddy/prefix_strip_test.sh",
+            "test/e2e/e2e-tls.sh",
+            "test/e2e/howto-validate.sh",
+            "test/e2e/roundtrip.sh",
+            "test/perf/perf-roundtrip.sh",
+            "test/proxy/proxy-e2e.sh",
+            "test/smoke/10x_10mib.sh",
+            "test/smoke/qa-roundtrip.sh",
+            "tests/scripts/run_kernel_matrix.sh",
+            "tools/test-derive/derive_test.go"
+          ]
+        },
+        "documentation": {
+          "physical_lines": 11507,
+          "files": [
+            "ARCHITECTURAL_PRINCIPLE_GENERIC_PIPELINE.md",
+            "BACKEND_VM.md",
+            "CHANGELOG.md",
+            "DECISIONS.md",
+            "FUTURE.md",
+            "HOWTO.md",
+            "PRIOR_ART.md",
+            "PROTOCOL.md",
+            "README.md",
+            "SECURITY.md",
+            "SPEC.md",
+            "SPEC_BOOTSTRAP.md",
+            "SPEC_DRAFT_B_capsule.md",
+            "TESTING.md",
+            "deploy/vm/README.md",
+            "experimental/BACKEND_CLOUDFLARE_parked.md",
+            "experimental/G_CLIENT_SIDE_SUBSET.md",
+            "experimental/README.md",
+            "experimental/SPEC_DRAFT_A_passphrase.md",
+            "experimental/SPEC_DRAFT_Bprime_bootstrap.md",
+            "experimental/SPEC_DRAFT_C_capsule_PKI.md",
+            "experimental/SPEC_DRAFT_D_private_CA.md",
+            "experimental/SPEC_DRAFT_E_hybrid_capsule_plus_CA.md",
+            "experimental/SPEC_DRAFT_F_self_hosted_vm.md",
+            "experimental/SPEC_DRAFT_G_messaging_bus.md",
+            "extra/mcp/README.md",
+            "testdata/VECTORS.md",
+            "testdata/exitcode_coverage.md",
+            "tools/test-derive/README.md"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "URTB",
+    "slug": "URTB",
+    "tagline": "An authenticated encrypted terminal bridge over USB-attached radios, local sockets, or untrusted jump-host streams.",
+    "summary": "A C terminal tunnel using shared capsules and XChaCha20-Poly1305 across ESP-NOW, LoRa, Unix sockets, and generic process streams.",
+    "domain": "Secure systems",
+    "status": "Active",
+    "maturity": "Hardware-backed prototype",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "C",
+      "ESP-NOW",
+      "LoRa",
+      "XChaCha20-Poly1305",
+      "Heltec ESP32-S3"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 6,
+    "evidence": "Software checks run without radio hardware, while a separate hardware tier validates two Heltec V3 boards and jump-host scenarios.",
+    "github": "https://github.com/nmicic/URTB",
+    "live": "",
+    "related": [
+      "unmoor",
+      "deaddrop",
+      "compartment",
+      "ephrun"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "de2544d33278735e0b13e563cb25993bb883dd60",
+    "sources": [
+      "README.md",
+      "TESTING.md",
+      "PROTOCOL.md",
+      "ACCEPTANCE_CRITERIA.md"
+    ],
+    "metrics": [
+      {
+        "label": "Implementation",
+        "value": "8,737 lines",
+        "detail": "27 host C/header and Heltec firmware files; vendored cryptography and test injection excluded.",
+        "measurement": "implementation"
+      },
+      {
+        "label": "Test and harness code",
+        "value": "5,537 lines",
+        "detail": "22 C/header, Python, and shell files for test injection, tools, and profile checks.",
+        "measurement": "test_harness"
+      },
+      {
+        "label": "Protocol coverage",
+        "value": "52 cases",
+        "detail": "Wire-format and security cases, plus 42 acceptance criteria."
+      },
+      {
+        "label": "Failure testing",
+        "value": "8 classes",
+        "detail": "Software, two-board hardware, failover, radio-down, and physical cable-removal paths."
+      }
+    ],
+    "snapshot": {
+      "name": "URTB",
+      "github": "https://github.com/nmicic/URTB",
+      "default_branch": "main",
+      "commit": "de2544d33278735e0b13e563cb25993bb883dd60",
+      "commit_date": "2026-04-23T14:39:08+02:00",
+      "archived": false,
+      "description": "Encrypted PTY tunnel over ESP-NOW/LoRa radio links or untrusted jump hosts — XChaCha20-Poly1305",
+      "primary_language": "C",
+      "tracked_files": 84,
+      "documentation_files": 18,
+      "workflow_files": [
+        ".github/workflows/test.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 116,
+      "measurements": {
+        "implementation": {
+          "physical_lines": 8737,
+          "files": [
+            "firmware/src/display.cpp",
+            "firmware/src/display.h",
+            "firmware/src/main.cpp",
+            "src/capsule.c",
+            "src/capsule.h",
+            "src/channel.c",
+            "src/channel.h",
+            "src/channel_control.c",
+            "src/channel_pty.c",
+            "src/channel_pty.h",
+            "src/crypto.c",
+            "src/crypto.h",
+            "src/frame.c",
+            "src/frame.h",
+            "src/main.c",
+            "src/otp.c",
+            "src/otp.h",
+            "src/pty.c",
+            "src/pty.h",
+            "src/reasm.c",
+            "src/reasm.h",
+            "src/session.c",
+            "src/session.h",
+            "src/transport.h",
+            "src/transport_heltec.c",
+            "src/transport_stdio.c",
+            "src/transport_unix.c"
+          ]
+        },
+        "test_harness": {
+          "physical_lines": 5537,
+          "files": [
+            "compartment/test_profiles.sh",
+            "src/test_inject.c",
+            "src/test_inject.h",
+            "tools/ac03_pyte_test.py",
+            "tools/capsule_version_test.c",
+            "tools/doctor.sh",
+            "tools/fake_firmware.py",
+            "tools/fi03_replay_proxy.py",
+            "tools/fi05_pair_id_inject.py",
+            "tools/fi_inject.py",
+            "tools/frag_runtime_test.sh",
+            "tools/frame_dump.py",
+            "tools/frame_test.c",
+            "tools/heltec_socat_test.sh",
+            "tools/hw_bisect_step.sh",
+            "tools/hw_test_flash.sh",
+            "tools/hw_test_run.sh",
+            "tools/otp_test.c",
+            "tools/ports.sh",
+            "tools/prior-art-demo.sh",
+            "tools/run_all_tests.sh",
+            "tools/run_inject_acs.sh"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "ephrun",
+    "slug": "ephrun",
+    "tagline": "Linux tooling for encrypted ELF artifacts, short-lived key delivery, and in-memory execution through memfd.",
+    "summary": "A C toolchain that encrypts Linux executables, sources decryption keys from capsules, files, or kernel keyrings, and executes from memory.",
+    "domain": "Secure systems",
+    "status": "Active",
+    "maturity": "Experimental deployment toolkit",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "C",
+      "libsodium",
+      "Linux keyrings",
+      "memfd",
+      "X25519"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 7,
+    "evidence": "Versioned encrypted-file and capsule formats have round-trip, compatibility, threat-model, and deterministic vector acceptance gates.",
+    "github": "https://github.com/nmicic/ephrun",
+    "live": "",
+    "related": [
+      "deaddrop",
+      "URTB",
+      "compartment"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "cd4f08a1d0011602ce061ac7d8fe3760c4668b03",
+    "sources": [
+      "README.md",
+      "SPEC.md",
+      "tests/KERNEL_MATRIX_REPORT.md"
+    ],
+    "metrics": [
+      {
+        "label": "Implementation",
+        "value": "2,727 lines",
+        "detail": "Nine C/header files under ephrun/ and keypush/; test programs, probes, and shell wrappers excluded.",
+        "measurement": "implementation"
+      },
+      {
+        "label": "Tests and harnesses",
+        "value": "2,173 lines",
+        "detail": "Nine C probes/tests and shell harnesses; binary fixtures and operational wrappers excluded.",
+        "measurement": "test_harness"
+      },
+      {
+        "label": "Kernel matrix",
+        "value": "4 completed",
+        "detail": "Linux 5.15–6.8 showed the same environment-specific failures and no version-specific regression; two older targets were skipped by runner transport."
+      },
+      {
+        "label": "Format coverage",
+        "value": "KCAP1–3",
+        "detail": "Round trips, compatibility reads, corruption/wrong-key rejection, and deterministic vectors."
+      }
+    ],
+    "snapshot": {
+      "name": "ephrun",
+      "github": "https://github.com/nmicic/ephrun",
+      "default_branch": "main",
+      "commit": "cd4f08a1d0011602ce061ac7d8fe3760c4668b03",
+      "commit_date": "2026-06-24T00:41:18+02:00",
+      "archived": false,
+      "description": "  Tools for encrypting ELF binaries and running them on untrusted Linux hosts via memfd, keyring, and capsule-based key delivery",
+      "primary_language": "C",
+      "tracked_files": 48,
+      "documentation_files": 9,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 498,
+      "measurements": {
+        "implementation": {
+          "physical_lines": 2727,
+          "files": [
+            "ephrun/elfdec-run.c",
+            "ephrun/elfenc_pack.c",
+            "ephrun/genkey.c",
+            "ephrun/kcap.h",
+            "ephrun/kcap_pack.c",
+            "ephrun/kcap_unpack.c",
+            "ephrun/libexec_key.h",
+            "keypush/keypush_send.c",
+            "keypush/keypushd.c"
+          ]
+        },
+        "test_harness": {
+          "physical_lines": 2173,
+          "files": [
+            "ephrun/env_dump.c",
+            "ephrun/hello.c",
+            "ephrun/kcap_kdf_test.c",
+            "ephrun/keyring_crypto_test.c",
+            "ephrun/keyring_selftest.c",
+            "ephrun/test_fexecve_shim.c",
+            "ephrun/test_key.c",
+            "test.sh",
+            "tests/run_kernel_matrix.sh"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "Unmoor",
+    "slug": "unmoor",
+    "tagline": "An authenticated UDP terminal and verified file transport that keeps session identity across changing network addresses.",
+    "summary": "A C terminal and file-transfer tool with hybrid key exchange, byte-stream repair, multiple UDP legs, and explicit confinement controls.",
+    "domain": "Secure systems",
+    "status": "Active",
+    "maturity": "Experimental v0.2.0 / protocol v2",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "UDP",
+      "X25519 + ML-KEM-1024",
+      "stream repair",
+      "Linux confinement",
+      "macOS"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 8,
+    "evidence": "September 15 records report 136 local checks and 781 routed-network checks; the random-loss matrix completed 99 of 100 sessions under its exact-line oracle.",
+    "github": "https://github.com/nmicic/unmoor",
+    "live": "",
+    "related": [
+      "URTB",
+      "compartment",
+      "deaddrop"
+    ],
+    "reviewed": "2026-10-16",
+    "reviewed_commit": "93c3ef65f12c370d5062bd46079be43bedf01b19",
+    "sources": [
+      "README.md",
+      "SOURCE.md",
+      "SECURITY.md",
+      "Makefile"
+    ],
+    "metrics": [
+      {
+        "label": "C source + headers",
+        "value": "75,367 lines",
+        "detail": "132 files directly in src/; excludes vendored libraries and test tools. Physical lines include comments and blank lines.",
+        "measurement": "implementation"
+      },
+      {
+        "label": "Routed-path gate",
+        "value": "781 checks",
+        "detail": "Ten impairment scenarios with no reported check failures and one explicit stale-return-path characterization."
+      },
+      {
+        "label": "Local checks",
+        "value": "136 passing",
+        "detail": "117 frame, reassembly, and negotiation checks plus 19 PQ checks in the recorded macOS run."
+      },
+      {
+        "label": "Random-loss sessions",
+        "value": "99/100 completed",
+        "detail": "The 10% loss row completed 19/20 under the harness oracle; its one non-completion remains counted."
+      }
+    ],
+    "snapshot": {
+      "name": "unmoor",
+      "github": "https://github.com/nmicic/unmoor",
+      "default_branch": "main",
+      "commit": "93c3ef65f12c370d5062bd46079be43bedf01b19",
+      "commit_date": "2026-09-18T13:49:17+02:00",
+      "archived": false,
+      "description": "Authenticated, post-quantum UDP terminal and verified file transport for roaming networks. Sessions survive address changes, NAT rebinding, loss and  reordering, with byte-exact repair, multipath, and Linux confinement. Network child of URTB.",
+      "primary_language": "C",
+      "tracked_files": 191,
+      "documentation_files": 7,
+      "workflow_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 267,
+      "measurements": {
+        "implementation": {
+          "physical_lines": 75367,
+          "files": [
+            "src/attach_client.c",
+            "src/attach_client.h",
+            "src/attach_local.c",
+            "src/attach_local.h",
+            "src/attach_manager.c",
+            "src/attach_manager.h",
+            "src/bulk.c",
+            "src/bulk.h",
+            "src/bulk_engine.c",
+            "src/bulk_engine.h",
+            "src/channel.c",
+            "src/channel.h",
+            "src/channel_bulk.c",
+            "src/channel_bulk.h",
+            "src/channel_control.c",
+            "src/channel_delivery.c",
+            "src/channel_delivery.h",
+            "src/channel_process.c",
+            "src/channel_process.h",
+            "src/channel_pty.c",
+            "src/channel_pty.h",
+            "src/channel_session.c",
+            "src/channel_session.h",
+            "src/child_transfer.c",
+            "src/child_transfer.h",
+            "src/client_escape.c",
+            "src/client_escape.h",
+            "src/confine.c",
+            "src/confine.h",
+            "src/confine_tables.h",
+            "src/crypto.c",
+            "src/crypto.h",
+            "src/deaddrop.c",
+            "src/deaddrop.h",
+            "src/deaddrop_exchange.c",
+            "src/deaddrop_exchange.h",
+            "src/deaddrop_runtime.c",
+            "src/deaddrop_runtime.h",
+            "src/delivery.c",
+            "src/delivery.h",
+            "src/epoch_crypto.c",
+            "src/epoch_crypto.h",
+            "src/event_log.c",
+            "src/event_log.h",
+            "src/fd_stat.h",
+            "src/frame.c",
+            "src/frame.h",
+            "src/main.c",
+            "src/monitor_child_pidfd.c",
+            "src/monitor_child_pidfd.h",
+            "src/monitor_endpoint.c",
+            "src/monitor_endpoint.h",
+            "src/monitor_platform.c",
+            "src/monitor_platform.h",
+            "src/monitor_pty_custody.c",
+            "src/monitor_pty_custody.h",
+            "src/monitor_pty_protocol.c",
+            "src/monitor_pty_protocol.h",
+            "src/monitor_roles.c",
+            "src/monitor_roles.h",
+            "src/monitor_session_backend.c",
+            "src/monitor_session_backend.h",
+            "src/monitor_shutdown.c",
+            "src/monitor_shutdown.h",
+            "src/monitor_startup.c",
+            "src/monitor_startup.h",
+            "src/monitor_worker.c",
+            "src/monitor_worker.h",
+            "src/monitor_worker_native.h",
+            "src/multipath.c",
+            "src/multipath.h",
+            "src/negotiation.c",
+            "src/negotiation.h",
+            "src/path_leg.c",
+            "src/path_leg.h",
+            "src/pq_crypto.c",
+            "src/pq_crypto.h",
+            "src/pq_deaddrop.c",
+            "src/pq_deaddrop.h",
+            "src/pq_deaddrop_exchange.c",
+            "src/pq_deaddrop_exchange.h",
+            "src/pq_epoch_crypto.c",
+            "src/pq_epoch_crypto.h",
+            "src/pq_hybrid.c",
+            "src/pq_hybrid.h",
+            "src/pq_policy.c",
+            "src/pq_policy.h",
+            "src/pq_rekey.c",
+            "src/pq_rekey.h",
+            "src/preauth_budget.c",
+            "src/preauth_budget.h",
+            "src/process_hygiene.c",
+            "src/process_hygiene.h",
+            "src/pty.c",
+            "src/pty.h",
+            "src/reasm.c",
+            "src/reasm.h",
+            "src/rekey.c",
+            "src/rekey.h",
+            "src/rss.c",
+            "src/rss.h",
+            "src/rss_command.c",
+            "src/rss_command.h",
+            "src/send_scheduler.c",
+            "src/send_scheduler.h",
+            "src/session.c",
+            "src/session.h",
+            "src/sync.c",
+            "src/sync.h",
+            "src/sync_backlog.c",
+            "src/sync_backlog.h",
+            "src/sync_monitor.h",
+            "src/sync_repair_plan.c",
+            "src/sync_repair_plan.h",
+            "src/sync_source.c",
+            "src/sync_source.h",
+            "src/sync_source_map.c",
+            "src/sync_source_map.h",
+            "src/sync_status.c",
+            "src/sync_status.h",
+            "src/sync_work_carriage.c",
+            "src/sync_work_carriage.h",
+            "src/sync_work_codec.c",
+            "src/sync_work_codec.h",
+            "src/traffic_profile.c",
+            "src/traffic_profile.h",
+            "src/transport.h",
+            "src/transport_stdio.c",
+            "src/transport_tx.c",
+            "src/transport_tx.h",
+            "src/transport_udp.c",
+            "src/transport_unix.c"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "int-llm precision ladder",
+    "slug": "int-llm-precision-ladder",
+    "tagline": "A controlled descent from a wide fixed-point oracle to compact signed-int16 weights, with behavior checked at each step.",
+    "summary": "Follow-up experiments that narrow integer model weights while retaining the wide Q16.48 path as the comparison oracle.",
+    "domain": "Integer & embedded",
+    "status": "Research",
+    "maturity": "Reproducible experiment",
+    "year": "2026",
+    "primary_language": "C / Python",
+    "technologies": [
+      "fixed-point inference",
+      "int16 weights",
+      "TinyLlama",
+      "MicroGPT",
+      "CUDA experiments"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 9,
+    "evidence": "A mixed-F11/F12 TinyLlama candidate matched 632/632 evaluated greedy decisions and reduced the wide integer model file from 8.80 GB to 2.20 GB.",
+    "github": "https://github.com/nmicic/int-llm-precision-ladder",
+    "live": "",
+    "related": [
+      "int-llm",
+      "int-llm-coordinate-permutation",
+      "int-llm-sql",
+      "int-llm-postscript",
+      "int-llm-brainfuck"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "7cc4b9400185b9774a59c3228ab4c8af60ee770b",
+    "sources": [
+      "README.md",
+      "TINYLLAMA_RESULTS.md",
+      "MCU_RESULTS.md",
+      "GPU_RESULTS.md"
+    ],
+    "metrics": [
+      {
+        "label": "Oracle agreement",
+        "value": "632/632 decisions",
+        "detail": "Mixed-F11/F12 weights matched the wide-integer oracle on 32 deterministic prompts."
+      },
+      {
+        "label": "Conversion gate",
+        "value": "1,100,048,384 codes",
+        "detail": "All integer codes and output bytes matched for one pinned checkpoint and plan."
+      },
+      {
+        "label": "Model storage",
+        "value": "8.80 → 2.20 GB",
+        "detail": "Signed-int16 weights removed the fourfold Q16.48 storage expansion."
+      },
+      {
+        "label": "Negative control",
+        "value": "FP32 3.168899× faster",
+        "detail": "The practical floating-point runtime remained faster on the documented comparison."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm-precision-ladder",
+      "github": "https://github.com/nmicic/int-llm-precision-ladder",
+      "default_branch": "main",
+      "commit": "7cc4b9400185b9774a59c3228ab4c8af60ee770b",
+      "commit_date": "2026-08-01T21:39:17+02:00",
+      "archived": false,
+      "description": "Follow-up to int-llm: TinyLlama-1.1B weights rounded to mixed F11/F12 int16, matching the Q16.48 integer oracle on all 632 evaluated greedy decisions. CPU, MCU, and CUDA evidence.",
+      "primary_language": "C",
+      "tracked_files": 86,
+      "documentation_files": 18,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 176,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "int-llm coordinate permutation",
+    "slug": "int-llm-coordinate-permutation",
+    "tagline": "Reversible checkpoint transformations across vocabulary rows, MLP neurons, attention heads, and the residual hidden basis.",
+    "summary": "A toolkit for controlled model-layout experiments on both standard SafeTensors and the integer Q16.48 model path.",
+    "domain": "Integer & embedded",
+    "status": "Research",
+    "maturity": "Reproducible experiment",
+    "year": "2026",
+    "primary_language": "Python",
+    "technologies": [
+      "SafeTensors",
+      "Llama",
+      "parameter symmetry",
+      "Q16.48",
+      "checkpoint tooling"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 10,
+    "evidence": "The all-axis TinyLlama run transformed all 201 learned tensors; the integer path kept 80/80 decisions and the BF16 inverse restored the checkpoint byte-for-byte.",
+    "github": "https://github.com/nmicic/int-llm-coordinate-permutation",
+    "live": "",
+    "related": [
+      "int-llm",
+      "int-llm-precision-ladder",
+      "int-llm-viz"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4",
+    "sources": [
+      "README.md",
+      "RESULTS.md",
+      "experiments/systematic_mlp_layout/README.md",
+      "experiments/hidden_channel_permutation/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Tensor coverage",
+        "value": "201 learned tensors",
+        "detail": "The all-axis TinyLlama transformation covered the documented learned-tensor set."
+      },
+      {
+        "label": "Integer behavior",
+        "value": "80/80 decisions",
+        "detail": "Greedy decisions remained aligned on the Q16.48 validation path."
+      },
+      {
+        "label": "Reversibility",
+        "value": "Byte-for-byte",
+        "detail": "The BF16 inverse restored the pinned checkpoint exactly."
+      },
+      {
+        "label": "Input dtypes",
+        "value": "BF16 / F16 / F32",
+        "detail": "Unsharded SafeTensors within the documented Llama tensor-name scope."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm-coordinate-permutation",
+      "github": "https://github.com/nmicic/int-llm-coordinate-permutation",
+      "default_branch": "main",
+      "commit": "0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4",
+      "commit_date": "2026-08-03T16:58:01+02:00",
+      "archived": false,
+      "description": "Reversible coordinate permutations for Llama checkpoints with exact Q16.48 validation and direct SafeTensors support.",
+      "primary_language": "C",
+      "tracked_files": 217,
+      "documentation_files": 49,
+      "workflow_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 438,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "int-llm SQL",
+    "slug": "int-llm-sql",
+    "tagline": "A complete integer-only MicroGPT inference pipeline in a standalone SQLite shell script.",
+    "summary": "SQL executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions.",
+    "domain": "Integer & embedded",
+    "status": "Completed",
+    "maturity": "Validated language experiment",
+    "year": "2026",
+    "primary_language": "SQL",
+    "technologies": [
+      "SQLite",
+      "recursive CTEs",
+      "Q16.48",
+      "MicroGPT",
+      "relational computation"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 11,
+    "evidence": "The recorded C-oracle comparison covers 69,748 activation, logit, and probability rows, plus all 122 sampling records.",
+    "github": "https://github.com/nmicic/int-llm-sql",
+    "live": "",
+    "related": [
+      "int-llm",
+      "int-llm-postscript",
+      "int-llm-brainfuck",
+      "int-llm-viz"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d",
+    "sources": [
+      "README.md",
+      "Makefile",
+      "expected_output.txt",
+      "model/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Oracle trace",
+        "value": "69,748 rows",
+        "detail": "Development comparisons cover recorded activations, logits, and probabilities, plus 122 RNG records."
+      },
+      {
+        "label": "Arithmetic gate",
+        "value": "11,750 vectors",
+        "detail": "Fixed-point operations are checked against the vendored C oracle."
+      },
+      {
+        "label": "Inference output",
+        "value": "20 names / 122 steps",
+        "detail": "Sample and raw-logit checksums are calculated by the executed SQL before SQL_GATE=PASS."
+      },
+      {
+        "label": "Model scope",
+        "value": "14,272 parameters",
+        "detail": "One layer, width 32, four attention heads, eight-position context, and 27 tokens."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm-sql",
+      "github": "https://github.com/nmicic/int-llm-sql",
+      "default_branch": "main",
+      "commit": "6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d",
+      "commit_date": "2026-08-26T08:59:58+02:00",
+      "archived": false,
+      "description": "Bit-exact MicroGPT inference in pure SQLite SQL—not text-to-SQL. Integer-only Q16.48 transformer math and deterministic sampling, with no   UDFs or extensions.",
+      "primary_language": "C",
+      "tracked_files": 26,
+      "documentation_files": 2,
+      "workflow_files": [
+        ".github/workflows/ci.yml"
+      ],
+      "readme": "README.md",
+      "readme_lines": 173,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "int-llm PostScript",
+    "slug": "int-llm-postscript",
+    "tagline": "Integer-only MicroGPT inference and training in PostScript, checked byte-for-byte against the C reference.",
+    "summary": "A complete small transformer and trainer in PostScript, with exact wide and F12 checkpoint verification through Ghostscript.",
+    "domain": "Integer & embedded",
+    "status": "Completed",
+    "maturity": "Validated language experiment",
+    "year": "2026",
+    "primary_language": "PostScript",
+    "technologies": [
+      "PostScript",
+      "Ghostscript",
+      "Q16.48",
+      "MicroGPT",
+      "integer arithmetic"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 12,
+    "evidence": "The repository records 20/20 identical samples, all 5,000 training loss lines, and byte-identical wide and F12-exported checkpoints.",
+    "github": "https://github.com/nmicic/int-llm-postscript",
+    "live": "",
+    "related": [
+      "int-llm",
+      "int-llm-brainfuck",
+      "int-llm-sql"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "e52a14d64da329ed8f150e5bd6b0cb21e5d2b5b4",
+    "sources": [
+      "README.md",
+      "Makefile",
+      "expected_output.txt"
+    ],
+    "metrics": [
+      {
+        "label": "Inference agreement",
+        "value": "20/20 samples",
+        "detail": "The wide path reproduces the C oracle's complete 485-byte transcript across 122 forward passes."
+      },
+      {
+        "label": "Training agreement",
+        "value": "5,000 steps",
+        "detail": "Every recorded loss line, sampled name, and wide checkpoint byte matched the C oracle."
+      },
+      {
+        "label": "Checkpoint identity",
+        "value": "115,576 bytes",
+        "detail": "Both the wide and F12 MGW files have this size; F12 here uses the ordinary int64 container, not packed int16."
+      },
+      {
+        "label": "Stored-weight paths",
+        "value": "Wide + F12",
+        "detail": "Both use Q16.48 compute; training applies F12 rounding only at export."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm-postscript",
+      "github": "https://github.com/nmicic/int-llm-postscript",
+      "default_branch": "main",
+      "commit": "e52a14d64da329ed8f150e5bd6b0cb21e5d2b5b4",
+      "commit_date": "2026-08-26T08:44:20+02:00",
+      "archived": false,
+      "description": "Bit-exact MicroGPT inference and training in pure PostScript—integer-only Q16.48 arithmetic with canonical wide and uniform-F12 MGW checkpoints.",
+      "primary_language": "PostScript",
+      "tracked_files": 12,
+      "documentation_files": 1,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 181,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "int-llm Brainfuck",
+    "slug": "int-llm-brainfuck",
+    "tagline": "Bit-exact MicroGPT inference and complete 5,000-step training expressed in Brainfuck's eight commands.",
+    "summary": "Generators and a generic byte-cell runner for integer-only transformer inference and training in Brainfuck, with recorded comparisons against C.",
+    "domain": "Integer & embedded",
+    "status": "Completed",
+    "maturity": "Validated language experiment",
+    "year": "2026",
+    "primary_language": "Brainfuck / C / Python",
+    "technologies": [
+      "Brainfuck",
+      "Q16.48",
+      "MicroGPT",
+      "code generation",
+      "differential validation"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 13,
+    "evidence": "The September 18 training record reports exact agreement on all 5,000 loss lines, 20 samples, and both exported checkpoints against the C oracle.",
+    "github": "https://github.com/nmicic/int-llm-brainfuck",
+    "live": "",
+    "related": [
+      "int-llm",
+      "int-llm-postscript",
+      "int-llm-sql",
+      "int-llm-precision-ladder"
+    ],
+    "reviewed": "2026-10-16",
+    "reviewed_commit": "27c7c12bfa789c06b6fa4317161fb410b7ae4d90",
+    "sources": [
+      "README.md",
+      "SPEC.md",
+      "reference/phase1-verification-results.log",
+      "reference/phase2-verification-results.log"
+    ],
+    "metrics": [
+      {
+        "label": "Generated inference",
+        "value": "16.40 GB",
+        "detail": "microgpt.bf: 16,395,194,474 bytes. Decimal GB; the repository publishes its generator, not the generated file."
+      },
+      {
+        "label": "Generated trainer",
+        "value": "210.30 GB",
+        "detail": "microgpt_train.bf: 210,300,828,662 bytes. Decimal GB; the repository publishes its generator, not the generated file."
+      },
+      {
+        "label": "Training gate",
+        "value": "5,000 steps",
+        "detail": "The recorded full run matched the transcript, wide checkpoint, F12 export, and independent F12 conversion."
+      },
+      {
+        "label": "Inference gate",
+        "value": "122 steps",
+        "detail": "All 20 sampled names and the raw-logit and sample hashes matched the rounded-wide F12 reference."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm-brainfuck",
+      "github": "https://github.com/nmicic/int-llm-brainfuck",
+      "default_branch": "main",
+      "commit": "27c7c12bfa789c06b6fa4317161fb410b7ae4d90",
+      "commit_date": "2026-09-20T00:18:07+02:00",
+      "archived": false,
+      "description": "Bit-exact MicroGPT inference and training in Brainfuck (Q16.48). The Brainfuck itself is not published — the two programs are 226 GB. Generators included; bring disk space and patience.",
+      "primary_language": "Python",
+      "tracked_files": 142,
+      "documentation_files": 6,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 300,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "int-llm visualizations",
+    "slug": "int-llm-viz",
+    "tagline": "Four offline browser views of an integer GPT, with exact values and C-oracle checks behind the displayed numbers.",
+    "summary": "A weight atlas, inference trace, embedding-space viewer, and 3-D weight explorer for the complete small integer-model checkpoint.",
+    "domain": "Integer & embedded",
+    "status": "Research",
+    "maturity": "Reproducible visualization artifact",
+    "year": "2026",
+    "primary_language": "JavaScript / Python / C",
+    "technologies": [
+      "BigInt",
+      "Canvas",
+      "Q16.48",
+      "exact visualization",
+      "checkpoint inspection"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 14,
+    "evidence": "The browser re-derives all 122 recorded inference steps with BigInt; the C trace reports zero logit, cache, or sampling mismatches.",
+    "github": "https://github.com/nmicic/int-llm-viz",
+    "live": "https://nmicic.github.io/int-llm-viz/site/index.html",
+    "related": [
+      "int-llm",
+      "int-llm-coordinate-permutation",
+      "int-llm-precision-ladder",
+      "int-llm-sql"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "505e65235871e319855bd6628378c8884176e402",
+    "sources": [
+      "README.md",
+      "SOURCE_PROVENANCE.md",
+      "tests/run_tests.sh"
+    ],
+    "metrics": [
+      {
+        "label": "Visual surfaces",
+        "value": "4 offline pages",
+        "detail": "Weight atlas, inference trace, residual-space viewer, and 3-D weight explorer; data is embedded."
+      },
+      {
+        "label": "Checkpoint scope",
+        "value": "14,272 weights",
+        "detail": "All nine learned tensors in the one-layer, 32-dimensional MicroGPT checkpoint."
+      },
+      {
+        "label": "Exact trace",
+        "value": "122 steps",
+        "detail": "Recorded logits, cache state, samples, and final RNG state are checked against the C runtime."
+      },
+      {
+        "label": "Layout comparisons",
+        "value": "4 neuron orders",
+        "detail": "Original, smooth, spread, and seeded-random MLP layouts, plus a separate residual-coordinate swap."
+      }
+    ],
+    "snapshot": {
+      "name": "int-llm-viz",
+      "github": "https://github.com/nmicic/int-llm-viz",
+      "default_branch": "main",
+      "commit": "505e65235871e319855bd6628378c8884176e402",
+      "commit_date": "2026-08-07T21:49:14+02:00",
+      "archived": false,
+      "description": "Visual anatomy of a Q16.48 integer GPT — four self-contained offline HTML pages: weight atlas, bit-exact inference trace, 32-D embedding space, 3-D weight explorer. Every displayed number is exact (BigInt in-browser, verified against the C oracle). Fourth in the int-llm series.",
+      "primary_language": "HTML",
+      "tracked_files": 43,
+      "documentation_files": 2,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 186,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "k-tuplet-search",
+    "slug": "k-tuplet-search",
+    "tagline": "A CUDA, GMP, and PARI/GP toolkit for validating known prime k-tuplets and running staged GPU search campaigns.",
+    "summary": "A code-first prime-tuplet search engine with a generated pattern catalog, record replay corpus, campaign controls, and browser analyzer.",
+    "domain": "Computational search",
+    "status": "Active",
+    "maturity": "Validated search toolkit",
+    "year": "2026",
+    "primary_language": "CUDA / C",
+    "technologies": [
+      "CUDA",
+      "GMP",
+      "PARI/GP",
+      "prime k-tuplets",
+      "campaign tooling"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 15,
+    "evidence": "The production CUDA engine records 52 passing tests and replays a sourced corpus of 227 known records across k=16–21; no new-record claim is made.",
+    "github": "https://github.com/nmicic/k-tuplet-search",
+    "live": "https://nmicic.github.io/k-tuplet-search/visualizations/k-tuplet-analyzer/index.html",
+    "related": [
+      "cunningham-chain-search",
+      "cunningham-chain-data"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "190012808aa2393e8d4a6bca50b5fc0062133b67",
+    "sources": [
+      "README.md",
+      "TESTING.md",
+      "known/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Production GPU",
+        "value": "7,041 lines",
+        "detail": "CUDA v8 search engine, excluding shared runtime/support code.",
+        "measurement": "production_gpu"
+      },
+      {
+        "label": "CPU reference",
+        "value": "2,749 lines",
+        "detail": "GMP search and proving implementation.",
+        "measurement": "cpu_reference"
+      },
+      {
+        "label": "Test harness",
+        "value": "2,556 lines",
+        "detail": "CUDA tests and header plus shell/Python QA in tests/ and two tools tests; 52 engine passes are recorded.",
+        "measurement": "test_harness"
+      },
+      {
+        "label": "Validation corpus",
+        "value": "39 + 227",
+        "detail": "PARI/GP self-tests plus sourced known records across k=16–21; the catalog has 97 patterns."
+      }
+    ],
+    "snapshot": {
+      "name": "k-tuplet-search",
+      "github": "https://github.com/nmicic/k-tuplet-search",
+      "default_branch": "main",
+      "commit": "190012808aa2393e8d4a6bca50b5fc0062133b67",
+      "commit_date": "2026-05-19T11:36:13+02:00",
+      "archived": false,
+      "description": "k-tuplet-search",
+      "primary_language": "Cuda",
+      "tracked_files": 144,
+      "documentation_files": 25,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 242,
+      "measurements": {
+        "production_gpu": {
+          "physical_lines": 7041,
+          "files": [
+            "src/cuda/kt_filter_v8.cu"
+          ]
+        },
+        "cpu_reference": {
+          "physical_lines": 2749,
+          "files": [
+            "src/cpu/kt_gmp_v1.c"
+          ]
+        },
+        "test_harness": {
+          "physical_lines": 2556,
+          "files": [
+            "src/cuda/kt_tests.cu",
+            "src/cuda/kt_tests.h",
+            "tests/parse_runner_telemetry.py",
+            "tests/select_records_by_bit_bucket.py",
+            "tests/test_ckpt_identity_mismatch.sh",
+            "tests/test_e2e_runner_soak.sh",
+            "tests/test_features_actually_run.sh",
+            "tests/test_misalignment_regression.sh",
+            "tests/test_sigkill_resume_idempotent.sh",
+            "tools/patterns/test_pattern_tools.py",
+            "tools/test_kpi_promotion_gate.py"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "cunningham-chain-data",
+    "slug": "cunningham-chain-data",
+    "tagline": "Versioned aggregate first-kind Cunningham-chain roots from the completed 2026 search campaign.",
+    "summary": "A compact data repository with schema, manifest, sample, conversion script, and full cumulative snapshots published as release assets.",
+    "domain": "Computational search",
+    "status": "Completed",
+    "maturity": "Published dataset",
+    "year": "2026",
+    "primary_language": "Data / Python",
+    "technologies": [
+      "CSV",
+      "dataset schema",
+      "release assets",
+      "Python",
+      "Cunningham chains"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 16,
+    "evidence": "The March 19 cumulative snapshot contains 1,551,489 roots across CC10–CC18, including two CC18 roots, in a 19 MB compressed release asset.",
+    "github": "https://github.com/nmicic/cunningham-chain-data",
+    "live": "",
+    "related": [
+      "cunningham-chain-search",
+      "k-tuplet-search"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "0f0f697f44844628f0c66b23fb86e2ef85f5535e",
+    "sources": [
+      "README.md",
+      "manifest/dataset_manifest.json",
+      "schema/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Published snapshot",
+        "value": "1,551,489 roots",
+        "detail": "Cumulative CC10–CC18 rows in the March 19, 2026 release."
+      },
+      {
+        "label": "Longest results",
+        "value": "2 CC18 roots",
+        "detail": "Included with the full distribution; no first-known claim is made."
+      },
+      {
+        "label": "Release asset",
+        "value": "19 MB compressed",
+        "detail": "Full CSV stays in a versioned release rather than source history."
+      },
+      {
+        "label": "Data contract",
+        "value": "Schema + manifest",
+        "detail": "A deterministic converter and 1,000-row sample make the snapshot inspectable."
+      }
+    ],
+    "snapshot": {
+      "name": "cunningham-chain-data",
+      "github": "https://github.com/nmicic/cunningham-chain-data",
+      "default_branch": "main",
+      "commit": "0f0f697f44844628f0c66b23fb86e2ef85f5535e",
+      "commit_date": "2026-03-19T22:47:22+01:00",
+      "archived": false,
+      "description": "Aggregate first-kind Cunningham chain roots (CC10-CC18) from the 2026 campaign",
+      "primary_language": "Python",
+      "tracked_files": 8,
+      "documentation_files": 2,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 66,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "four-square-balance",
+    "slug": "four-square-balance",
+    "tagline": "Exact computation and visualization of record gaps in the most balanced representation of an integer as four squares.",
+    "summary": "Code, verified data, and an interactive shape-space view supporting the published OEIS sequence A396760.",
+    "domain": "Visual mathematics",
+    "status": "Completed",
+    "maturity": "Published sequence and reproducibility artifact",
+    "year": "2026",
+    "primary_language": "C / Python",
+    "technologies": [
+      "number theory",
+      "OEIS",
+      "PARI/GP",
+      "OpenMP",
+      "interactive visualization"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 17,
+    "evidence": "OEIS A396760 has 37 exhaustively verified record locations below 10^9, with independent code paths and retained decompositions.",
+    "github": "https://github.com/nmicic/four-square-balance",
+    "live": "https://nmicic.github.io/four-square-balance/viz/index.html",
+    "related": [
+      "three-square-balance",
+      "p2-odd-rays-visual-math-toy"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "e6e02d93271e7f61e58d3a13b623652189a8888a",
+    "sources": [
+      "README.md",
+      "sequences/gap-record-locations/README.md",
+      "loda/README.md",
+      "extra-observations/EXTRA_OBSERVATIONS.md"
+    ],
+    "metrics": [
+      {
+        "label": "Published sequence",
+        "value": "OEIS A396760",
+        "detail": "Record locations for the minimum spread in four-square representations."
+      },
+      {
+        "label": "Exhaustive range",
+        "value": "n < 10^9",
+        "detail": "Completeness is claimed only inside the documented finite search range."
+      },
+      {
+        "label": "Verified records",
+        "value": "37 locations",
+        "detail": "Exact decompositions are retained with the sequence data."
+      },
+      {
+        "label": "Cross-checking",
+        "value": "Independent paths",
+        "detail": "Optimized search, separate validation logic, and small reference implementations."
+      }
+    ],
+    "snapshot": {
+      "name": "four-square-balance",
+      "github": "https://github.com/nmicic/four-square-balance",
+      "default_branch": "main",
+      "commit": "e6e02d93271e7f61e58d3a13b623652189a8888a",
+      "commit_date": "2026-09-14T12:54:18+02:00",
+      "archived": false,
+      "description": "Gap-record locations for the canonical four-square balance gap A122921(n) - ceiling(sqrt(n/4)) ::: OEIS A396760",
+      "primary_language": "HTML",
+      "tracked_files": 69,
+      "documentation_files": 18,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 138,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "three-square-balance",
+    "slug": "three-square-balance",
+    "tagline": "Exact record locations for the minimum spread of representations as three nonnegative squares.",
+    "summary": "Independent search paths, verified data, and an interactive visualization supporting the published OEIS sequence A395008.",
+    "domain": "Visual mathematics",
+    "status": "Completed",
+    "maturity": "Published sequence and reproducibility artifact",
+    "year": "2026",
+    "primary_language": "C",
+    "technologies": [
+      "number theory",
+      "OEIS",
+      "PARI/GP",
+      "OpenMP",
+      "interactive visualization"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 18,
+    "evidence": "OEIS A395008 has 65 exhaustively verified record locations below 10^9, checked by two differently ordered C searches plus PARI/GP and Python references.",
+    "github": "https://github.com/nmicic/three-square-balance",
+    "live": "https://nmicic.github.io/three-square-balance/viz/index.html",
+    "related": [
+      "four-square-balance",
+      "p2-odd-rays-visual-math-toy"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "bf3b319a7e7c3dea60d33a7285355f91eb9ed2eb",
+    "sources": [
+      "README.md",
+      "sequences/spread-record-locations/README.md",
+      "loda/README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Published sequence",
+        "value": "OEIS A395008",
+        "detail": "Record locations for minimum spread in three-square representations."
+      },
+      {
+        "label": "Exhaustive range",
+        "value": "n < 10^9",
+        "detail": "Completeness is limited to the documented finite search range."
+      },
+      {
+        "label": "Verified records",
+        "value": "65 locations",
+        "detail": "The final retained record in range is 973,078,528 with spread 28,672."
+      },
+      {
+        "label": "Independent checks",
+        "value": "4 paths",
+        "detail": "Two differently ordered C searches plus PARI/GP and Python references."
+      }
+    ],
+    "snapshot": {
+      "name": "three-square-balance",
+      "github": "https://github.com/nmicic/three-square-balance",
+      "default_branch": "main",
+      "commit": "bf3b319a7e7c3dea60d33a7285355f91eb9ed2eb",
+      "commit_date": "2026-09-14T13:28:59+02:00",
+      "archived": false,
+      "description": "Three-square balance: record locations for the minimal spread in representations k = x² + y² + z² ::: OEIS A395008",
+      "primary_language": "HTML",
+      "tracked_files": 27,
+      "documentation_files": 7,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 101,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "Spec Mirror",
+    "slug": "spec-mirror",
+    "tagline": "A structured taxonomy for reviewing the wording of engineering specifications without inventing missing requirements.",
+    "summary": "Review rules, examples, and a compact prompt generator for making components, behavior, terminology, and requirements explicit.",
+    "domain": "Writing tools",
+    "status": "Maintained",
+    "maturity": "Practical taxonomy v0.3.1",
+    "year": "2026",
+    "primary_language": "JSON / Python",
+    "technologies": [
+      "technical writing",
+      "JSON taxonomy",
+      "Python",
+      "requirements review"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 19,
+    "evidence": "The JSON defines 51 tags across seven layers, with detection signals, rewrite rules, examples, and two recorded project corrections.",
+    "github": "https://github.com/nmicic/spec-mirror",
+    "live": "",
+    "related": [
+      "rhetorical-mirror"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "313b21b0706ac9c961d93d4e356d3f6c2c702604",
+    "sources": [
+      "README.md",
+      "spec_taxonomy.json",
+      "compact.py"
+    ],
+    "metrics": [
+      {
+        "label": "Review taxonomy",
+        "value": "51 tags",
+        "detail": "Preferred patterns and rewrite-needed patterns counted directly from the committed JSON."
+      },
+      {
+        "label": "Review dimensions",
+        "value": "7 layers",
+        "detail": "From named components and observable flow through terminology, completeness, and reader tests."
+      },
+      {
+        "label": "Recorded examples",
+        "value": "2 corrections",
+        "detail": "Concrete project examples accompany the per-tag before/after guidance; not an accuracy benchmark."
+      },
+      {
+        "label": "Compact prompt",
+        "value": "15,125 bytes",
+        "detail": "Documented default Markdown view at v0.3.1, generated from the 85,781-byte full taxonomy."
+      }
+    ],
+    "snapshot": {
+      "name": "spec-mirror",
+      "github": "https://github.com/nmicic/spec-mirror",
+      "default_branch": "main",
+      "commit": "313b21b0706ac9c961d93d4e356d3f6c2c702604",
+      "commit_date": "2026-09-22T18:26:12+02:00",
+      "archived": false,
+      "description": "A practical taxonomy for keeping AI drafts of engineering specs clear, precise, and consistent with the field’s terminology.",
+      "primary_language": "Python",
+      "tracked_files": 5,
+      "documentation_files": 1,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 220,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "Rhetorical Mirror",
+    "slug": "rhetorical-mirror",
+    "tagline": "A prompt and taxonomy for spotting rhetorical packaging and keeping AI-assisted drafts close to the author's voice.",
+    "summary": "A small self-editing aid for plain posts and emails, combining pattern tags, a review prompt, and before/after README evaluations.",
+    "domain": "Writing tools",
+    "status": "Maintained",
+    "maturity": "Personal editing framework",
+    "year": "2026",
+    "primary_language": "JSON / Markdown",
+    "technologies": [
+      "writing review",
+      "JSON taxonomy",
+      "prompt design",
+      "voice preservation"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 20,
+    "evidence": "The committed taxonomy contains 41 tags in seven layers, with two README self-evaluations and the earlier source draft retained.",
+    "github": "https://github.com/nmicic/rhetorical-mirror",
+    "live": "",
+    "related": [
+      "spec-mirror"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "52d3b6e9eab97d4f3bad7392e54fc43a4487299c",
+    "sources": [
+      "README.md",
+      "taxonomy/taxonomy.json",
+      "examples/readme-evaluation-example.json",
+      "examples/initial-readme-evaluation-example.json"
+    ],
+    "metrics": [
+      {
+        "label": "Pattern taxonomy",
+        "value": "41 tags",
+        "detail": "Counted from the committed JSON; includes persuasion, rhetorical devices, biases, and platform tactics."
+      },
+      {
+        "label": "Pattern families",
+        "value": "7 layers",
+        "detail": "High-level groupings for reviewing rhetorical packaging in context."
+      },
+      {
+        "label": "Worked evaluations",
+        "value": "2 examples",
+        "detail": "Current and initial README evaluations, with the earlier README preserved."
+      },
+      {
+        "label": "Intended use",
+        "value": "Author review",
+        "detail": "A self-editing aid; scores do not establish truth, honesty, authorship, or scientific accuracy."
+      }
+    ],
+    "snapshot": {
+      "name": "rhetorical-mirror",
+      "github": "https://github.com/nmicic/rhetorical-mirror",
+      "default_branch": "main",
+      "commit": "52d3b6e9eab97d4f3bad7392e54fc43a4487299c",
+      "commit_date": "2026-04-17T17:11:41+02:00",
+      "archived": false,
+      "description": "  Prompt-and-taxonomy repo for reducing AI voice drift in posts and emails and keeping drafts plain, factual, and close to your real voice.",
+      "primary_language": null,
+      "tracked_files": 10,
+      "documentation_files": 3,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 143,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "p2 odd rays",
+    "slug": "p2-odd-rays-visual-math-toy",
+    "tagline": "An archived visual exploration of powers of two, odd cores, square shells, and bit-reversed perimeter order.",
+    "summary": "A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.",
+    "domain": "Visual mathematics",
+    "status": "Archived",
+    "maturity": "Exploratory visual toy",
+    "year": "2025",
+    "primary_language": "Python",
+    "technologies": [
+      "Python",
+      "2-adic decomposition",
+      "bit reversal",
+      "SVG",
+      "mathematical visualization"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 21,
+    "evidence": "The repository includes the generator, SVG/PNG outputs, checksums, and two equivalent visual constructions; it makes no research or performance claim.",
+    "github": "https://github.com/nmicic/p2-odd-rays-visual-math-toy",
+    "live": "",
+    "related": [
+      "power-two-square-rays",
+      "four-square-balance",
+      "three-square-balance",
+      "cunningham-chain-search"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "e16138478a50c9fdf80158df7e80c1beb376ede2",
+    "sources": [
+      "README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Equivalent views",
+        "value": "2 constructions",
+        "detail": "Square-perimeter and straightened odd-core ray mappings."
+      },
+      {
+        "label": "Reproducible outputs",
+        "value": "SVG + PNG",
+        "detail": "The repository includes the generator and published image artifacts."
+      },
+      {
+        "label": "Artifact integrity",
+        "value": "Checksums",
+        "detail": "Committed output identities make regenerated images comparable."
+      },
+      {
+        "label": "Claim boundary",
+        "value": "Illustration only",
+        "detail": "No theorem, performance, cryptographic, or research-priority claim is made."
+      }
+    ],
+    "snapshot": {
+      "name": "p2-odd-rays-visual-math-toy",
+      "github": "https://github.com/nmicic/p2-odd-rays-visual-math-toy",
+      "default_branch": "main",
+      "commit": "e16138478a50c9fdf80158df7e80c1beb376ede2",
+      "commit_date": "2025-12-28T18:01:53+01:00",
+      "archived": false,
+      "description": "Power-of-Two Square Odd Rays - A visual math-toy exploration",
+      "primary_language": "Python",
+      "tracked_files": 36,
+      "documentation_files": 7,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 248,
+      "measurements": {}
+    }
+  },
+  {
+    "name": "power-two-square-rays",
+    "slug": "power-two-square-rays",
+    "tagline": "An archived repository notice pointing to the retained odd-ray visualization project.",
+    "summary": "The former repository location is retained as an archive notice; its exploratory code and notes moved to p2-odd-rays-visual-math-toy.",
+    "domain": "Visual mathematics",
+    "status": "Archived",
+    "maturity": "Archive notice / moved project",
+    "year": "2026",
+    "primary_language": "Markdown",
+    "technologies": [
+      "project archive",
+      "visual mathematics"
+    ],
+    "visibility": "public",
+    "featured": false,
+    "order": 22,
+    "evidence": "GitHub marks the repository archived; its current tree contains only a README directing readers to the replacement repository.",
+    "github": "https://github.com/nmicic/power-two-square-rays",
+    "live": "",
+    "related": [
+      "p2-odd-rays-visual-math-toy"
+    ],
+    "reviewed": "2026-10-15",
+    "reviewed_commit": "c2d690baf4c225df0a8c27b43daf0f21da39e1fd",
+    "sources": [
+      "README.md"
+    ],
+    "metrics": [
+      {
+        "label": "Current tree",
+        "value": "1 file",
+        "detail": "Only README.md is tracked at the reviewed commit."
+      },
+      {
+        "label": "Repository state",
+        "value": "Archived",
+        "detail": "Confirmed from public GitHub repository metadata during this refresh."
+      },
+      {
+        "label": "Retained code",
+        "value": "Moved",
+        "detail": "Exploratory code and notes now live in p2-odd-rays-visual-math-toy."
+      },
+      {
+        "label": "Result claims",
+        "value": "None",
+        "detail": "The archive notice explicitly disclaims performance, engineering, and practical-result claims."
+      }
+    ],
+    "snapshot": {
+      "name": "power-two-square-rays",
+      "github": "https://github.com/nmicic/power-two-square-rays",
+      "default_branch": "main",
+      "commit": "c2d690baf4c225df0a8c27b43daf0f21da39e1fd",
+      "commit_date": "2026-06-22T01:05:14+02:00",
+      "archived": true,
+      "description": "Archived Repository — No Active Content - moved to p2-odd-rays-visual-math-toy",
+      "primary_language": null,
+      "tracked_files": 1,
+      "documentation_files": 1,
+      "workflow_files": [],
+      "readme": "README.md",
+      "readme_lines": 13,
+      "measurements": {}
+    }
+  }
+]

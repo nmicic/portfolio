@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generators and a generic byte-cell runner for integer-only transformer inference and training in Brainfuck, with recorded comparisons against C.">
+  <meta name="color-scheme" content="light">
+  <title>int-llm Brainfuck — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Integer &amp; embedded · Completed</p>
+          <h1>int-llm Brainfuck</h1>
+          <p class="project-tagline">Bit-exact MicroGPT inference and complete 5,000-step training expressed in Brainfuck's eight commands.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/int-llm-brainfuck" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The September 18 training record reports exact agreement on all 5,000 loss lines, 20 samples, and both exported checkpoints against the C oracle.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+            <div><dt>Maturity</dt><dd>Validated language experiment</dd></div>
+            <div><dt>Primary language</dt><dd>Brainfuck / C / Python</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-16</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/int-llm-brainfuck/tree/27c7c12bfa789c06b6fa4317161fb410b7ae4d90" target="_blank" rel="noreferrer">27c7c12bfa78</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>Brainfuck</li><li>Q16.48</li><li>MicroGPT</li><li>code generation</li><li>differential validation</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Generated inference</dt><dd><strong>16.40 GB</strong><span>microgpt.bf: 16,395,194,474 bytes. Decimal GB; the repository publishes its generator, not the generated file.</span></dd></div><div><dt>Generated trainer</dt><dd><strong>210.30 GB</strong><span>microgpt_train.bf: 210,300,828,662 bytes. Decimal GB; the repository publishes its generator, not the generated file.</span></dd></div><div><dt>Training gate</dt><dd><strong>5,000 steps</strong><span>The recorded full run matched the transcript, wide checkpoint, F12 export, and independent F12 conversion.</span></dd></div><div><dt>Inference gate</dt><dd><strong>122 steps</strong><span>All 20 sampled names and the raw-logit and sample hashes matched the rounded-wide F12 reference.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-16 · 27c7c12bfa78</summary><p>142 tracked files · 6 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/int-llm-brainfuck/blob/27c7c12bfa789c06b6fa4317161fb410b7ae4d90/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/int-llm-brainfuck/blob/27c7c12bfa789c06b6fa4317161fb410b7ae4d90/SPEC.md" target="_blank" rel="noreferrer">SPEC.md</a></li><li><a href="https://github.com/nmicic/int-llm-brainfuck/blob/27c7c12bfa789c06b6fa4317161fb410b7ae4d90/reference/phase1-verification-results.log" target="_blank" rel="noreferrer">reference/phase1-verification-results.log</a></li><li><a href="https://github.com/nmicic/int-llm-brainfuck/blob/27c7c12bfa789c06b6fa4317161fb410b7ae4d90/reference/phase2-verification-results.log" target="_blank" rel="noreferrer">reference/phase2-verification-results.log</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>int-llm-brainfuck</code> implements a small transformer using only Brainfuck's eight commands. Its published generators produce inference and training programs for a pinned machine with wrapping eight-bit cells. Fixed-point arithmetic, model loading, attention, sampling, gradient computation, and optimizer updates happen inside the generated program. A generic interpreter supplies execution and byte I/O. The completed experiment has recorded exact comparisons with the C oracle, including the full 5,000-step training run.</p>
+<p>The generated inference file is 16.40 GB and the trainer is 210.30 GB, using decimal GB (1 GB = 1,000,000,000 bytes). The repository contains the generators and verification records; the generated <code>.bf</code> files are not committed.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>A 16,395,194,474-byte inference program and a 210,300,828,662-byte trainer,</li>
+<p>regenerated from the published source rather than stored in Git.</p>
+<li>A pinned 4,194,304-cell Brainfuck machine, portable interpreter, and generic</li>
+<p>Linux x86-64 ahead-of-time runner.</p>
+<li>Integer primitives, model loaders, forward/backward computation, Adam,</li>
+<p>gradient clipping, and checkpoint serialization.</p>
+<li>Oracle fixtures, staged checks, negative controls, and sealed verification logs.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>Q16.48 values occupy eight little-endian byte cells. Inference keeps stored weights as signed-int16 F12 codes and widens them for computation. Training retains wide parameters and optimizer state throughout; F12 rounding happens only when exporting the completed checkpoint. The runner may optimize generic Brainfuck operations but may not perform model-aware work or supply answers.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The recorded inference gate checks 20 generated names, 122 forward steps, and both output and raw-logit hashes. A deliberately corrupted checkpoint preserves the names but changes the logit hash, testing that the gate detects hidden drift.</p>
+<p>The September 18, 2026 training record reports exact agreement on 5,000 loss lines, 20 samples, the 115,576-byte wide checkpoint, and the F12 checkpoint. An independent conversion also matches the F12 export. The full run used the generic native runner and took 409:29:53 including compilation. These are committed project records; this portfolio refresh did not repeat the long run.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The result is limited to the pinned small model and machine semantics. It does not establish useful throughput or general language-model quality. The full portable-interpreter training gate was not rerun. Generated programs require substantial disk space, and the training dataset is fetched separately.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<p>Start with the small artifact and layout checks:</p>
+<pre><code class="language-sh">make bootstrap</code></pre>
+<p>Read <code>README.md</code>, <code>SPEC.md</code>, and the two <code>reference/phase*-verification-results.log</code> files before generating or running the large programs. The logs retain earlier failed attempts alongside the completed gates.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../int-llm/index.html"><span>Integer &amp; embedded</span><strong>int-llm</strong><p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p></a><a href="../int-llm-postscript/index.html"><span>Integer &amp; embedded</span><strong>int-llm PostScript</strong><p>A complete small transformer and trainer in PostScript, with exact wide and F12 checkpoint verification through Ghostscript.</p></a><a href="../int-llm-sql/index.html"><span>Integer &amp; embedded</span><strong>int-llm SQL</strong><p>SQL executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions.</p></a><a href="../int-llm-precision-ladder/index.html"><span>Integer &amp; embedded</span><strong>int-llm precision ladder</strong><p>Follow-up experiments that narrow integer model weights while retaining the wide Q16.48 path as the comparison oracle.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

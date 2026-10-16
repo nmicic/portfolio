@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A code-first prime-tuplet search engine with a generated pattern catalog, record replay corpus, campaign controls, and browser analyzer.">
+  <meta name="color-scheme" content="light">
+  <title>k-tuplet-search — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Computational search · Active</p>
+          <h1>k-tuplet-search</h1>
+          <p class="project-tagline">A CUDA, GMP, and PARI/GP toolkit for validating known prime k-tuplets and running staged GPU search campaigns.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/k-tuplet-search" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://nmicic.github.io/k-tuplet-search/visualizations/k-tuplet-analyzer/index.html" target="_blank" rel="noreferrer">Open live demo <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The production CUDA engine records 52 passing tests and replays a sourced corpus of 227 known records across k=16–21; no new-record claim is made.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Active</dd></div>
+            <div><dt>Maturity</dt><dd>Validated search toolkit</dd></div>
+            <div><dt>Primary language</dt><dd>CUDA / C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/k-tuplet-search/tree/190012808aa2393e8d4a6bca50b5fc0062133b67" target="_blank" rel="noreferrer">190012808aa2</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>CUDA</li><li>GMP</li><li>PARI/GP</li><li>prime k-tuplets</li><li>campaign tooling</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Production GPU</dt><dd><strong>7,041 lines</strong><span>CUDA v8 search engine, excluding shared runtime/support code.</span></dd></div><div><dt>CPU reference</dt><dd><strong>2,749 lines</strong><span>GMP search and proving implementation.</span></dd></div><div><dt>Test harness</dt><dd><strong>2,556 lines</strong><span>CUDA tests and header plus shell/Python QA in tests/ and two tools tests; 52 engine passes are recorded.</span></dd></div><div><dt>Validation corpus</dt><dd><strong>39 + 227</strong><span>PARI/GP self-tests plus sourced known records across k=16–21; the catalog has 97 patterns.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 190012808aa2</summary><p>144 tracked files · 25 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/k-tuplet-search/blob/190012808aa2393e8d4a6bca50b5fc0062133b67/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/k-tuplet-search/blob/190012808aa2393e8d4a6bca50b5fc0062133b67/TESTING.md" target="_blank" rel="noreferrer">TESTING.md</a></li><li><a href="https://github.com/nmicic/k-tuplet-search/blob/190012808aa2393e8d4a6bca50b5fc0062133b67/known/README.md" target="_blank" rel="noreferrer">known/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>k-tuplet-search</code> adapts a staged GPU/CPU search architecture to additive prime patterns. It contains a 97-pattern CUDA catalog for tuple lengths 3 through 28, wheel construction, GPU residue filtering, GMP confirmation, checkpointed campaign operation, a sourced known-record corpus, and an interactive analyzer. The repository can reproduce known examples and run long search cells, but it does not claim a new k-tuplet record. That distinction makes the work useful as an engine and reproducibility artifact rather than a results announcement.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>A prime k-tuplet asks whether every value in an admissible offset pattern is prime at the same base. At large sizes, most candidates must be rejected with cheap residue tests before probable-prime confirmation. The project ports the filtering style developed for Cunningham chains while changing the candidate formula and pattern machinery.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>A generated C catalog of 97 admissible narrow-diameter patterns.</li>
+<li>Plain and quotient-style primorial wheel expressions.</li>
+<li>A staged CUDA filter with prefix lanes, random and sequential modes,</li>
+<p>checkpoint/resume, and JSONL hit persistence.</p>
+<li>CPU GMP confirmation and a separate GPU oracle engine.</li>
+<li>PARI/GP planning tools and self-tests.</li>
+<li>A sourced JSON corpus and generation scripts for known-record replay.</li>
+<li>Campaign, benchmark, migration, and command-reference documentation.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>The wheel selects base positions that survive small-prime constraints. GPU stages then apply progressively more expensive forbidden-residue and Fermat filters. The small survivor set moves to the host for GMP/BPSW verification of every member of the pattern.</p>
+<p>Operational controls divide the prefix space, persist progress, and cap campaign cells. Quotient wheel expressions allow selected small primes to remain outside the initial wheel when comparing filter tradeoffs.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The May 2026 release snapshot records 52 passing CUDA-engine tests on the stated RTX 5090 and CUDA 13.2 configuration. Known-record gates draw from 227 sourced records across <code>k=16..21</code>, while the PARI/GP library runs 39 self-tests. Longevity runs are labeled as stability and sampling evidence rather than exhaustive coverage.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>No new record is claimed. The local pattern-generation tools are conveniences; the repository names Norman Luhn's maintained pattern and Hardy–Littlewood tables as the mathematical reference. Searches above the maintained record range are exploratory. Default CUDA paths and architecture flags must be changed for hardware other than the documented Blackwell setup.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">cd src/cuda
+make kt_filter_v8 NVCC=/path/to/nvcc NVCC_ARCH=sm_89
+./kt_filter_v8 --test
+./kt_filter_v8 --list-patterns</code></pre>
+<p>Use <code>docs/CUDA_CLI_REFERENCE.md</code> for the full interface, <code>TESTING.md</code> for gates and benchmark interpretation, <code>known/records.json</code> for the record corpus, and <code>visualizations/</code> for the live analyzer.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../cunningham-chain-search/index.html"><span>Computational search</span><strong>cunningham-chain-search</strong><p>A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.</p></a><a href="../cunningham-chain-data/index.html"><span>Computational search</span><strong>cunningham-chain-data</strong><p>A compact data repository with schema, manifest, sample, conversion script, and full cumulative snapshots published as release assets.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

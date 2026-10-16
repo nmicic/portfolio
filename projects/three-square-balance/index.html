@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Independent search paths, verified data, and an interactive visualization supporting the published OEIS sequence A395008.">
+  <meta name="color-scheme" content="light">
+  <title>three-square-balance — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Visual mathematics · Completed</p>
+          <h1>three-square-balance</h1>
+          <p class="project-tagline">Exact record locations for the minimum spread of representations as three nonnegative squares.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/three-square-balance" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://nmicic.github.io/three-square-balance/viz/index.html" target="_blank" rel="noreferrer">Open live demo <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>OEIS A395008 has 65 exhaustively verified record locations below 10^9, checked by two differently ordered C searches plus PARI/GP and Python references.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+            <div><dt>Maturity</dt><dd>Published sequence and reproducibility artifact</dd></div>
+            <div><dt>Primary language</dt><dd>C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/three-square-balance/tree/bf3b319a7e7c3dea60d33a7285355f91eb9ed2eb" target="_blank" rel="noreferrer">bf3b319a7e7c</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>number theory</li><li>OEIS</li><li>PARI/GP</li><li>OpenMP</li><li>interactive visualization</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Published sequence</dt><dd><strong>OEIS A395008</strong><span>Record locations for minimum spread in three-square representations.</span></dd></div><div><dt>Exhaustive range</dt><dd><strong>n &lt; 10^9</strong><span>Completeness is limited to the documented finite search range.</span></dd></div><div><dt>Verified records</dt><dd><strong>65 locations</strong><span>The final retained record in range is 973,078,528 with spread 28,672.</span></dd></div><div><dt>Independent checks</dt><dd><strong>4 paths</strong><span>Two differently ordered C searches plus PARI/GP and Python references.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · bf3b319a7e7c</summary><p>27 tracked files · 7 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/three-square-balance/blob/bf3b319a7e7c3dea60d33a7285355f91eb9ed2eb/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/three-square-balance/blob/bf3b319a7e7c3dea60d33a7285355f91eb9ed2eb/sequences/spread-record-locations/README.md" target="_blank" rel="noreferrer">sequences/spread-record-locations/README.md</a></li><li><a href="https://github.com/nmicic/three-square-balance/blob/bf3b319a7e7c3dea60d33a7285355f91eb9ed2eb/loda/README.md" target="_blank" rel="noreferrer">loda/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>three-square-balance</code> asks how close the largest and smallest parts can be when an eligible integer is written as three nonnegative squares. It records the inputs where this minimum spread reaches a new high. The record-location sequence is published as OEIS A395008. The repository contains an optimized resumable search, an independently ordered validator, Python and PARI/GP references, exact data below one billion, and a browser visualization. The scaling law is proved; the finite-range completeness is exhaustively checked; the claimed pattern beyond that range is kept explicitly conjectural.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Not every integer is representable by three squares. For eligible values, the project minimizes <code>x - z</code> over ordered triples <code>x ≥ y ≥ z ≥ 0</code>. Zero spread occurs at three equal squares; larger values describe inputs forced farther away from that balanced shape.</p>
+<p>Multiplication by four doubles every part, giving an exact scaling relation for the minimum spread. That makes scaled seed chains central to the observed record structure.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>A fast OpenMP C engine with resumable long scans.</li>
+<li>An independent ascending-search validator that does not reuse the production</li>
+<p>search order.</p>
+<li>Small Python and PARI/GP definitions for reference and sequence generation.</li>
+<li>The 65 record locations and canonical triples below <code>10^9</code>.</li>
+<li>An interactive view of shape directions and record locations.</li>
+</ul>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The repository retains exactly 65 record locations below one billion. Its final record in that range is 973,078,528 with a spread of 28,672. The primary and independent C paths use different enumeration orders, giving a stronger cross-check than running the same implementation twice. PARI/GP and Python paths provide additional small-scale reference behavior.</p>
+<p>The record list in the verified range is reproduced by scaled terms from six primitive seeds, with one seed contributing only its initial term before another chain overtakes it.</p>
+<p>The repository now also includes a LODA implementation (<code>loda/A395008.asm</code>) and a check against the retained b-file. It implements the observed recurrence; this additional implementation does not prove completeness beyond the scan bound.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The six-seed closure is exhaustive only below <code>10^9</code>. Treating it as complete for all larger values is conjectural. The archived companion object records spread values rather than record locations and is not part of the published sequence focus.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">cd src
+make
+make check
+gp -q records.gp</code></pre>
+<p>Use <code>sequences/spread-record-locations/</code> for the OEIS definition and b-file, <code>data/</code> for retained records and triples, and <code>viz/README.md</code> for the visual mapping.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../four-square-balance/index.html"><span>Visual mathematics</span><strong>four-square-balance</strong><p>Code, verified data, and an interactive shape-space view supporting the published OEIS sequence A396760.</p></a><a href="../p2-odd-rays-visual-math-toy/index.html"><span>Visual mathematics</span><strong>p2 odd rays</strong><p>A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

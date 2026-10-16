@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A weight atlas, inference trace, embedding-space viewer, and 3-D weight explorer for the complete small integer-model checkpoint.">
+  <meta name="color-scheme" content="light">
+  <title>int-llm visualizations — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Integer &amp; embedded · Research</p>
+          <h1>int-llm visualizations</h1>
+          <p class="project-tagline">Four offline browser views of an integer GPT, with exact values and C-oracle checks behind the displayed numbers.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/int-llm-viz" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://nmicic.github.io/int-llm-viz/site/index.html" target="_blank" rel="noreferrer">Open live demo <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The browser re-derives all 122 recorded inference steps with BigInt; the C trace reports zero logit, cache, or sampling mismatches.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Research</dd></div>
+            <div><dt>Maturity</dt><dd>Reproducible visualization artifact</dd></div>
+            <div><dt>Primary language</dt><dd>JavaScript / Python / C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/int-llm-viz/tree/505e65235871e319855bd6628378c8884176e402" target="_blank" rel="noreferrer">505e65235871</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>BigInt</li><li>Canvas</li><li>Q16.48</li><li>exact visualization</li><li>checkpoint inspection</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Visual surfaces</dt><dd><strong>4 offline pages</strong><span>Weight atlas, inference trace, residual-space viewer, and 3-D weight explorer; data is embedded.</span></dd></div><div><dt>Checkpoint scope</dt><dd><strong>14,272 weights</strong><span>All nine learned tensors in the one-layer, 32-dimensional MicroGPT checkpoint.</span></dd></div><div><dt>Exact trace</dt><dd><strong>122 steps</strong><span>Recorded logits, cache state, samples, and final RNG state are checked against the C runtime.</span></dd></div><div><dt>Layout comparisons</dt><dd><strong>4 neuron orders</strong><span>Original, smooth, spread, and seeded-random MLP layouts, plus a separate residual-coordinate swap.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 505e65235871</summary><p>43 tracked files · 2 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/int-llm-viz/blob/505e65235871e319855bd6628378c8884176e402/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/int-llm-viz/blob/505e65235871e319855bd6628378c8884176e402/SOURCE_PROVENANCE.md" target="_blank" rel="noreferrer">SOURCE_PROVENANCE.md</a></li><li><a href="https://github.com/nmicic/int-llm-viz/blob/505e65235871e319855bd6628378c8884176e402/tests/run_tests.sh" target="_blank" rel="noreferrer">tests/run_tests.sh</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>int-llm-viz</code> makes a complete small integer GPT inspectable in a browser. Four self-contained pages show its weights, recorded inference, shared residual space, and weight contributions. Each page embeds its data and works offline. Model values use BigInt arithmetic and exact decimal readouts; floating-point geometry is labeled separately. The C runtime provides the reference trace, and browser calculations check that trace instead of displaying an unchecked animation. The result connects the integer-computing and model-layout projects through visible, testable examples.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>An atlas of all nine weight tensors, including exact rounding previews.</li>
+<li>A step-by-step replay of 20 generated names with browser recomputation.</li>
+<li>A view of 62 vectors in the 32-dimensional residual space, with literal axes</li>
+<p>and explicitly derived principal-component projections.</p>
+<li>A weight explorer combining 3-D geometry, exact per-weight contributions,</li>
+<p>byte layout, and four-dimensional projections.</p>
+<li>Reconstructed MLP layouts and a residual-coordinate swap, each replayed</li>
+<p>through the C oracle.</p>
+</ul>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The trace harness reports 122 steps with zero logit, key/value-cache, or sampling mismatches and an identical final random state. Browser tests check the same arithmetic, model-loader checksums, and exact decimal formatting. The release procedure also requires deterministic data and page regeneration, browser interactions, and no drift from committed artifacts.</p>
+<p>The four neuron orders and hidden-coordinate swap are rebuilt and checked against pinned hashes. Equal output is established through model replay, not inferred from how similar the pictures appear.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>This is a visualization for one checkpoint and shape, not a general model inspection framework. Principal components are derived geometry; they do not establish semantic meanings for coordinates. Embedding all data into each page is practical at this scale but would not scale to a large language model.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<p>Open the live demo or the committed <code>site/index.html</code> directly in a browser. To regenerate and validate locally:</p>
+<pre><code class="language-sh">make
+make test</code></pre>
+<p><code>make release-check</code> additionally requires a browser and fails if regeneration changes the committed data or pages. <code>SOURCE_PROVENANCE.md</code> identifies copied components, upstream pins, and the independent implementation process.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../int-llm/index.html"><span>Integer &amp; embedded</span><strong>int-llm</strong><p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p></a><a href="../int-llm-coordinate-permutation/index.html"><span>Integer &amp; embedded</span><strong>int-llm coordinate permutation</strong><p>A toolkit for controlled model-layout experiments on both standard SafeTensors and the integer Q16.48 model path.</p></a><a href="../int-llm-precision-ladder/index.html"><span>Integer &amp; embedded</span><strong>int-llm precision ladder</strong><p>Follow-up experiments that narrow integer model weights while retaining the wide Q16.48 path as the comparison oracle.</p></a><a href="../int-llm-sql/index.html"><span>Integer &amp; embedded</span><strong>int-llm SQL</strong><p>SQL executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

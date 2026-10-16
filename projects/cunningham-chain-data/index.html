@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A compact data repository with schema, manifest, sample, conversion script, and full cumulative snapshots published as release assets.">
+  <meta name="color-scheme" content="light">
+  <title>cunningham-chain-data — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Computational search · Completed</p>
+          <h1>cunningham-chain-data</h1>
+          <p class="project-tagline">Versioned aggregate first-kind Cunningham-chain roots from the completed 2026 search campaign.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/cunningham-chain-data" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The March 19 cumulative snapshot contains 1,551,489 roots across CC10–CC18, including two CC18 roots, in a 19 MB compressed release asset.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+            <div><dt>Maturity</dt><dd>Published dataset</dd></div>
+            <div><dt>Primary language</dt><dd>Data / Python</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/cunningham-chain-data/tree/0f0f697f44844628f0c66b23fb86e2ef85f5535e" target="_blank" rel="noreferrer">0f0f697f4484</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>CSV</li><li>dataset schema</li><li>release assets</li><li>Python</li><li>Cunningham chains</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Published snapshot</dt><dd><strong>1,551,489 roots</strong><span>Cumulative CC10–CC18 rows in the March 19, 2026 release.</span></dd></div><div><dt>Longest results</dt><dd><strong>2 CC18 roots</strong><span>Included with the full distribution; no first-known claim is made.</span></dd></div><div><dt>Release asset</dt><dd><strong>19 MB compressed</strong><span>Full CSV stays in a versioned release rather than source history.</span></dd></div><div><dt>Data contract</dt><dd><strong>Schema + manifest</strong><span>A deterministic converter and 1,000-row sample make the snapshot inspectable.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 0f0f697f4484</summary><p>8 tracked files · 2 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/cunningham-chain-data/blob/0f0f697f44844628f0c66b23fb86e2ef85f5535e/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/cunningham-chain-data/blob/0f0f697f44844628f0c66b23fb86e2ef85f5535e/manifest/dataset_manifest.json" target="_blank" rel="noreferrer">manifest/dataset_manifest.json</a></li><li><a href="https://github.com/nmicic/cunningham-chain-data/blob/0f0f697f44844628f0c66b23fb86e2ef85f5535e/schema/README.md" target="_blank" rel="noreferrer">schema/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>cunningham-chain-data</code> is the publication surface for roots produced by the 2026 first-kind Cunningham-chain campaign. The git repository stays small: it contains a schema, manifest, thousand-row sample, and conversion script. Full cumulative snapshots are attached to versioned GitHub releases. The latest documented snapshot has 1,551,489 roots from CC10 through CC18 and is normalized as CSV. Keeping the dataset separate from the search engine makes release identity, citation, and downstream analysis clearer.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Campaign code and campaign data change at different rates. Storing a multi-million row aggregate in the source history would make the engine repository harder to clone and would blur which snapshot supports a result. This repository gives the data an explicit schema and release lifecycle of its own.</p>
+<h2 id="what-was-published">What was published</h2>
+<div class="table-wrap"><table><thead><tr><th>Artifact</th><th>Purpose</th></tr></thead><tbody><tr><td><code>schema/README.md</code></td><td>Raw and normalized field definitions</td></tr><tr><td><code>manifest/dataset_manifest.json</code></td><td>Snapshot identity and aggregate counts</td></tr><tr><td><code>sample/</code></td><td>A 1,000-root raw and CSV example</td></tr><tr><td><code>scripts/make_snapshot_csv.py</code></td><td>Deterministic normalization from the raw format</td></tr><tr><td>GitHub release asset</td><td>The full compressed cumulative CSV</td></tr></tbody></table></div>
+<h2 id="evidence-and-dataset-shape">Evidence and dataset shape</h2>
+<p>The March 19, 2026 snapshot records the following aggregate distribution:</p>
+<div class="table-wrap"><table><thead><tr><th>Range</th><th>Count</th></tr></thead><tbody><tr><td>CC10</td><td>1,262,271</td></tr><tr><td>CC11–CC15</td><td>289,154</td></tr><tr><td>CC16</td><td>55</td></tr><tr><td>CC17</td><td>7</td></tr><tr><td>CC18</td><td>2</td></tr><tr><td>Total</td><td>1,551,489</td></tr></tbody></table></div>
+<p>The documented bit range is 64–153, with the main campaign concentrated at 87–90 bits. The release is cumulative, not a delta from the earlier snapshot.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The repository publishes campaign output; it does not independently prove the mathematical or priority claims surrounding each root. Those methods and validation tools live in the search-engine repository. Full data is not present in a plain clone and must be obtained from the named release. The earlier raw snapshot remains a separate historical artifact.</p>
+<h2 id="repository-map-and-first-use">Repository map and first use</h2>
+<pre><code class="language-sh">git clone https://github.com/nmicic/cunningham-chain-data
+python3 scripts/make_snapshot_csv.py --help</code></pre>
+<p>Read <code>schema/README.md</code> before consuming either sample or release data. Use the manifest to pin a snapshot in analysis work, and follow the release link in the source README for the full compressed CSV.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../cunningham-chain-search/index.html"><span>Computational search</span><strong>cunningham-chain-search</strong><p>A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.</p></a><a href="../k-tuplet-search/index.html"><span>Computational search</span><strong>k-tuplet-search</strong><p>A code-first prime-tuplet search engine with a generated pattern catalog, record replay corpus, campaign controls, and browser analyzer.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SQL executes model loading, transformer arithmetic, deterministic sampling, and regression checks without custom functions or extensions.">
+  <meta name="color-scheme" content="light">
+  <title>int-llm SQL — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Integer &amp; embedded · Completed</p>
+          <h1>int-llm SQL</h1>
+          <p class="project-tagline">A complete integer-only MicroGPT inference pipeline in a standalone SQLite shell script.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/int-llm-sql" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The recorded C-oracle comparison covers 69,748 activation, logit, and probability rows, plus all 122 sampling records.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+            <div><dt>Maturity</dt><dd>Validated language experiment</dd></div>
+            <div><dt>Primary language</dt><dd>SQL</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/int-llm-sql/tree/6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d" target="_blank" rel="noreferrer">6353817f5cda</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>SQLite</li><li>recursive CTEs</li><li>Q16.48</li><li>MicroGPT</li><li>relational computation</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Oracle trace</dt><dd><strong>69,748 rows</strong><span>Development comparisons cover recorded activations, logits, and probabilities, plus 122 RNG records.</span></dd></div><div><dt>Arithmetic gate</dt><dd><strong>11,750 vectors</strong><span>Fixed-point operations are checked against the vendored C oracle.</span></dd></div><div><dt>Inference output</dt><dd><strong>20 names / 122 steps</strong><span>Sample and raw-logit checksums are calculated by the executed SQL before SQL_GATE=PASS.</span></dd></div><div><dt>Model scope</dt><dd><strong>14,272 parameters</strong><span>One layer, width 32, four attention heads, eight-position context, and 27 tokens.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 6353817f5cda</summary><p>26 tracked files · 2 documentation files · 1 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/int-llm-sql/blob/6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/int-llm-sql/blob/6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d/Makefile" target="_blank" rel="noreferrer">Makefile</a></li><li><a href="https://github.com/nmicic/int-llm-sql/blob/6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d/expected_output.txt" target="_blank" rel="noreferrer">expected_output.txt</a></li><li><a href="https://github.com/nmicic/int-llm-sql/blob/6353817f5cdaa295cb7a8d2cc89eb4b0d4992e5d/model/README.md" target="_blank" rel="noreferrer">model/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>int-llm-sql</code> runs a small transformer as relational computation. One SQLite shell script reads a committed binary checkpoint, decodes the weights into tables, performs the complete forward and autoregressive sampling paths, and checks the result against pinned regression hashes. It uses integer-only Q16.48 arithmetic without custom functions or loadable extensions. Recursive queries implement fixed-point operations, joins implement matrix products, and triggers sequence the model. The artifact demonstrates exact inference for one fixed MicroGPT configuration; it does not generate SQL from natural language.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>SQLite's 64-bit integers are extended with limb multiplication and recursive division and transcendental operations. Intermediate results are materialized in scratch tables. A sequencing trigger supplies 160 ticks, of which 122 become forward passes before end-of-sequence tokens finish the 20 samples.</p>
+<p>The only shell-specific helper is <code>readfile()</code>, used once to load the checkpoint. The runtime calculates both sample and raw-logit hashes from its actual output.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The repository reports comparison with the C oracle at 69,748 trace rows and 122 random-number sampling records. Its arithmetic suite contains 11,750 vectors. Separate gates compare stdout, regenerate the F12 model, confirm that the standalone artifact embeds its development sources, and rebuild oracle fixtures.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>There is no training or prompt interface. The model shape and input checkpoint are fixed. The release was tested with SQLite 3.51.0 and requires a shell with <code>readfile()</code> and the documented SQL features. Regression hashes check determinism, not cryptographic integrity; the loader is not intended for untrusted or unbounded model files.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">sqlite3 :memory: &lt; microgpt.sql</code></pre>
+<p><code>make verify</code> runs the documented non-mutating release gates. <code>sql/</code> contains the development fragments, <code>model/</code> the pinned weights and model card, and <code>reference/</code> the C oracle and fixtures. <code>make golden</code> is a maintainer operation that rewrites fixtures, rather than an ordinary validation step.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../int-llm/index.html"><span>Integer &amp; embedded</span><strong>int-llm</strong><p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p></a><a href="../int-llm-postscript/index.html"><span>Integer &amp; embedded</span><strong>int-llm PostScript</strong><p>A complete small transformer and trainer in PostScript, with exact wide and F12 checkpoint verification through Ghostscript.</p></a><a href="../int-llm-brainfuck/index.html"><span>Integer &amp; embedded</span><strong>int-llm Brainfuck</strong><p>Generators and a generic byte-cell runner for integer-only transformer inference and training in Brainfuck, with recorded comparisons against C.</p></a><a href="../int-llm-viz/index.html"><span>Integer &amp; embedded</span><strong>int-llm visualizations</strong><p>A weight atlas, inference trace, embedding-space viewer, and 3-D weight explorer for the complete small integer-model checkpoint.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

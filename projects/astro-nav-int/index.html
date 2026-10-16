@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A no-floating-point celestial-navigation library that carries a sextant observation through correction, sight reduction, and position fixing.">
+  <meta name="color-scheme" content="light">
+  <title>astro-nav-int — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Integer &amp; embedded · Active</p>
+          <h1>astro-nav-int</h1>
+          <p class="project-tagline">Celestial sight reduction, altitude correction, ephemerides, and multi-sight position fixes in fixed-point C99.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/astro-nav-int" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>Altitude and primary-method azimuth outputs are documented within 0.30 arcminute of the double reference, with independent ephemeris and published-source gates.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Active</dd></div>
+            <div><dt>Maturity</dt><dd>Validated research library</dd></div>
+            <div><dt>Primary language</dt><dd>C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/astro-nav-int/tree/8e9d94791864f6329e3ef9275741fb190d714c78" target="_blank" rel="noreferrer">8e9d94791864</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>C99</li><li>Q16.48 fixed point</li><li>CORDIC</li><li>celestial navigation</li><li>microcontrollers</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Accuracy gate</dt><dd><strong>≤0.30 arcminute</strong><span>Altitude and primary-method azimuth against the double-precision reference.</span></dd></div><div><dt>Independent references</dt><dd><strong>5 classes</strong><span>Skyfield/DE421, printed almanac material, USNO data, other lineages, and published observations.</span></dd></div><div><dt>Runtime arithmetic</dt><dd><strong>No floating point</strong><span>The shipping C99 library and CLI use Q16.48 fixed-point computation.</span></dd></div><div><dt>Target coverage</dt><dd><strong>Native → MCU</strong><span>Hosted, QEMU, portable-wide, and physical-board profiles check deterministic execution.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 8e9d94791864</summary><p>118 tracked files · 24 documentation files · 1 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/astro-nav-int/blob/8e9d94791864f6329e3ef9275741fb190d714c78/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/astro-nav-int/blob/8e9d94791864f6329e3ef9275741fb190d714c78/docs/HOWTO.md" target="_blank" rel="noreferrer">docs/HOWTO.md</a></li><li><a href="https://github.com/nmicic/astro-nav-int/blob/8e9d94791864f6329e3ef9275741fb190d714c78/embedded/README.md" target="_blank" rel="noreferrer">embedded/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>astro-nav-int</code> implements the computation between a sextant reading and a position fix without floating-point operations in the shipping library or command-line program. It includes altitude corrections, three sight-reduction methods, exact two-body circle intersections, overdetermined fixes, running fixes, and built-in star, Sun, and Moon calculations. The project is both a celestial-navigation experiment and a compact exercise in deterministic embedded mathematics. It documents accuracy against independent ephemerides, printed references, and published observation logs, while explicitly remaining an experimental library rather than a navigation instrument.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Traditional celestial navigation combines an almanac, corrections, spherical trigonometry, and either plotted lines of position or a numerical fix. The project explores how that full chain can look on hardware where floating point is unavailable or undesirable, without reducing the work to a toy formula.</p>
+<p>Its framing is deliberately counterfactual: fixed-point arithmetic is the constraint being studied, not a claim that it should replace modern floating point on a phone or laptop.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>A single-library C99 implementation with fixed-point trigonometry and portable</li>
+<p>wide-integer arithmetic.</p>
+<li>Sextant corrections for index error, dip, refraction, parallax, and</li>
+<p>semidiameter.</p>
+<li>Three sight-reduction paths and direct two-body and multi-body position fixes.</li>
+<li>Running-fix advancement, repeated-sight averaging, and Bris-sextant workflows.</li>
+<li>An 18-star vector catalog plus integer Sun and Moon ephemerides.</li>
+<li>Hosted, QEMU, and physical-board validation profiles.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>Runtime math uses signed Q16.48 values. The primary reduction method evaluates spherical trigonometry with CORDIC rotation and vectoring. A second method maps the local north/east direction to a square-perimeter key before converting it back to an azimuth. A third keeps the almanac body as an earth-fixed integer unit vector and performs the hot path with dot and cross products.</p>
+<p>Two corrected sights are treated as planes intersecting the observer sphere. This produces the two exact circle-intersection candidates directly, while three or more sights use a weighted least-squares fix.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The README reports altitude and primary-method azimuth results within 0.30 arcminute of the double-precision reference. The validation suite also gates star, Sun, and Moon outputs against Skyfield/DE421, printed almanac material, USNO data, other implementation lineages, and published observation scenarios.</p>
+<p>Determinism checks cover both native and portable wide-integer backends. The repository records profile hashes on physical microcontroller targets; those hardware runs verify deterministic execution, not an author-run sextant field trial.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The built-in almanac intentionally omits some higher-order effects and carries a documented error budget. Planet ephemerides, star identification, plate solving, camera calibration, sensor fusion, and formal uncertainty propagation are out of scope. The repository advises carrying established navigation references and does not present the software as a certified or operational navigation device.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">make check
+make determinism
+make determinism-portable
+make lib</code></pre>
+<p>Start with <code>docs/WORKFLOW.md</code> for one end-to-end observation chain and <code>docs/HOWTO.md</code> for CLI modes and the error budget. <code>embedded/README.md</code> records the embedded targets, while <code>examples/consumer.c</code> shows how to link the library.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../int-llm/index.html"><span>Integer &amp; embedded</span><strong>int-llm</strong><p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p></a><a href="../p2-odd-rays-visual-math-toy/index.html"><span>Visual mathematics</span><strong>p2 odd rays</strong><p>A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Code, verified data, and an interactive shape-space view supporting the published OEIS sequence A396760.">
+  <meta name="color-scheme" content="light">
+  <title>four-square-balance — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Visual mathematics · Completed</p>
+          <h1>four-square-balance</h1>
+          <p class="project-tagline">Exact computation and visualization of record gaps in the most balanced representation of an integer as four squares.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/four-square-balance" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://nmicic.github.io/four-square-balance/viz/index.html" target="_blank" rel="noreferrer">Open live demo <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>OEIS A396760 has 37 exhaustively verified record locations below 10^9, with independent code paths and retained decompositions.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+            <div><dt>Maturity</dt><dd>Published sequence and reproducibility artifact</dd></div>
+            <div><dt>Primary language</dt><dd>C / Python</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/four-square-balance/tree/e6e02d93271e7f61e58d3a13b623652189a8888a" target="_blank" rel="noreferrer">e6e02d93271e</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>number theory</li><li>OEIS</li><li>PARI/GP</li><li>OpenMP</li><li>interactive visualization</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Published sequence</dt><dd><strong>OEIS A396760</strong><span>Record locations for the minimum spread in four-square representations.</span></dd></div><div><dt>Exhaustive range</dt><dd><strong>n &lt; 10^9</strong><span>Completeness is claimed only inside the documented finite search range.</span></dd></div><div><dt>Verified records</dt><dd><strong>37 locations</strong><span>Exact decompositions are retained with the sequence data.</span></dd></div><div><dt>Cross-checking</dt><dd><strong>Independent paths</strong><span>Optimized search, separate validation logic, and small reference implementations.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · e6e02d93271e</summary><p>69 tracked files · 18 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/four-square-balance/blob/e6e02d93271e7f61e58d3a13b623652189a8888a/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/four-square-balance/blob/e6e02d93271e7f61e58d3a13b623652189a8888a/sequences/gap-record-locations/README.md" target="_blank" rel="noreferrer">sequences/gap-record-locations/README.md</a></li><li><a href="https://github.com/nmicic/four-square-balance/blob/e6e02d93271e7f61e58d3a13b623652189a8888a/loda/README.md" target="_blank" rel="noreferrer">loda/README.md</a></li><li><a href="https://github.com/nmicic/four-square-balance/blob/e6e02d93271e7f61e58d3a13b623652189a8888a/extra-observations/EXTRA_OBSERVATIONS.md" target="_blank" rel="noreferrer">extra-observations/EXTRA_OBSERVATIONS.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>four-square-balance</code> studies how evenly an integer can be represented as the sum of four nonnegative squares. For each integer it minimizes the largest part, compares that value with the ideal equal-share lower bound, and records the locations where the gap reaches a new high. The resulting record-location sequence is published as OEIS A396760. The repository provides C, Python, and PARI/GP implementations, exact retained data through one billion, canonical decompositions, and an interactive shape-space visualization.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Lagrange's theorem guarantees that every nonnegative integer is a sum of four squares, but it does not say how balanced the parts can be. If the largest part in the best representation is <code>A(n)</code>, the ideal lower bound is the ceiling of the square root of <code>n/4</code>. Their difference defines the balance gap used here.</p>
+<p>The project focuses on the inputs where that gap establishes a new record, rather than publishing every per-integer decomposition.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>Pure-Python and optimized C implementations of the canonical four-square</li>
+<p>decomposition.</p>
+<li>PARI/GP definitions for direct scanning and the observed record chains.</li>
+<li>Exact record locations and decompositions below <code>10^9</code>.</li>
+<li>A dense companion table for the first 20,000 inputs.</li>
+<li>A browser visualization in Helmert shape space.</li>
+<li>An archive of related higher-power explorations, kept outside the active</li>
+<p>sequence surface.</p>
+</ul>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>Exactly 37 record locations are retained below one billion. The final one in that verified range is 939,524,096 with a gap of 9,250. A C implementation, Python reference, PARI/GP scanner, stored decompositions, and generated tables provide multiple ways to inspect the result.</p>
+<p>The observed continuation is the increasing merge of three scaled chains plus the initial values. It reproduces every record in the verified range.</p>
+<p>The repository now also includes a LODA implementation (<code>loda/A396760.asm</code>) and a check against the retained b-file. It implements the observed recurrence; this additional implementation does not prove completeness beyond the scan bound.</p>
+<p>The expanded family viewer links six exponents, from squares through seventh powers. Only the square case is published in the OEIS. <code>extra-observations/EXTRA_OBSERVATIONS.md</code> adds short proofs for specific square-case properties and a standard-library verification script, keeping those results distinct from the conjectural completeness of the three chains.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>Completeness is exhaustive only below <code>10^9</code>. Continuing the observed scaled chains beyond that bound is conjectural, not a proof that no additional chain appears. Archived power-balance analogues are exploratory context and are not part of the OEIS submission. The sequence is also distinct from the set of integers having a unique four-square partition.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">cd src
+make
+make check
+gp -q records.gp</code></pre>
+<p>Use <code>sequences/gap-record-locations/</code> for the OEIS-oriented definition and b-file, <code>data/</code> for retained evidence, <code>viz/README.md</code> for the geometry, and <code>archive/</code> only for the explicitly separate exploratory work.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../three-square-balance/index.html"><span>Visual mathematics</span><strong>three-square-balance</strong><p>Independent search paths, verified data, and an interactive visualization supporting the published OEIS sequence A395008.</p></a><a href="../p2-odd-rays-visual-math-toy/index.html"><span>Visual mathematics</span><strong>p2 odd rays</strong><p>A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

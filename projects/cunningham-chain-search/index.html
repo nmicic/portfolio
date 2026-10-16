@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A visualization-led number-theory project that grew into a staged GPU filter, CPU confirmer, campaign toolkit, and published dataset.">
+  <meta name="color-scheme" content="light">
+  <title>cunningham-chain-search — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Computational search · Completed</p>
+          <h1>cunningham-chain-search</h1>
+          <p class="project-tagline">A CUDA and GMP pipeline for searching long first-kind Cunningham chains, with interactive analysis tools and retained failed experiments.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/cunningham-chain-search" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://nmicic.github.io/cunningham-chain-search/visualizations/chain-mesh/" target="_blank" rel="noreferrer">Open live demo <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The campaign produced two first-kind CC18 roots and a cumulative dataset of 1,551,489 CC10–CC18 roots; it explicitly does not claim the first known CC18.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+            <div><dt>Maturity</dt><dd>Completed campaign, maintained methods</dd></div>
+            <div><dt>Primary language</dt><dd>CUDA / C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/cunningham-chain-search/tree/79c08694050cf3e2c2ad9e649cf369f3fa1cb18c" target="_blank" rel="noreferrer">79c08694050c</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>CUDA</li><li>GMP</li><li>PARI/GP</li><li>Python</li><li>interactive visualization</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Production GPU</dt><dd><strong>4,280 lines</strong><span>CUDA v13 baseline measured at 57–65 billion candidates per second on the documented hardware.</span></dd></div><div><dt>Production CPU</dt><dd><strong>3,331 lines</strong><span>GMP v33 baseline for confirmation, true-root recovery, and chain-length checks.</span></dd></div><div><dt>Independent validators</dt><dd><strong>4,535 lines</strong><span>Three chain validators plus the GP library, whose documented load-time suite has 37 self-tests.</span></dd></div><div><dt>Campaign result</dt><dd><strong>1,551,489 roots</strong><span>Two CC18 roots in the cumulative CC10–CC18 dataset; CC19 was not reached.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 79c08694050c</summary><p>113 tracked files · 44 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/cunningham-chain-search/blob/79c08694050cf3e2c2ad9e649cf369f3fa1cb18c/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/cunningham-chain-search/blob/79c08694050cf3e2c2ad9e649cf369f3fa1cb18c/docs/SEARCH_PIPELINE.md" target="_blank" rel="noreferrer">docs/SEARCH_PIPELINE.md</a></li><li><a href="https://github.com/nmicic/cunningham-chain-search/blob/79c08694050cf3e2c2ad9e649cf369f3fa1cb18c/gp/cc_lib_v10.gp" target="_blank" rel="noreferrer">gp/cc_lib_v10.gp</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>cunningham-chain-search</code> combines GPU filtering, CPU probable-prime confirmation, campaign operations, and interactive visual analysis to search first-kind Cunningham chains. The 2026 campaign reached its CC18 target and published its aggregate roots separately, but the repository carefully records that CC18 examples were already known from prior work. The technical contribution is the staged search pipeline, its measured filtering behavior, and the retained trail of approaches that did and did not work—not a claim to have discovered the first chain of that length.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>A first-kind Cunningham chain follows the form where each next prime is twice the previous prime plus one. Searching long chains means rejecting enormous numbers of candidates cheaply before performing expensive confirmation. The project began with 2-adic visualizations of local structure and evolved into a high-throughput campaign split between GPU and CPU work.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>CUDA engines for staged modular filtering, sharding, checkpointing, and long</li>
+<p>campaign runs.</p>
+<li>A GMP-based CPU confirmer and true-root recovery path.</li>
+<li>PARI/GP tools and an analysis-oriented MCP server.</li>
+<li>Python analysis scripts, campaign notes, and a separate published dataset.</li>
+<li>Seven standalone visual tools for chain structure, candidate analysis, and</li>
+<p>campaign tracking.</p>
+<li>A retained set of failed approaches and newer experimental sampling branches.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>The production path enumerates CRT-surviving positions on a search lattice, passes them through increasingly expensive modular filters on the GPU, and sends the small surviving fraction to a CPU GMP path. The repository reports a 57–65 billion-candidate-per-second public baseline on the documented RTX 4090 and RTX 5090 configurations, with faster experimental branches kept separate until validation is sufficient.</p>
+<p>The multi-seed experimental branch samples thousands of empirical small-prime fingerprints derived from observed roots. Its campaign coordination rules differ from the single-seed production branches and are documented explicitly.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The completed campaign produced two first-kind CC18 roots. The companion data release contains 1,551,489 roots from CC10 through CC18. Earlier CC16 and CC17 results were submitted to the maintained public Cunningham tables; the README records its table comparisons and dates them.</p>
+<p>The GP library runs 37 self-tests on load, and the CPU engine exposes a test mode. Benchmark values are presented with hardware and branch context rather than as a hardware-independent rate.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>The repository does not claim the first known CC18. It did not reach CC19, and the campaign ended when available GPU time was exhausted. Experimental v15 and v16 results do not replace the public baseline. The source repository contains the original analysis snapshot; the later cumulative dataset lives in the separate data repository.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">gcc -O3 -march=native -flto src/cpu/cc_gmp_v33_03.c -o cc_search -lgmp -lpthread -lm
+./cc_search --test</code></pre>
+<p>Start with <code>docs/SEARCH_PIPELINE.md</code> and <code>docs/REPO_MAP.md</code>. Use <code>src/cuda/</code> for the GPU engines, <code>analysis/</code> for campaign interpretation, <code>experiments/failed/</code> for the retained negative-experiment inventory, and <code>visualizations/</code> for browser-based exploration.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../cunningham-chain-data/index.html"><span>Computational search</span><strong>cunningham-chain-data</strong><p>A compact data repository with schema, manifest, sample, conversion script, and full cumulative snapshots published as release assets.</p></a><a href="../k-tuplet-search/index.html"><span>Computational search</span><strong>k-tuplet-search</strong><p>A code-first prime-tuplet search engine with a generated pattern catalog, record replay corpus, campaign controls, and browser analyzer.</p></a><a href="../p2-odd-rays-visual-math-toy/index.html"><span>Visual mathematics</span><strong>p2 odd rays</strong><p>A small Python math-art project that maps positive integers into equivalent shell-and-ray views using integer and bitwise operations.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

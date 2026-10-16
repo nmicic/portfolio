@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A C toolchain that encrypts Linux executables, sources decryption keys from capsules, files, or kernel keyrings, and executes from memory.">
+  <meta name="color-scheme" content="light">
+  <title>ephrun — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Secure systems · Active</p>
+          <h1>ephrun</h1>
+          <p class="project-tagline">Linux tooling for encrypted ELF artifacts, short-lived key delivery, and in-memory execution through memfd.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/ephrun" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>Versioned encrypted-file and capsule formats have round-trip, compatibility, threat-model, and deterministic vector acceptance gates.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Active</dd></div>
+            <div><dt>Maturity</dt><dd>Experimental deployment toolkit</dd></div>
+            <div><dt>Primary language</dt><dd>C</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/ephrun/tree/cd4f08a1d0011602ce061ac7d8fe3760c4668b03" target="_blank" rel="noreferrer">cd4f08a1d001</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>C</li><li>libsodium</li><li>Linux keyrings</li><li>memfd</li><li>X25519</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Implementation</dt><dd><strong>2,727 lines</strong><span>Nine C/header files under ephrun/ and keypush/; test programs, probes, and shell wrappers excluded.</span></dd></div><div><dt>Tests and harnesses</dt><dd><strong>2,173 lines</strong><span>Nine C probes/tests and shell harnesses; binary fixtures and operational wrappers excluded.</span></dd></div><div><dt>Kernel matrix</dt><dd><strong>4 completed</strong><span>Linux 5.15–6.8 showed the same environment-specific failures and no version-specific regression; two older targets were skipped by runner transport.</span></dd></div><div><dt>Format coverage</dt><dd><strong>KCAP1–3</strong><span>Round trips, compatibility reads, corruption/wrong-key rejection, and deterministic vectors.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · cd4f08a1d001</summary><p>48 tracked files · 9 documentation files · 0 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/ephrun/blob/cd4f08a1d0011602ce061ac7d8fe3760c4668b03/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/ephrun/blob/cd4f08a1d0011602ce061ac7d8fe3760c4668b03/SPEC.md" target="_blank" rel="noreferrer">SPEC.md</a></li><li><a href="https://github.com/nmicic/ephrun/blob/cd4f08a1d0011602ce061ac7d8fe3760c4668b03/tests/KERNEL_MATRIX_REPORT.md" target="_blank" rel="noreferrer">tests/KERNEL_MATRIX_REPORT.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>ephrun</code> packages a Linux ELF executable as an encrypted artifact, obtains a decryption key at runtime, decrypts into a memory file, and executes it without writing the plaintext binary back to disk. Keys can come from a passphrase-wrapped capsule, a Linux kernel keyring entry, or a protected file. Companion tools push short-lived keys over SSH or an authenticated sealed UDP exchange. The project is designed to protect artifacts at rest and raise the extraction cost on a host; it explicitly does not protect a running process from root, the kernel, debuggers, or runtime memory inspection.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>Some deployments need an executable present on a machine but prefer not to leave the unpacked artifact on persistent storage. <code>ephrun</code> separates artifact encryption at build time from key availability at runtime and explores several operational key-delivery shapes.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>Key generation and sealed-box encryption for ELF artifacts.</li>
+<li>KCAP3 passphrase-wrapped capsules with Argon2id parameters in a versioned</li>
+<p>header and read compatibility for earlier capsule versions.</p>
+<li>A Linux runtime loader using <code>memfd</code> and <code>fexecve</code>.</li>
+<li>Four key-source modes: capsule, keyring ID, keyring label, and protected file.</li>
+<li>SSH and ephemeral UDP key-push tools with keyring timeouts.</li>
+<li>Threat-model, format, acceptance, operating, and decision documents.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>The trusted build side generates an X25519 key pair and encrypts the executable for its public key. The target obtains the corresponding private material from one of the configured sources. <code>elfdec-run</code> decrypts into a memory-backed file, scrubs the key-source environment it controls, and executes that file descriptor.</p>
+<p>Capsules add a passphrase-derived authenticated-encryption layer around the private key. Kernel-keyring modes can make raw key material time-limited and avoid a target-disk key file.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>The acceptance criteria cover the KCAP3 wire format, derivation parameters, round trips, reference vectors, earlier-version read compatibility, and build integration. The repository also checks threat-model invariants and documents a kernel matrix for the execution path. Test binaries and fixed artifacts make the pack, source, decrypt, and execute chain reproducible.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>This is not digital-rights management. A hostile root user, compromised kernel, <code>ptrace</code>-capable observer, loader compromise, or runtime memory instrumentation can recover or alter a running workload. Dynamically linked deployment adds a pre-<code>main</code> loader surface; static builds are the documented hardening path, not a guarantee against a hostile kernel.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">make
+bash test.sh
+./ephrun/genkey</code></pre>
+<p>Use <code>HOWTO.md</code> for the shortest supported pipeline, <code>SPEC.md</code> for the ELFENC and KCAP formats, <code>SECURITY.md</code> for provided and non-provided properties, and <code>tests/KERNEL_MATRIX_REPORT.md</code> for the recorded Linux behavior.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../deaddrop/index.html"><span>Secure systems</span><strong>deaddrop</strong><p>A Go client and relay for short-lived encrypted handoffs, with capsule pairing, optional end-to-end identity, and a detailed protocol specification.</p></a><a href="../URTB/index.html"><span>Secure systems</span><strong>URTB</strong><p>A C terminal tunnel using shared capsules and XChaCha20-Poly1305 across ESP-NOW, LoRa, Unix sockets, and generic process streams.</p></a><a href="../compartment/index.html"><span>Secure systems</span><strong>compartment</strong><p>A small Linux isolation toolkit with two zero-dependency C tools, one policy format, worked profiles, and explicit security boundaries.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>

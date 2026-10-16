@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A toolkit for controlled model-layout experiments on both standard SafeTensors and the integer Q16.48 model path.">
+  <meta name="color-scheme" content="light">
+  <title>int-llm coordinate permutation — Project brief</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body data-page="project">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html" aria-label="Project index home">
+      <span class="brand-mark">NM</span>
+      <span><strong>Project index</strong><small>Code and recorded results</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../index.html#projects">Projects</a>
+      <a href="../../catalog/index.html">Table</a>
+      <a href="../../index.html#method">Evidence</a>
+      <a href="https://github.com/nmicic" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <div class="project-hero-wrap">
+      <section class="project-hero section-shell">
+        <div class="project-title">
+          <a class="back-link" href="../../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+          <p class="eyebrow">Integer &amp; embedded · Research</p>
+          <h1>int-llm coordinate permutation</h1>
+          <p class="project-tagline">Reversible checkpoint transformations across vocabulary rows, MLP neurons, attention heads, and the residual hidden basis.</p>
+          <div class="hero-actions"><a class="button primary" href="https://github.com/nmicic/int-llm-coordinate-permutation" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="project-fact-card" aria-label="Project facts">
+          <div class="evidence large"><span>Evidence snapshot</span>The all-axis TinyLlama run transformed all 201 learned tensors; the integer path kept 80/80 decisions and the BF16 inverse restored the checkpoint byte-for-byte.</div>
+          <dl>
+            <div><dt>Status</dt><dd>Research</dd></div>
+            <div><dt>Maturity</dt><dd>Reproducible experiment</dd></div>
+            <div><dt>Primary language</dt><dd>Python</dd></div>
+            <div><dt>Work period</dt><dd>2026</dd></div>
+            <div><dt>Reviewed</dt><dd>2026-10-15</dd></div>
+            <div><dt>Source commit</dt><dd><a href="https://github.com/nmicic/int-llm-coordinate-permutation/tree/0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4" target="_blank" rel="noreferrer">0fd1a0f96d7f</a></dd></div>
+          </dl>
+          <ul class="tag-list" aria-label="Technologies"><li>SafeTensors</li><li>Llama</li><li>parameter symmetry</li><li>Q16.48</li><li>checkpoint tooling</li></ul>
+        </aside>
+      </section>
+    </div>
+    <div class="project-layout section-shell">
+      <section class="evidence-band" aria-labelledby="engineering-evidence-heading">
+      <div class="evidence-band-heading">
+        <div><p class="eyebrow">At a glance</p><h2 id="engineering-evidence-heading">Evidence and scope</h2></div>
+        <p>Repository measurements and recorded project results. Test and benchmark claims were inspected, not rerun during this catalog refresh. Physical line counts use the stated file scopes.</p>
+      </div>
+      <dl class="metric-grid"><div><dt>Tensor coverage</dt><dd><strong>201 learned tensors</strong><span>The all-axis TinyLlama transformation covered the documented learned-tensor set.</span></dd></div><div><dt>Integer behavior</dt><dd><strong>80/80 decisions</strong><span>Greedy decisions remained aligned on the Q16.48 validation path.</span></dd></div><div><dt>Reversibility</dt><dd><strong>Byte-for-byte</strong><span>The BF16 inverse restored the pinned checkpoint exactly.</span></dd></div><div><dt>Input dtypes</dt><dd><strong>BF16 / F16 / F32</strong><span>Unsharded SafeTensors within the documented Llama tensor-name scope.</span></dd></div></dl>
+      <details class="source-evidence"><summary>Reviewed sources · 2026-10-15 · 0fd1a0f96d7f</summary><p>217 tracked files · 49 documentation files · 1 workflow files. Inventory includes data and vendored or generated files; workflow presence does not establish a passing run.</p><ul><li><a href="https://github.com/nmicic/int-llm-coordinate-permutation/blob/0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4/README.md" target="_blank" rel="noreferrer">README.md</a></li><li><a href="https://github.com/nmicic/int-llm-coordinate-permutation/blob/0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4/RESULTS.md" target="_blank" rel="noreferrer">RESULTS.md</a></li><li><a href="https://github.com/nmicic/int-llm-coordinate-permutation/blob/0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4/experiments/systematic_mlp_layout/README.md" target="_blank" rel="noreferrer">experiments/systematic_mlp_layout/README.md</a></li><li><a href="https://github.com/nmicic/int-llm-coordinate-permutation/blob/0fd1a0f96d7fc6d2e51365b66d9dd757bf2d93a4/experiments/hidden_channel_permutation/README.md" target="_blank" rel="noreferrer">experiments/hidden_channel_permutation/README.md</a></li></ul><p><a href="../../repository-snapshot.json">Download inventory and line-count file scopes</a></p></details>
+    </section>
+      <article class="project-content"><h2 id="executive-summary">Executive summary</h2>
+<p><code>int-llm-coordinate-permutation</code> applies reversible coordinate changes to Llama-family checkpoints. The small scope reorders vocabulary rows and translates token IDs at the interface. The all-axis scope also reorders feed-forward neurons, whole grouped-query attention heads, and the global residual hidden basis with compensating row and column moves. Implementations work directly on BF16, F16, and F32 SafeTensors as well as the Q16.48 integer format. These are known model symmetries and layout experiments—not encryption, access control, or a method for making public weights private.</p>
+<h2 id="problem-and-context">Problem and context</h2>
+<p>A neural network's stored coordinate order is not always part of its function. If every connected tensor is transformed consistently, many row and column orders can change while preserving the logical model. This repository turns that observation into strict tooling with explicit boundary maps and inverse operations.</p>
+<h2 id="what-was-built">What was built</h2>
+<ul>
+<li>Deterministic token-map creation from a private random key or explicit order.</li>
+<li>Vocabulary-only SafeTensors and integer-model converters.</li>
+<li>All-axis converters for vocabulary, MLP, attention-head, and residual-basis</li>
+<p>coordinates.</p>
+<li>Structural verifiers that check every prescribed destination coordinate.</li>
+<li>Integer and floating-point inference comparison harnesses.</li>
+<li>Explicit MLP layouts (original, smooth, spread, and seeded-random) and a</li>
+<p>minimal residual-basis swap across all nine small-model matrices.</p>
+<li>Format, provenance, security, and prior-art documentation.</li>
+</ul>
+<h2 id="how-it-works">How it works</h2>
+<p>Vocabulary rows move together in the input embedding and any separate output head. Token IDs are translated into the physical namespace on input and back to logical IDs on output. Internal coordinate maps require no runtime sidecar because their inverse relationships are baked into the affected matrix axes.</p>
+<p>Attention transforms move whole heads and preserve grouped-query associations. Coordinates inside a head stay in place so rotary pairs remain canonical. The residual-basis permutation is global because every residual addition must use the same basis.</p>
+<h2 id="evidence-and-validation">Evidence and validation</h2>
+<p>On the documented TinyLlama checkpoint, the all-axis composition classified and transformed all 201 learned tensors. The Q16.48 path passed prescribed-axis verification and the original 80/80 greedy-token gate. The direct BF16 path restored the original checkpoint byte-for-byte after the inverse transform; its floating-point control retained 48/48 top-1 decisions while showing small logit drift from a different reduction order.</p>
+<p>The August follow-up adds explicit small-model layout experiments. Swapping residual coordinates 0 and 31 changes all nine learned matrices while preserving all 5,832 checked Q16.48 logits; the inverse restores the checkpoint exactly. Four MLP-neuron orders compare adjacency distances without claiming sparsity or a performance improvement. The sibling visualization project makes those verified changes inspectable.</p>
+<p>Verifiers fail closed when the tensor layout, data type, or configuration falls outside the supported Llama shape.</p>
+<h2 id="boundaries">Boundaries</h2>
+<p>Permutation is not encryption and does not hide the model function. A public base model makes a transformed checkpoint particularly easy to analyze. The floating-point path need not reproduce every logit bit because changing the reduction order changes rounding. Current full-checkpoint tools accept one unsharded SafeTensors file and a constrained set of Llama tensor names and types.</p>
+<h2 id="repository-map-and-first-run">Repository map and first run</h2>
+<pre><code class="language-sh">make test
+python3 test_safetensors_coordinate_permutation.py</code></pre>
+<p>Start with the vocabulary-only fixture before using a full checkpoint. Read <code>FORMAT.md</code> for the map representation, <code>RESULTS.md</code> for measured gates, <code>SECURITY.md</code> for non-claims, and <code>SOURCE_PROVENANCE.md</code> for copied and derived components.</p></article>
+      <aside class="on-this-page">
+        <p>On this page</p>
+        <nav aria-label="On this page"></nav>
+      </aside>
+    </div>
+    <div class="section-shell"><section class="related-projects" aria-labelledby="related-heading"><p class="eyebrow">Continue exploring</p><h2 id="related-heading">Related projects</h2><div class="related-grid"><a href="../int-llm/index.html"><span>Integer &amp; embedded</span><strong>int-llm</strong><p>Pure-integer C experiments for deterministic language-model training and inference, validated across desktop, embedded, and emulated targets.</p></a><a href="../int-llm-precision-ladder/index.html"><span>Integer &amp; embedded</span><strong>int-llm precision ladder</strong><p>Follow-up experiments that narrow integer model weights while retaining the wide Q16.48 path as the comparison oracle.</p></a><a href="../int-llm-viz/index.html"><span>Integer &amp; embedded</span><strong>int-llm visualizations</strong><p>A weight atlas, inference trace, embedding-space viewer, and 3-D weight explorer for the complete small integer-model checkpoint.</p></a></div></section></div>
+  </main>
+  <footer class="site-footer">
+    <p>Public repository snapshot: 15 October 2026. Project briefs cite their reviewed commits and recorded validation evidence. <a href="../../repository-snapshot.json">Download source inventory</a>.</p>
+    <p><a href="https://github.com/nmicic">github.com/nmicic</a></p>
+  </footer>
+</body>
+</html>
