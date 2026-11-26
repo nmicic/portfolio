@@ -103,8 +103,10 @@ button, input { font: inherit; }
 .repository-actions { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; margin-top: 1.4rem; }
 .repository-actions a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
 .repository-note { margin: 1.5rem 0 0; color: var(--muted); }
+.app-reference { margin-top: 1.5rem; }
 .repository-notice { margin-bottom: 1.4rem; color: var(--muted); font-size: .9rem; }
 .repository-notice p { margin: 0; }
+.repository-notice p + p { margin-top: .4rem; }
 
 .filter-bar { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: space-between; padding: 1rem; border: 1px solid var(--line); background: var(--card); }
 .search-box { flex: 1 1 240px; }
