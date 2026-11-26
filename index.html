@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A technical catalog of 22 public repositories across integer computing, secure systems, computational search, visual mathematics, and writing tools.">
+  <meta name="description" content="A technical catalog of 22 public repositories, plus recent music and sound projects: ChimePond, JotTune Synth, and ToneSeal.">
   <meta name="color-scheme" content="light">
   <title>Nenad Micic — Project index</title>
   <link rel="stylesheet" href="assets/site.css">
@@ -17,6 +17,7 @@
       <span><strong>Project index</strong><small>Code and recorded results</small></span>
     </a>
     <nav aria-label="Primary navigation">
+      <a href="#recent-repositories">Recent</a>
       <a href="index.html#projects">Projects</a>
       <a href="catalog/index.html">Table</a>
       <a href="index.html#method">Evidence</a>
@@ -45,6 +46,32 @@
         </dl>
         <p class="fact-note">Includes 2 archived entries, one of them a moved-project notice. Counts describe repositories; related experiments and datasets are linked together.</p>
       </aside>
+    </section>
+
+    <section class="section-shell section-block" id="recent-repositories" aria-labelledby="recent-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">New public repositories · 26 November 2026</p><h2 id="recent-heading">Music &amp; sound</h2></div>
+        <p>Tools for creating music from readable scores and sending short messages through sound. Explore the repositories or try the projects online.</p>
+      </div>
+      <div class="repository-grid">
+        <article class="repository-card" aria-labelledby="chimepond-heading">
+          <h3 id="chimepond-heading"><a href="https://github.com/chimepond/">ChimePond</a></h3>
+          <p>A collection of tools and songs built around JotTune Synth, with a browser player and tools for AI-assisted composition.</p>
+          <ul class="repository-list">
+            <li><a href="https://github.com/chimepond/jottune-synth">jottune-synth</a><span>The synthesizer, editable TL songs, CLI tools, browser player, and macOS app.</span></li>
+            <li><a href="https://github.com/chimepond/jottune-mcp">jottune-mcp</a><span>Local MCP tools for composing, rendering, analyzing, and revising music.</span></li>
+            <li><a href="https://github.com/chimepond/tunes">tunes</a><span>A collection of readable TL songs and their musical metadata.</span></li>
+          </ul>
+          <div class="repository-actions"><a href="https://chimepond.com/">Website</a><a href="https://github.com/chimepond/">GitHub organization</a></div>
+        </article>
+        <article class="repository-card" aria-labelledby="toneseal-heading">
+          <h3 id="toneseal-heading"><a href="https://github.com/nmicic/toneseal/">ToneSeal</a></h3>
+          <p>An experimental browser app and native Linux/macOS command-line client for sending short messages through sound.</p>
+          <p>Includes encrypted Message and Password modes, explicit Clear text, and continuing chat. JotTune Synth renders the sound.</p>
+          <div class="repository-actions"><a href="https://toneseal.me/">Website</a><a href="https://github.com/nmicic/toneseal/">GitHub repository</a></div>
+        </article>
+      </div>
+      <p class="repository-note"><a href="https://jottune.app/">JotTune Synth</a> is the shared sound engine behind ChimePond and ToneSeal.</p>
     </section>
 
     <section class="section-shell section-block" aria-labelledby="start-heading">

@@ -93,6 +93,19 @@ button, input { font: inherit; }
 .card-link { align-self: flex-start; margin-top: auto; font-size: .78rem; font-weight: 800; text-decoration: none; }
 .card-link:hover { color: var(--green); }
 
+.repository-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.repository-card { padding: 1.6rem; border: 1px solid var(--line); background: var(--card); }
+.repository-card h3 { margin: 0 0 1rem; font-size: 1.8rem; line-height: 1.15; letter-spacing: -.035em; }
+.repository-card > p { margin: 0 0 1.2rem; color: #4e5953; }
+.repository-list { display: grid; gap: .85rem; margin: 1.4rem 0; padding: 0; list-style: none; }
+.repository-list a { font-weight: 700; overflow-wrap: anywhere; }
+.repository-list span { display: block; margin-top: .15rem; color: var(--muted); font-size: .9rem; }
+.repository-actions { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; margin-top: 1.4rem; }
+.repository-actions a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+.repository-note { margin: 1.5rem 0 0; color: var(--muted); }
+.repository-notice { margin-bottom: 1.4rem; color: var(--muted); font-size: .9rem; }
+.repository-notice p { margin: 0; }
+
 .filter-bar { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: space-between; padding: 1rem; border: 1px solid var(--line); background: var(--card); }
 .search-box { flex: 1 1 240px; }
 .search-box input { width: 100%; min-height: 44px; padding: .65rem .8rem; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
@@ -222,7 +235,7 @@ th { color: var(--green); font: 750 .68rem var(--mono); text-transform: uppercas
   .hero { min-height: 0; }
   .hero h1 { font-size: clamp(3.1rem, 16vw, 5.2rem); }
   .hero-facts { padding: 1.5rem; box-shadow: 9px 9px 0 var(--yellow); }
-  .featured-grid, .project-grid { grid-template-columns: 1fr; }
+  .featured-grid, .project-grid, .repository-grid { grid-template-columns: 1fr; }
   .project-card { min-height: 360px; }
   .section-block { padding-block: 4.5rem; }
   .project-hero { min-height: 0; padding-block: 3.5rem; }
